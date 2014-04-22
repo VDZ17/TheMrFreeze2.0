@@ -7,11 +7,11 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GravityTutorial.InGame_Jeu
 {
-    enum Direction
+    enum Direction3
     {
         Right, Left
     };
-    enum State
+    enum State3
     {
         Walking, Taking
     };
@@ -20,12 +20,12 @@ namespace GravityTutorial.InGame_Jeu
     {
 
         //DEFINITION
-        Texture2D texture;
+        private Texture2D texture;
 
         public Vector2 position;
         public Vector2 velocity;
 
-        Direction direction;
+        Direction3 direction;
 
         //GRAPHICS
         int nbSprites;
@@ -41,7 +41,7 @@ namespace GravityTutorial.InGame_Jeu
 
         //HITBOX
         public Rectangle rectangle;
-        State state;
+        State3 state;
         public bool hasHit;
         int timerHit;
         int speedHit;
@@ -56,12 +56,11 @@ namespace GravityTutorial.InGame_Jeu
             this.height = 77;
             this.width = 55;
             this.nbSprites = 9;
-            this.velocity.X = 3f;
-            this.direction = Direction.Right;
+            this.velocity.X = 2f;
+            this.direction = Direction3.Right;
             this.Timer = 0;
             this.animationSpeed = 5;
             this.hasHit = false;
-
             this.speedHit = 500;
             this.timerHit = 0;
         }
@@ -90,7 +89,7 @@ namespace GravityTutorial.InGame_Jeu
             if (anticipation.isOnLeftOf(block))
             {
                 //Obstacle at the right : change the direction of the patrol
-                direction = Direction.Left;
+                direction = Direction3.Left;
                 updateDirection(direction);
                 this.frameCollumn = 1;
                 this.velocity.X = -3f;
@@ -99,7 +98,7 @@ namespace GravityTutorial.InGame_Jeu
             else if (anticipation.isOnRightOf(block))
             {
                 //Obstacle at the left : change the direction of the patrol
-                direction = Direction.Right;
+                direction = Direction3.Right;
                 updateDirection(direction);
                 this.frameCollumn = 1;
                 this.velocity.X = 3f;
@@ -112,13 +111,13 @@ namespace GravityTutorial.InGame_Jeu
         }
         void updatePositionX()
         {
-            if (state == State.Walking)
+            if (state == State3.Walking)
                 this.position.X += this.velocity.X;
         }
 
         public void Animate()
         {
-            if (state == State.Walking)
+            if (state == State3.Walking)
             {
                 this.Timer++;
                 if (this.Timer == this.animationSpeed)
@@ -131,7 +130,7 @@ namespace GravityTutorial.InGame_Jeu
                     }
                 }
             }
-            else if (state == State.Taking)
+            else if (state == State3.Taking)
             {
                 this.Timer++;
                 if (this.Timer == this.animationSpeed)
@@ -169,14 +168,14 @@ namespace GravityTutorial.InGame_Jeu
                 }
             }
         }
-        void updateDirection(Direction direction)
+        void updateDirection(Direction3 direction)
         {
             switch (direction)
             {
-                case Direction.Right:
+                case Direction3.Right:
                     this.Effect = SpriteEffects.None;
                     break;
-                case Direction.Left:
+                case Direction3.Left:
                     this.Effect = SpriteEffects.FlipHorizontally;
                     break;
                 default:
@@ -184,51 +183,53 @@ namespace GravityTutorial.InGame_Jeu
                     break;
             }
         }
-        void updateHitbox(State state)
+        void updateHitbox(State3 state)
         {
-            if (state == State.Walking)
+            if (state == State3.Walking)
             {
                 this.height = 77;
                 this.width = 55;
                 this.nbSprites = 9;
+                this.animationSpeed = 5;
             }
 
-            else if (state == State.Taking)
+            else if (state == State3.Taking)
             {
                 this.height = 73;
                 this.width = 82;
                 this.nbSprites = 4;
+                this.animationSpeed = 7;
             }
         }
 
         //Hit
         public void hit(Character player)
         {
-            if (this.rectangle.Intersects(player.rectangle))
+            if (this.rectangle.Intersects(player.rectangle) && (this.state == State3.Walking))
             {
-                state = State.Taking;
+                state = State3.Taking;
                 updateHitbox(state);
                 hasHit = true;
                 player.position.X = position.X;
+                this.frameCollumn = 1;
             }
-            //else
-            //{
-            //    state = State.Walking;
-            //    updateHitbox(state);
-            //    hasHit = false;
-            //}
-
+            else if ((!this.rectangle.Intersects(player.rectangle)) && (this.state == State3.Taking))
+            {
+                state = State3.Walking;
+                updateHitbox(state);
+                this.frameCollumn = 1;
+            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (state == State.Walking)
+            if (state == State3.Walking)
             {
                 spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
-            else if (state == State.Taking)
+            else if (state == State3.Taking)
             {
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 77+1, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 77 + 1, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
 
         }

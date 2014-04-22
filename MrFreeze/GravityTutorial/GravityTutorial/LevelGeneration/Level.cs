@@ -17,8 +17,9 @@ namespace GravityTutorial
     public class Level
     {
         //FIELDS
-        public List<Character> Heroes;
+        public static List<Character> Heroes;
         public List<Ennemy3> Ennemies3;
+        public List<Ennemy2> Ennemies2;
         public List<Bonus> Bonuses;
         public int[,] read;
         public loadfile file = new loadfile();
@@ -37,6 +38,8 @@ namespace GravityTutorial
             Heroes = new List<Character>();
             Bonuses = new List<Bonus>();
             Ennemies3 = Map.Ennemies3;
+            Ennemies2 = Map.Ennemies2;
+
             switch (lvl)
             {
                 case 0:
@@ -105,17 +108,20 @@ namespace GravityTutorial
             {
                 Heroes.ElementAt(0).Collision(tile.Rectangle, map.Width, map.Height, Ressource.effect2, tile.Tile_name);
 
-
                 foreach (Ennemy3 e in Ennemies3)
                 {
                     e.Patrol(tile.Rectangle, tile.Tile_name);
                     e.Collision(tile.Rectangle, tile.Tile_name);
                     e.hit(Heroes.ElementAt(0));
                 }
-
-
+                foreach (Ennemy2 e in Ennemies2)
+                {
+                    e.Collision(tile.Rectangle, tile.Tile_name);
+                }
             }
 
+
+            //Collisions invisibles
             foreach (CollisionTiles tile in map.InvisibleTiles)
             {
                 foreach (Ennemy3 e in Ennemies3)
@@ -130,9 +136,32 @@ namespace GravityTutorial
             {
                 gold.Update(Heroes.ElementAt(0), Game1.score);
             }
+
+            //Updates Ennemies
+            bool hasAlreadyHit = false;
+            foreach (Ennemy2 e in Ennemies2)
+            {
+                hasAlreadyHit = false;
+                e.Update(gameTime);
+                e.hit(Heroes.ElementAt(0));
+                if (e.firstHit)
+                {
+                    if (e.direction == Direction2.Right)
+                    {
+                        Heroes.ElementAt(0).velocity.X += 5f;
+                    }
+                    else if (e.direction == Direction2.Left)
+                    {
+                        Heroes.ElementAt(0).velocity.X += -5f;
+                    }
+                    
+
+                }
+
+
+            }
             foreach (Ennemy3 e in Ennemies3)
             {
-
 
                 if (e.hasHit)
                 {
@@ -140,7 +169,6 @@ namespace GravityTutorial
                     //Hud.youlose = true;
                 }
                 e.Update(gameTime);
-
 
                 if (!updateHero)
                 {
@@ -179,6 +207,10 @@ namespace GravityTutorial
                 b.Draw(spriteBatch);
             }
             foreach (Ennemy3 e in Ennemies3)
+            {
+                e.Draw(spriteBatch);
+            }
+            foreach (Ennemy2 e in Ennemies2)
             {
                 e.Draw(spriteBatch);
             }

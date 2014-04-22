@@ -20,12 +20,13 @@ namespace GravityTutorial
     {
         //VAR
         int nbr_sprite;
-        int player_Height;
-        int player_Width;
+        public int player_Height;
+        public int player_Width;
         bool spawn;
         bool jump;
         bool stop;
         bool attack;
+        public int life;
 
         //HEALTH
         public int life_changment;
@@ -75,7 +76,7 @@ namespace GravityTutorial
             cooldownDoubleJump = false;
 
             CurrentItem = Item.Type.DoubleJump;
-
+            life = 150;
         }
 
 

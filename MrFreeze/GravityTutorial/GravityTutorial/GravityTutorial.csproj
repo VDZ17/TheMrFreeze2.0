@@ -116,6 +116,7 @@
     <Compile Include="InGame Hors jeu\Camera.cs" />
     <Compile Include="InGame Hors jeu\web.cs" />
     <Compile Include="InGame Jeu\Character.cs" />
+    <Compile Include="InGame Jeu\Ennemy2.cs" />
     <Compile Include="InGame Jeu\Ennemy3.cs" />
     <Compile Include="InGame Jeu\health.cs" />
     <Compile Include="LevelGeneration\Level.cs" />
