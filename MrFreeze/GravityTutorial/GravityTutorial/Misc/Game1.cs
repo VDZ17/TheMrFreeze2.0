@@ -43,7 +43,7 @@ namespace GravityTutorial
 
         //MENU
         public static Boolean exitgame = false;
-        Menu menu;
+        public static Menu menu;
         public static bool inGame;
 
         //CONSTRUCTOR
@@ -126,8 +126,7 @@ namespace GravityTutorial
 
 
         protected override void UnloadContent()
-        {
-        }
+        {        }
 
 
         protected override void Update(GameTime gameTime)
@@ -170,7 +169,7 @@ namespace GravityTutorial
             /* VIDEO A FIX
                     spriteBatch.Begin();
                     spriteBatch.Draw(VidPlayer.GetTexture(), vidRectangle, Color.White);*/
-            if (inGame || menu.actualType == Menu.MenuType.pause)
+            if (inGame || menu.actualType == Menu.MenuType.pause || menu.actualType == Menu.MenuType.loose || menu.actualType == Menu.MenuType.win)
             {
                 
                 spriteBatch.Begin(SpriteSortMode.Deferred,

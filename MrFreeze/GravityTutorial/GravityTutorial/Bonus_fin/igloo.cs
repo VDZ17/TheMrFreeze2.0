@@ -27,6 +27,8 @@ namespace GravityTutorial
             if (player.rectangle.Collide_object(hitbox) && !hasBeenTaken)
             {
                 has_collide = true;
+                Game1.inGame = false;
+                Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.win);
                 Hud.youlose = true;
             }
         }

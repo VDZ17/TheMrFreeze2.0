@@ -45,6 +45,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuRessources\title.png">
+      <Name>title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
     <Compile Include="Tile2.png">
       <Name>Tile2</Name>
       <Importer>TextureImporter</Importer>
@@ -104,14 +109,6 @@
   <ItemGroup>
     <Compile Include="MenuRessources\backgroundmenugris.png">
       <Name>backgroundmenugris</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="MenuRessources\title.png">
-      <Name>title</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
@@ -460,6 +457,13 @@
   <ItemGroup>
     <Compile Include="EnnemiesResources\Ennemy2-2.png">
       <Name>Ennemy2-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="MenuRessources\champtxt.png">
+      <Name>champtxt</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

@@ -30,6 +30,7 @@ namespace GravityTutorial
 
         //HEALTH
         public int life_changment;
+        public bool isDead;
 
         //DEFINITION
         Texture2D texture;
@@ -64,7 +65,7 @@ namespace GravityTutorial
 
             life_changment = 0;
 
-
+            isDead = false;
             hasJumped2 = true;
             spawn = true;
             position = newPosition;
@@ -299,11 +300,23 @@ namespace GravityTutorial
             }
             if (Keyboard.GetState().IsKeyDown(Keys.A))
             {
-                life_changment = -1;
+                life_changment += -1;
             }
             if (Keyboard.GetState().IsKeyDown(Keys.Z))
             {
-                life_changment = 1;
+                life_changment += 1;
+            }
+
+            //SORTIE ECRAN
+            if (position.Y < 3000)
+            {
+                life_changment = -life;
+            }
+
+            if (life + life_changment <= 0)
+            {
+                Game1.inGame = false;
+                Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
             }
 
 

@@ -127,6 +127,8 @@ namespace GravityTutorial
                 }
                 timer = 0;
                 youlose = true;
+                Game1.inGame = false;
+                Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
             }
             else
             {
@@ -154,10 +156,6 @@ namespace GravityTutorial
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (youlose)
-            {
-                spriteBatch.Draw(Ressource.Loser, loser, Color.White);
-            }
             spriteBatch.DrawString(Ressource.Font, "Score: " + this.score, position, Color.Red);
             spriteBatch.DrawString(Ressource.Font, "Timer: " + this.timer, position_timer, Color.Red);
             spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);

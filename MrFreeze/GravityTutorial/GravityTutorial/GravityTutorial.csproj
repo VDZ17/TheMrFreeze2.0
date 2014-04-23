@@ -91,7 +91,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ProjectMercury">
-      <HintPath>..\..\..\..\..\ProjectMercury.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\..\Downloads\ProjectMercury.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -122,7 +122,14 @@
     <Compile Include="LevelGeneration\Level.cs" />
     <Compile Include="LevelGeneration\loadfile.cs" />
     <Compile Include="LevelGeneration\Map.cs" />
-    <Compile Include="Misc\Menu.cs" />
+    <Compile Include="Menu\Button.cs" />
+    <Compile Include="Menu\ControleButton.cs" />
+    <Compile Include="Menu\LevelButton.cs" />
+    <Compile Include="Menu\Menu.cs" />
+    <Compile Include="Menu\MenuButton.cs" />
+    <Compile Include="Menu\MenuTitle.cs" />
+    <Compile Include="Menu\Pseudo.cs" />
+    <Compile Include="Menu\SwitchButton.cs" />
     <Compile Include="Bonus_fin\gold.cs" />
     <Compile Include="particules\particule.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -136,12 +143,6 @@
   <ItemGroup>
     <Content Include="Misc\Game.ico" />
     <Content Include="Misc\GameThumbnail.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\GravityTutorialContent\GravityTutorialContent.contentproj">
-      <Name>GravityTutorialContent</Name>
-      <XnaReferenceType>Content</XnaReferenceType>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
@@ -169,6 +170,13 @@
       <ProductName>Microsoft XNA Framework Redistributable 4.0</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GravityTutorialContent\GravityTutorialContent.contentproj">
+      <Project>{48C114F0-EBFD-41EB-8B05-CB9126B007F0}</Project>
+      <Name>GravityTutorialContent %28Content%29</Name>
+      <XnaReferenceType>Content</XnaReferenceType>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\Microsoft.Xna.GameStudio.targets" />

@@ -20,7 +20,7 @@ namespace GravityTutorial
     {
         public static Texture2D Player_animation,
             background,
-            Button, BackgroundMenuMain, BackgroundMenuPause, Title,
+            Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox,
             Gold, Items, Loser, igloo, healthbar;
 
         public static Texture2D Ennemy3, Ennemy2;
@@ -98,6 +98,7 @@ namespace GravityTutorial
             BackgroundMenuMain = Content.Load<Texture2D>(MenuFile + "backgroundmenu");
             BackgroundMenuPause = Content.Load<Texture2D>(MenuFile + "backgroundmenugris");
             Title = Content.Load<Texture2D>(MenuFile + "title");
+            TextBox = Content.Load<Texture2D>(MenuFile + "champtxt");
             MenuPolice = Content.Load<SpriteFont>(MenuFile + "MenuFont");
             ArialDefaultMenu = Content.Load<SpriteFont>(MenuFile + "ArialDefaultMenu");
             pseudo = "USER";
