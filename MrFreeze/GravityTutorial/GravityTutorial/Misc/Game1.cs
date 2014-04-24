@@ -138,7 +138,10 @@ namespace GravityTutorial
                 Ressource.screenHeight = GraphicsDevice.Viewport.Height;
                 sizeChanged = true;
             }
-
+            if (sizeChanged)
+            {
+                camera = new Camera(GraphicsDevice.Viewport);
+            }
             //if (Keyboard.GetState().IsKeyDown(Keys.Enter)) Exit();
             if (exitgame)
                 this.Exit();

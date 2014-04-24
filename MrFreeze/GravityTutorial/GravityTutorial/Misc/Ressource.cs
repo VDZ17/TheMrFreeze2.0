@@ -21,7 +21,7 @@ namespace GravityTutorial
         public static Texture2D Player_animation,
             background,
             Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox,
-            Gold, Items, Loser, igloo, healthbar;
+            Gold, Items, Loser, igloo, healthbar, Bullet;
 
         public static Texture2D Ennemy3, Ennemy2;
 
@@ -75,6 +75,9 @@ namespace GravityTutorial
             //PLAYER
             Player_animation = Content.Load<Texture2D>(CharacterFile + "FIXMegaman");
             healthbar = Content.Load<Texture2D>(CharacterFile + "healthbar");
+
+            //BULLET
+            Bullet = Content.Load<Texture2D>("shoot");
 
             // ENEMIES
             Ennemy3 = Content.Load<Texture2D>(EnnemiesFile + "Ennemy3");

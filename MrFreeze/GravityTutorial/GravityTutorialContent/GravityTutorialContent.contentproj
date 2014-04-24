@@ -31,9 +31,6 @@
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.TextureImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.XImporter, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
-      <Private>False</Private>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework.Content.Pipeline.AudioImporters, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=MSIL">
       <Private>False</Private>
     </Reference>
@@ -41,7 +38,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ProjectMercury">
-      <HintPath>..\..\..\..\..\ProjectMercury.dll</HintPath>
+      <HintPath>.\ProjectMercury.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -448,13 +445,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnnemiesResources\Ennemy2.png">
-      <Name>Ennemy2</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="EnnemiesResources\Ennemy2-2.png">
       <Name>Ennemy2-2</Name>
       <Importer>TextureImporter</Importer>
@@ -464,6 +454,13 @@
   <ItemGroup>
     <Compile Include="MenuRessources\champtxt.png">
       <Name>champtxt</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="shoot.png">
+      <Name>shoot</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

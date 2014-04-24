@@ -23,26 +23,22 @@ namespace GravityTutorial
 
         public void update(int damage)
         {
-            //if (damage < 0)
-            //{
-            //    for (int i = 0; i < damage/2; i++)
-            //    {
-            //        rectangle_life.Width --; ;
-            //    }
-            //}
-            //else
-            //{
-            //    for (int i = 0; i < damage; i++)
-            //    {
-            //        if (rectangle_life.Width >= texture_life.Width)
-            //        {
-            //            break;
-            //        }
-            //        rectangle_life.Width++;
-            //    }
-            //}
+            if (damage < 0)
+            {
+                rectangle_life.Width -= damage;
+            }
+            else
+            {
+                for (int i = 0; i < damage; i++)
+                {
+                    if (rectangle_life.Width >= texture_life.Width)
+                    {
+                        break;
+                    }
+                    rectangle_life.Width++;
+                }
+            }
 
-            this.rectangle_life.Width += damage;
         }
         public void draw(SpriteBatch spriteBatch)
         {

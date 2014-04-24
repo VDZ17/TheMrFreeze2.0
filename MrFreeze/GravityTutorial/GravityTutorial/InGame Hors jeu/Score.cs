@@ -123,7 +123,7 @@ namespace GravityTutorial
             {
                 if (!(youlose))
                 {
-                    this.Save((score) * 100, "Hadrien");
+                    this.Save((score) * 100, Ressource.pseudo);
                 }
                 timer = 0;
                 youlose = true;

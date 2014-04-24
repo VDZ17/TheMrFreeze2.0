@@ -1,10 +1,10 @@
+Content\MenuRessources\title.xnb
 Content\Tile2.xnb
 Content\Tile1.xnb
 Content\InGameRessources\back.xnb
 Content\CharacterRessources\walkpetit.xnb
 Content\MenuRessources\backgroundmenu.xnb
 Content\MenuRessources\backgroundmenugris.xnb
-Content\MenuRessources\title.xnb
 Content\BonusRessources\Tile4.xnb
 Content\ecranbleu.xnb
 Content\InGameRessources\bleucrash.xnb
@@ -49,6 +49,8 @@ Content\CharacterRessources\FIXMegaman.xnb
 Content\CharacterRessources\healthbar.xnb
 Content\EnnemiesResources\Ennemy3.xnb
 Content\EnnemiesResources\Ennemy2.xnb
+Content\EnnemiesResources\Ennemy2-2.xnb
+Content\MenuRessources\champtxt.xnb
 Content\vid.xnb
 Content\MusicRessources\SF-course_sable1.xnb
 Content\MusicRessources\DRUM_BASS.xnb
@@ -68,7 +70,7 @@ Content\particules\SimpleRain.xnb
 Content\particules\snow.xnb
 Content\particules\StarTrail.xnb
 Content\particules\WaterJet.xnb
-Content\EnnemiesResources\Ennemy2-2.xnb
+Content\shoot.xnb
 Content\vid.wmv
 Content\MusicRessources\DRUM_BASS.wma
 Content\MusicRessources\DRUM&BASS.wma
@@ -76,4 +78,3 @@ Content\InGameRessources\back.jpg
 Content\MusicRessources\DRUM_BASS.mp3
 Content\MenuRessources\backgroundmenu.png
 Content\MenuRessources\backgroundmenugris.png
-Content\MenuRessources\title.png

@@ -107,7 +107,10 @@ namespace GravityTutorial
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
                 Heroes.ElementAt(0).Collision(tile.Rectangle, map.Width, map.Height, Ressource.effect2, tile.Tile_name);
-
+                foreach (Bullet b in Heroes[0].Bullets)
+                {
+                    b.Update(tile);
+                }
                 foreach (Ennemy3 e in Ennemies3)
                 {
                     e.Patrol(tile.Rectangle, tile.Tile_name);
@@ -146,6 +149,7 @@ namespace GravityTutorial
                 e.hit(Heroes.ElementAt(0));
                 if (e.firstHit)
                 {
+                    
                     if (e.direction == Direction2.Right)
                     {
                         Heroes.ElementAt(0).velocity.X += 5f;
@@ -157,7 +161,6 @@ namespace GravityTutorial
                     
 
                 }
-
 
             }
             foreach (Ennemy3 e in Ennemies3)

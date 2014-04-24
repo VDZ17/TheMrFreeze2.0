@@ -91,7 +91,7 @@
       <Private>False</Private>
     </Reference>
     <Reference Include="ProjectMercury">
-      <HintPath>..\..\..\..\..\..\..\Downloads\ProjectMercury.dll</HintPath>
+      <HintPath>..\GravityTutorialContent\ProjectMercury.dll</HintPath>
     </Reference>
     <Reference Include="System">
       <Private>False</Private>
@@ -115,6 +115,7 @@
     <Compile Include="Bonus_fin\Items.cs" />
     <Compile Include="InGame Hors jeu\Camera.cs" />
     <Compile Include="InGame Hors jeu\web.cs" />
+    <Compile Include="InGame Jeu\Bullet.cs" />
     <Compile Include="InGame Jeu\Character.cs" />
     <Compile Include="InGame Jeu\Ennemy2.cs" />
     <Compile Include="InGame Jeu\Ennemy3.cs" />

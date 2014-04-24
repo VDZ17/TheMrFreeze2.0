@@ -45,7 +45,7 @@ namespace GravityTutorial.InGame_Jeu
 
 
         //Attributs
-        bool finalHit;
+        public bool finalHit;
         public bool firstHit;
 
 
@@ -188,6 +188,7 @@ namespace GravityTutorial.InGame_Jeu
 
         public void hit(Character player)
         {
+            
             if (this.direction == Direction2.Right)
             {
                 if (player.position.X < this.position.X + 50 && player.position.Y + player.player_Height > this.position.Y && finalHit == false)
@@ -196,6 +197,7 @@ namespace GravityTutorial.InGame_Jeu
                     updateHitbox(state);
                     this.firstHit = true;
                     this.finalHit = true;
+                    player.life_changment -= 10;
                 }
             }
             else if (this.direction == Direction2.Left)
@@ -206,6 +208,7 @@ namespace GravityTutorial.InGame_Jeu
                     updateHitbox(state);
                     this.firstHit = true;
                     this.finalHit = true;
+                    player.life_changment -= 10;
                 }
             }
             if (firstHit)

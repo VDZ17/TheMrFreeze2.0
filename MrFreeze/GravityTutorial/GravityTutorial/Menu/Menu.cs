@@ -245,7 +245,7 @@ namespace GravityTutorial
                         actualMenu = new Menu(MenuType.pause, 2, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 4);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Acceuil"], MenuType.welcome);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Accueil"], MenuType.welcome);
                         break;
                     }
                 case MenuType.defaultcommand:

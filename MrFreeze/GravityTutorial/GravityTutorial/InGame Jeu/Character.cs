@@ -28,6 +28,10 @@ namespace GravityTutorial
         bool attack;
         public int life;
 
+        //BULLETS
+        public List<Bullet> Bullets;
+
+
         //HEALTH
         public int life_changment;
         public bool isDead;
@@ -65,6 +69,7 @@ namespace GravityTutorial
 
             life_changment = 0;
 
+            Bullets = new List<Bullet> { };
             isDead = false;
             hasJumped2 = true;
             spawn = true;
@@ -80,6 +85,49 @@ namespace GravityTutorial
             life = 150;
         }
 
+        public void UpdateBullet()
+        {
+            foreach (Bullet bullet in Bullets)
+            {
+
+                bullet.position += bullet.velocity;
+                bullet.hitbox_bullet = new Rectangle((int)position.X + (int)bullet.velocity.X, (int)position.Y + (int)bullet.velocity.Y, bullet.texture.Width, bullet.texture.Height);
+
+                if (Vector2.Distance(bullet.position, this.position) > 1000)
+                {
+                    bullet.IsVisible = false;
+                }
+            }
+            for (int i = 0; i < Bullets.Count; i++)
+            {
+                if (!(Bullets[i].IsVisible))
+                {
+                    Bullets.RemoveAt(i);
+                    i--;
+                }
+
+            }
+        }
+
+        public void Shoot()
+        {
+            Bullet newBullet;
+            if (this.Effect == SpriteEffects.None)
+            {
+                newBullet = new Bullet(Ressource.Bullet, new Vector2(10, 0));
+            }
+            else
+            {
+                newBullet = new Bullet(Ressource.Bullet, new Vector2(-10, 0));
+            }
+            newBullet.position = new Vector2(this.position.X + 10, this.position.Y - 3);
+            newBullet.IsVisible = true;
+
+            if (Bullets.Count < 1)
+            {
+                Bullets.Add(newBullet);
+            }
+        }
 
         public void Animate()
         {
@@ -168,6 +216,7 @@ namespace GravityTutorial
         public void Update(GameTime gameTime, SoundEffectInstance effect)
         {
             life_changment = 0;
+
             //DEFINITION
             rectangle = new Rectangle((int)position.X, (int)position.Y, 44, 50);
 
@@ -226,6 +275,7 @@ namespace GravityTutorial
             //TIR
             if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Shoot]))
             {
+                Shoot();
                 if (hasJumped)
                 {
                     jump = true;
@@ -310,10 +360,11 @@ namespace GravityTutorial
             //SORTIE ECRAN
             if (position.Y < 3000)
             {
-                life_changment = -life;
+                //life_changment = -life;
             }
 
-            if (life + life_changment <= 0)
+
+            if (Hud.youlose)
             {
                 Game1.inGame = false;
                 Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
@@ -321,6 +372,7 @@ namespace GravityTutorial
 
 
             sprite_update(spawn, attack, stop, jump);
+            UpdateBullet();
         }
 
         //COLLISION
@@ -371,17 +423,23 @@ namespace GravityTutorial
 
                 //COLISION
 
-                if (rectangle.isOnLeftOf(obstacle) && Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Right]))
+                else if (rectangle.isOnLeftOf(obstacle))
                 {
-                    position.X = obstacle.X - rectangle.Width - 3;
-
+                    position.X = obstacle.X - rectangle.Width;
+                    if (this.velocity.X < 0)
+                    {
+                        this.position.X += this.velocity.X;
+                    }
                 }
-                if (rectangle.isOnRightOf(obstacle) && Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]))
+                 else if (rectangle.isOnRightOf(obstacle))
                 {
-                    position.X = obstacle.X + obstacle.Width + 3;
-
+                    position.X = obstacle.X + obstacle.Width;
+                    if (this.velocity.X > 0)
+                    {
+                        this.position.X += this.velocity.X;
+                    }
                 }
-                if (player_plus_1.isOnBotOf(obstacle))
+                else if (player_plus_1.isOnBotOf(obstacle))
                 {
                     if (velocity.Y < 0)
                     {
@@ -438,6 +496,10 @@ namespace GravityTutorial
                 {
                     spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
+            }
+            foreach (Bullet bullet in Bullets)
+            {
+                bullet.Draw(spriteBatch, this.Effect);
             }
         }
     }
