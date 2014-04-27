@@ -9,11 +9,8 @@ namespace GravityTutorial
 {
     class Camera
     {
-        private Matrix transform;
-        public Matrix Transform
-        {
-            get { return transform; }
-        }
+        public static Matrix Transform;
+       
 
         public Vector2 center;
         public Viewport viewport;
@@ -61,7 +58,7 @@ namespace GravityTutorial
                 center.Y = position.Y;
             }*/
 
-                transform = Matrix.CreateTranslation(new Vector3(-center.X + (viewport.Width / 2),
+             Transform = Matrix.CreateTranslation(new Vector3(-center.X + (viewport.Width / 2),
                                                                  - center.Y + (viewport.Height / 2), 0));
         }
     }

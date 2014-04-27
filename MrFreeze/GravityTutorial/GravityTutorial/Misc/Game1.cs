@@ -12,22 +12,25 @@ using Microsoft.Xna.Framework.Media;
 using ProjectMercury.Emitters;
 using ProjectMercury.Modifiers;
 using ProjectMercury.Renderers;
-using ProjectMercury; 
+using ProjectMercury;
+
+using Effects;
 
 namespace GravityTutorial
 {
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         // GENERAL DATA
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public static GraphicsDeviceManager graphics;
+        public SpriteBatch spriteBatch;
 
-        public static Renderer particleRenderer;
-        public static ParticleEffect particleEffect; 
 
         public int height_size;
         public int width_size;
 
+        //PARTICLE
+        particule particule;
+       
 
         //LEVEL
         public static Level Level;
@@ -35,6 +38,7 @@ namespace GravityTutorial
 
         //VIEWPORT & Map
         Camera camera;
+        Matrix data;
 
         //VIDEO
         VideoPlayer VidPlayer;
@@ -52,30 +56,23 @@ namespace GravityTutorial
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
+            graphics.ApplyChanges();
             //this.graphics.IsFullScreen = true;
             this.Window.AllowUserResizing = true;
             this.Window.Title = "MrFreeze";
 
-            particleRenderer = new SpriteBatchRenderer
-            {
-                GraphicsDeviceService = graphics
-            };
-
-            particleEffect = new ParticleEffect(); 
 
         }
 
         protected override void Initialize()
         {
+            particule = new particule();
+
             Level Level = new Level(0);
-
             VidPlayer = new VideoPlayer();
-
-            
-
             menu = new Menu(Menu.MenuType.none, 0, Ressource.BackgroundMenuMain);
             inGame = false;
-
+            
             base.Initialize();
         }
 
@@ -85,14 +82,10 @@ namespace GravityTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Ressource.LoadContent(Content);
 
+            particule.LoadContent(Content);
             score = new Hud(new TimeSpan(0, 0, 50), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
 
-            //particules
-            particleRenderer.LoadContent(Content);
-            particleEffect = Ressource.BeamMeUp;
-            particleEffect.LoadContent(Content);
-            particleEffect.Initialise(); 
-
+            
             // VIDEO DISPLAY
 
             vidRectangle = new Rectangle(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y,
@@ -122,6 +115,7 @@ namespace GravityTutorial
                 MediaPlayer.Stop();
             }
 
+
         }
 
 
@@ -141,6 +135,7 @@ namespace GravityTutorial
             if (sizeChanged)
             {
                 camera = new Camera(GraphicsDevice.Viewport);
+                
             }
             //if (Keyboard.GetState().IsKeyDown(Keys.Enter)) Exit();
             if (exitgame)
@@ -151,48 +146,41 @@ namespace GravityTutorial
                 Level.Update(gameTime, Ressource.effect2);
                 score.Update(Level.Heroes[0]);
                 camera.update(Level.Heroes.ElementAt(0).position, Level.map.Width, Level.map.Height);
-                foreach (particule p in particule.particules_list)
-                {
-                    p.Update(gameTime);
-                }
+
+                //particleEffect.Trigger(new Vector2(Level.Ennemies3[0].position.X+ camera.Transform.Translation.X, Level.Ennemies3[0].position.Y + camera.Transform.Translation.Y));
+                particule.Update(gameTime);
             }
             else
             {
                 menu.Update(Mouse.GetState(), Keyboard.GetState(), ref menu, sizeChanged);
             }
-
+             
             base.Update(gameTime);
         }
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
-
+            GraphicsDevice.Clear(Color.Blue);
             //PROCESS
             /* VIDEO A FIX
                     spriteBatch.Begin();
                     spriteBatch.Draw(VidPlayer.GetTexture(), vidRectangle, Color.White);*/
             if (inGame || menu.actualType == Menu.MenuType.pause || menu.actualType == Menu.MenuType.loose || menu.actualType == Menu.MenuType.win)
             {
-                
                 spriteBatch.Begin(SpriteSortMode.Deferred,
                         BlendState.AlphaBlend,
                         null, null, null, null,
-                        camera.Transform);
+                        Camera.Transform);
                 Level.Draw(spriteBatch);
                 spriteBatch.End();
 
-                foreach (particule item in particule.particules_list)
-                {
-                    item.Draw(camera.Transform);
-                }
+                particule.Draw();
 
                 // HUD
                 spriteBatch.Begin();
                 score.Draw(spriteBatch);
                 spriteBatch.End();
 
-                
             }
             if (!inGame)
             {
@@ -200,7 +188,6 @@ namespace GravityTutorial
                 menu.Draw(spriteBatch, Mouse.GetState());
                 spriteBatch.End();
             }
-
             base.Draw(gameTime);
         }
     }

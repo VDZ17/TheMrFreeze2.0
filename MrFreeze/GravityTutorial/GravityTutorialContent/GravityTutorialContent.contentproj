@@ -189,152 +189,152 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="particules\Beam.png">
+    <Compile Include="Beam.png">
       <Name>Beam</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\BeamBlurred.png">
+    <Compile Include="BeamBlurred.png">
       <Name>BeamBlurred</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Cloud001.png">
+    <Compile Include="Cloud001.png">
       <Name>Cloud001</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Cloud002.png">
+    <Compile Include="Cloud002.png">
       <Name>Cloud002</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Cloud003.png">
+    <Compile Include="Cloud003.png">
       <Name>Cloud003</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Cloud004.png">
+    <Compile Include="Cloud004.png">
       <Name>Cloud004</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Flame.png">
+    <Compile Include="Flame.png">
       <Name>Flame</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\FlowerBurst.png">
+    <Compile Include="FlowerBurst.png">
       <Name>FlowerBurst</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Laser.png">
+    <Compile Include="Laser.png">
       <Name>Laser</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\LensFlare.png">
+    <Compile Include="LensFlare.png">
       <Name>LensFlare</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\MultiDot.png">
+    <Compile Include="MultiDot.png">
       <Name>MultiDot</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Particle001.png">
+    <Compile Include="Particle001.png">
       <Name>Particle001</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Particle002.png">
+    <Compile Include="Particle002.png">
       <Name>Particle002</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Particle003.png">
+    <Compile Include="Particle003.png">
       <Name>Particle003</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Particle004.png">
+    <Compile Include="Particle004.png">
       <Name>Particle004</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Particle005.png">
+    <Compile Include="Particle005.png">
       <Name>Particle005</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Particle006.png">
+    <Compile Include="Particle006.png">
       <Name>Particle006</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Particle007.png">
+    <Compile Include="Particle007.png">
       <Name>Particle007</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Ring001.png">
+    <Compile Include="Ring001.png">
       <Name>Ring001</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Ring002.png">
+    <Compile Include="Ring002.png">
       <Name>Ring002</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\SoftClumpy.png">
+    <Compile Include="SoftClumpy.png">
       <Name>SoftClumpy</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\SoftSmokey.png">
+    <Compile Include="SoftSmokey.png">
       <Name>SoftSmokey</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Spikey001.png">
+    <Compile Include="Spikey001.png">
       <Name>Spikey001</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Spikey002.png">
+    <Compile Include="Spikey002.png">
       <Name>Spikey002</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Splash.png">
+    <Compile Include="Splash.png">
       <Name>Splash</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Spray001.png">
+    <Compile Include="Spray001.png">
       <Name>Spray001</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Star.png">
+    <Compile Include="Star.png">
       <Name>Star</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Water001.png">
+    <Compile Include="Water001.png">
       <Name>Water001</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Water002.png">
+    <Compile Include="Water002.png">
       <Name>Water002</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
-    <Compile Include="particules\Weeds.png">
+    <Compile Include="Weeds.png">
       <Name>Weeds</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
@@ -390,6 +390,7 @@
       <Name>snow</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
     <Compile Include="particules\StarTrail.xml">
       <Name>StarTrail</Name>
@@ -400,27 +401,6 @@
       <Name>WaterJet</Name>
       <Importer>XmlImporter</Importer>
       <Processor>PassThroughProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="LensFlare.png">
-      <Name>LensFlare</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="Beam.png">
-      <Name>Beam</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="BeamBlurred.png">
-      <Name>BeamBlurred</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -463,6 +443,13 @@
       <Name>shoot</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="particules\snow_good.xml">
+      <Name>snow_good</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
     </Compile>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\XNA Game Studio\$(XnaFrameworkVersion)\Microsoft.Xna.GameStudio.ContentPipeline.targets" />

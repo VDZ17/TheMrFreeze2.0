@@ -3,8 +3,8 @@
   <Asset Type="ProjectMercury.ParticleEffect">
     <Item Type="Emitters:ConeEmitter">
       <Name>Smoke 1</Name>
-      <Budget>500</Budget>
-      <Term>3</Term>
+      <Budget>20</Budget>
+      <Term>1</Term>
       <ReleaseQuantity>1</ReleaseQuantity>
       <Enabled>true</Enabled>
       <ReleaseSpeed>
@@ -20,7 +20,7 @@
         <Variation>0</Variation>
       </ReleaseOpacity>
       <ReleaseScale>
-        <Value>16</Value>
+        <Value>13</Value>
         <Variation>0</Variation>
       </ReleaseScale>
       <ReleaseRotation>

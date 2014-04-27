@@ -7,18 +7,18 @@ using Microsoft.Xna.Framework.Graphics;
 
 namespace GravityTutorial
 {
-    class igloo : Bonus
+    public class igloo : Bonus
     {
         //FIELDS
         bool has_collide;
-        
+        public Vector2 position;
 
         //CONSTRUCTOR
         public igloo(Vector2 position) :
             base(position, Ressource.igloo, Bonus.Type.Igloo)
         {
             has_collide = false;
-            particule.particules_list.Add(new particule(Ressource.BeamMeUp, position));
+            this.position = position;
         }
 
         //DRAW UPDATE

@@ -24,8 +24,9 @@ namespace GravityTutorial
         int nbr_sprite;
         int height = 55;
         int width = 62;
+        SpriteEffects effect_stable;
 
-        public Bullet(Texture2D newTexture, Vector2 newVelocity)
+        public Bullet(Texture2D newTexture, Vector2 newVelocity, SpriteEffects effect)
         {
             velocity = newVelocity;
             texture = newTexture;
@@ -35,6 +36,7 @@ namespace GravityTutorial
             frameLine = 0;
             AnimationSpeed = 100;
             frameCollumn = 0;
+            effect_stable = effect;
         }
 
         public void animate_bullet()
@@ -61,14 +63,18 @@ namespace GravityTutorial
             if (this.hitbox_bullet.Collide_object(Tile.Rectangle))
             {
                 this.IsVisible = false;
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 40)
+                {
+                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                }
             }
         }
 
 
 
-        public void Draw(SpriteBatch spritBatch, SpriteEffects effect)
+        public void Draw(SpriteBatch spritBatch)
         {
-            spritBatch.Draw(this.texture, hitbox_bullet, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
+            spritBatch.Draw(this.texture, hitbox_bullet, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), effect_stable, 0f);
         }
     }
 }

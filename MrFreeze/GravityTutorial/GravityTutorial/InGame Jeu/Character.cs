@@ -68,7 +68,7 @@ namespace GravityTutorial
             texture = newTexture;
 
             life_changment = 0;
-
+            
             Bullets = new List<Bullet> { };
             isDead = false;
             hasJumped2 = true;
@@ -114,11 +114,11 @@ namespace GravityTutorial
             Bullet newBullet;
             if (this.Effect == SpriteEffects.None)
             {
-                newBullet = new Bullet(Ressource.Bullet, new Vector2(10, 0));
+                newBullet = new Bullet(Ressource.Bullet, new Vector2(10, 0), this.Effect);
             }
             else
             {
-                newBullet = new Bullet(Ressource.Bullet, new Vector2(-10, 0));
+                newBullet = new Bullet(Ressource.Bullet, new Vector2(-10, 0), this.Effect);
             }
             newBullet.position = new Vector2(this.position.X + 10, this.position.Y - 3);
             newBullet.IsVisible = true;
@@ -215,6 +215,7 @@ namespace GravityTutorial
 
         public void Update(GameTime gameTime, SoundEffectInstance effect)
         {
+            //particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
             //DEFINITION
@@ -499,7 +500,7 @@ namespace GravityTutorial
             }
             foreach (Bullet bullet in Bullets)
             {
-                bullet.Draw(spriteBatch, this.Effect);
+                bullet.Draw(spriteBatch);
             }
         }
     }

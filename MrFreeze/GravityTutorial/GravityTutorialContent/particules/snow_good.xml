@@ -20,7 +20,7 @@
         <Variation>0</Variation>
       </ReleaseOpacity>
       <ReleaseScale>
-        <Value>125</Value>
+        <Value>10</Value>
         <Variation>0</Variation>
       </ReleaseScale>
       <ReleaseRotation>
@@ -31,7 +31,7 @@
       <ParticleTextureAssetName>FlowerBurst</ParticleTextureAssetName>
       <Modifiers>
         <Item Type="ProjectMercury.Modifiers.LinearGravityModifier">
-          <Gravity>0 250</Gravity>
+          <Gravity>0 150</Gravity>
         </Item>
       </Modifiers>
       <BlendMode>Alpha</BlendMode>

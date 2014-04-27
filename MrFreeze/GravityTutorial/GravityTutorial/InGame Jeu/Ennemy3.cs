@@ -73,6 +73,7 @@ namespace GravityTutorial.InGame_Jeu
             //Moves
             updatePositionX();
             updatePositionY();
+            particule.particleEffects["BasicSmokePlume"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X,position.Y + Camera.Transform.Translation.Y));
             this.Animate();
 
             //Update the hitbox

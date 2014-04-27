@@ -26,7 +26,7 @@ namespace GravityTutorial
         public static Texture2D Ennemy3, Ennemy2;
 
         public static ParticleEffect
-            BasicExplosion, Basicfireball, BasicSmokePlume, BeamMeUp, CampFire, FlowerBloom, MagicTrail, Paparazzi, SimpleRain, StarTrail, WaterJet;
+            BasicExplosion, Basicfireball, BasicSmokePlume, BeamMeUp, CampFire, FlowerBloom, MagicTrail, Paparazzi, SimpleRain, StarTrail, WaterJet, snow;
 
         public static SpriteFont Font;
         public static SpriteFont MenuPolice, ArialDefaultMenu;
@@ -165,6 +165,20 @@ namespace GravityTutorial
             SimpleRain = Content.Load<ParticleEffect>(particules + "SimpleRain");
             StarTrail = Content.Load<ParticleEffect>(particules + "StarTrail");
             WaterJet = Content.Load<ParticleEffect>(particules + "WaterJet");
+            snow = Content.Load<ParticleEffect>(particules + "snow_good");
+
+
+            particule.particleEffects.Add("Snow", snow);
+            particule.particleEffects.Add("BasicSmokePlume", BasicSmokePlume);
+            particule.particleEffects.Add("BasicExplosion", BasicExplosion);
+            particule.particleEffects.Add("BasicFireball", Basicfireball);
+            particule.particleEffects.Add("BeamMeUp", BeamMeUp);
+            particule.particleEffects.Add("CampFire", CampFire);
+            particule.particleEffects.Add("FlowerBloom", FlowerBloom);
+            particule.particleEffects.Add("MagicTrail", MagicTrail);
+            particule.particleEffects.Add("Paparazzi", Paparazzi);
+            particule.particleEffects.Add("StarTrail", StarTrail);
+            particule.particleEffects.Add("Rain", SimpleRain);
         }
 
     }
