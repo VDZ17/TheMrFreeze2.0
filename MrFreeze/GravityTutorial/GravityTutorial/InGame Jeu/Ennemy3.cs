@@ -43,8 +43,6 @@ namespace GravityTutorial.InGame_Jeu
         public Rectangle rectangle;
         State3 state;
         public bool hasHit;
-        int timerHit;
-        int speedHit;
 
 
 
@@ -61,8 +59,6 @@ namespace GravityTutorial.InGame_Jeu
             this.Timer = 0;
             this.animationSpeed = 5;
             this.hasHit = false;
-            this.speedHit = 500;
-            this.timerHit = 0;
         }
 
 
@@ -73,7 +69,7 @@ namespace GravityTutorial.InGame_Jeu
             //Moves
             updatePositionX();
             updatePositionY();
-            particule.particleEffects["BasicSmokePlume"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X,position.Y + Camera.Transform.Translation.Y));
+            //particule.particleEffects["BasicSmokePlume"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X,position.Y + Camera.Transform.Translation.Y));
             this.Animate();
 
             //Update the hitbox
@@ -214,24 +210,19 @@ namespace GravityTutorial.InGame_Jeu
                 player.position.X = position.X;
                 this.frameCollumn = 1;
             }
-            else if ((!this.rectangle.Intersects(player.rectangle)) && (this.state == State3.Taking))
-            {
-                state = State3.Walking;
-                updateHitbox(state);
-                this.frameCollumn = 1;
-            }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Rectangle fixY = this.rectangle;
+            fixY.Y = this.rectangle.Y + 5;
+
             if (state == State3.Walking)
-            {
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            }
+                spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            
             else if (state == State3.Taking)
-            {
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 77 + 1, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            }
+                spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 77 + 1, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            
 
         }
 

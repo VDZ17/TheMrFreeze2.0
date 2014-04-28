@@ -27,8 +27,8 @@ namespace GravityTutorial
         public Map map;
         public int lvl;
         public static bool updateHero = true;
-        int timerEndLevel = 300;
-        int timerEnd = 0;
+        int timerspeedAttack3 = 30;
+        int timerEnd3 = 0;
 
         //CONSRTRUCTOR
         public Level(int lvl)
@@ -103,6 +103,14 @@ namespace GravityTutorial
         //UPDATE & DRAW
         public void Update(GameTime gameTime, SoundEffectInstance effect)
         {
+
+
+            if (Hud.youlose)
+            {
+                Game1.inGame = false;
+                Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
+            }
+
             particule.particleEffects["Snow"].Trigger(Vector2.Zero);
             if (updateHero)
                 Heroes.ElementAt(0).Update(gameTime, effect);
@@ -149,25 +157,21 @@ namespace GravityTutorial
             }
 
             //Updates Ennemies
-            bool hasAlreadyHit = false;
             foreach (Ennemy2 e in Ennemies2)
             {
-                hasAlreadyHit = false;
                 e.Update(gameTime);
                 e.hit(Heroes.ElementAt(0));
                 if (e.firstHit)
                 {
-                    
+
                     if (e.direction == Direction2.Right)
                     {
-                        Heroes.ElementAt(0).velocity.X += 5f;
+                        Heroes.ElementAt(0).velocity.X = 5f;
                     }
                     else if (e.direction == Direction2.Left)
                     {
-                        Heroes.ElementAt(0).velocity.X += -5f;
+                        Heroes.ElementAt(0).velocity.X = -5f;
                     }
-                    
-
                 }
 
             }
@@ -175,18 +179,17 @@ namespace GravityTutorial
             {
 
                 if (e.hasHit)
-                {
                     updateHero = false;
-                    //Hud.youlose = true;
-                }
+
                 e.Update(gameTime);
 
                 if (!updateHero)
                 {
-                    if (timerEnd == timerEndLevel)
-                        Hud.youlose = true;
+                    if (timerEnd3 == timerspeedAttack3)
+                        Heroes[0].life_changment = -1;
+
                     else
-                        timerEnd++;
+                        timerEnd3++;
                 }
 
 

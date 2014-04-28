@@ -96,11 +96,11 @@ namespace GravityTutorial
             {
                 if (damage < 0)
                 {
-                    rectangle_life.Width -= 10;
+                    rectangle_life.Width += damage;
                 }
                 else
                 {
-                    rectangle_life.Width += 10;
+                    rectangle_life.Width += damage;
                 }
             }
             if (rectangle_life.Width <= 0)

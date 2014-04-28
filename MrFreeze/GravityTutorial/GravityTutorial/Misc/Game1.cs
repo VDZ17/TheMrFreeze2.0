@@ -30,7 +30,6 @@ namespace GravityTutorial
 
         //PARTICLE
         particule particule;
-       
 
         //LEVEL
         public static Level Level;
@@ -60,8 +59,6 @@ namespace GravityTutorial
             //this.graphics.IsFullScreen = true;
             this.Window.AllowUserResizing = true;
             this.Window.Title = "MrFreeze";
-
-
         }
 
         protected override void Initialize()

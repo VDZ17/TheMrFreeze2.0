@@ -53,7 +53,6 @@ namespace GravityTutorial
 
         //ANIMATION
         int frameCollumn;
-        int frameLine;
         SpriteEffects Effect;
         Direction Direction;
         int Timer;
@@ -68,7 +67,7 @@ namespace GravityTutorial
             texture = newTexture;
 
             life_changment = 0;
-            
+
             Bullets = new List<Bullet> { };
             isDead = false;
             hasJumped2 = true;
@@ -78,7 +77,6 @@ namespace GravityTutorial
             hasDoubleJumped = false;
             this.Timer = 0;
             this.frameCollumn = 1;
-            this.frameLine = 1;
             cooldownDoubleJump = false;
 
             CurrentItem = Item.Type.DoubleJump;
@@ -172,7 +170,7 @@ namespace GravityTutorial
                     nbr_sprite = 4;
                     player_Height = 41;
                     player_Width = 32;
-                    AnimationSpeed = 3;
+                    AnimationSpeed = 12;
 
                 }
                 else
@@ -358,16 +356,9 @@ namespace GravityTutorial
             }
 
             //SORTIE ECRAN
-            if (position.Y < 3000)
+            if (position.Y > 1200)
             {
-                //life_changment = -life;
-            }
-
-
-            if (Hud.youlose)
-            {
-                Game1.inGame = false;
-                Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
+                life_changment = -300000;
             }
 
 
@@ -438,7 +429,7 @@ namespace GravityTutorial
                         this.position.X += this.velocity.X;
                     }
                 }
-                 else if (rectangle.isOnRightOf(obstacle))
+                else if (rectangle.isOnRightOf(obstacle))
                 {
                     position.X = obstacle.X + obstacle.Width;
                     if (this.velocity.X > 0)
@@ -479,7 +470,7 @@ namespace GravityTutorial
             }
             else if (stop)
             {
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width + 1, 64, player_Width - 1, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
             else if (jump)
             {

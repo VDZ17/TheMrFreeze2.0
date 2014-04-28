@@ -72,6 +72,7 @@ namespace GravityTutorial.InGame_Jeu
         {
             updatePositionY();
             //Update the hitbox
+
             rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
             Animate();
 
@@ -136,7 +137,6 @@ namespace GravityTutorial.InGame_Jeu
         {
             if (megaman.position.X > this.position.X)
                 this.direction = Direction2.Right;
-
             else
                 this.direction = Direction2.Left;
 
@@ -188,7 +188,7 @@ namespace GravityTutorial.InGame_Jeu
 
         public void hit(Character player)
         {
-            
+
             if (this.direction == Direction2.Right)
             {
                 if (player.position.X < this.position.X + 50 && player.position.Y + player.player_Height > this.position.Y && finalHit == false)
@@ -197,18 +197,18 @@ namespace GravityTutorial.InGame_Jeu
                     updateHitbox(state);
                     this.firstHit = true;
                     this.finalHit = true;
-                    player.life_changment -= 10;
+                    player.life_changment = -30;
                 }
             }
             else if (this.direction == Direction2.Left)
             {
-                if ( player.position.X > this.position.X - 50 && player.position.Y + player.player_Height > this.position.Y && finalHit == false)
+                if (player.position.X > this.position.X - 50 && player.position.Y + player.player_Height > this.position.Y && finalHit == false)
                 {
                     this.state = State2.hitting;
                     updateHitbox(state);
                     this.firstHit = true;
                     this.finalHit = true;
-                    player.life_changment -= 10;
+                    player.life_changment = -30;
                 }
             }
             if (firstHit)
@@ -217,9 +217,11 @@ namespace GravityTutorial.InGame_Jeu
                 if (timerAttack1 >= speedAttack1)
                 {
                     timerAttack1 = 0;
+                    this.position.X += 14;
                     firstHit = false;
                     this.state = State2.Waiting;
                     updateHitbox(state);
+                    
                 }
             }
 
@@ -227,10 +229,13 @@ namespace GravityTutorial.InGame_Jeu
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            Rectangle fixY = this.rectangle;
+            fixY.Y = this.rectangle.Y + 2;
+
             if (this.state == State2.Waiting)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             else if (this.state == State2.hitting)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 45 + 79 - 3, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, this.rectangle, new Rectangle((this.frameCollumn - 1) * width, 45 + 79 - 3, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
 
         }
 
