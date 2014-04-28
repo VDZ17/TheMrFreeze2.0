@@ -215,7 +215,6 @@ namespace GravityTutorial
 
         public void Update(GameTime gameTime, SoundEffectInstance effect)
         {
-            //particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
             //DEFINITION
@@ -380,11 +379,18 @@ namespace GravityTutorial
         public void Collision(Rectangle obstacle, int xoffset, int yoffset, SoundEffectInstance effect, string name)
         {
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
-            if (name == "Tile1" || name == "Tile2")
+
+            if (name == "Tile1" || name == "Tile2" || name == "Tile5")
             {
                 if (rectangle.isOnTopOf(obstacle))
                 {
-
+                    if (name == "Tile5")
+                    {
+                        if (stop)
+                        {
+                            position.X = obstacle.X;
+                        }
+                    }
                     if (Ressource.parameter[1] && this.hasJumped == false)
                     {
                         if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]) || Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Right]))

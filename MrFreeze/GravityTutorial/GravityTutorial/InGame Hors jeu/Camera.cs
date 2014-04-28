@@ -59,7 +59,7 @@ namespace GravityTutorial
             }*/
 
              Transform = Matrix.CreateTranslation(new Vector3(-center.X + (viewport.Width / 2),
-                                                                 - center.Y + (viewport.Height / 2), 0));
+                                                                 /*- center.Y + (viewport.Height / 2)*/0, 0));
         }
     }
 }

@@ -18,6 +18,7 @@ namespace GravityTutorial
     {
         //FIELDS
         public static List<Character> Heroes;
+        public List<moving_platform> moving_platform;
         public List<Ennemy3> Ennemies3;
         public List<Ennemy2> Ennemies2;
         public List<Bonus> Bonuses;
@@ -35,6 +36,7 @@ namespace GravityTutorial
             string dir = (Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\level\\");
             this.lvl = lvl;
             map = new Map();
+            moving_platform = new List<GravityTutorial.moving_platform>();
             Heroes = new List<Character>();
             Bonuses = new List<Bonus>();
             Ennemies3 = Map.Ennemies3;
@@ -101,6 +103,7 @@ namespace GravityTutorial
         //UPDATE & DRAW
         public void Update(GameTime gameTime, SoundEffectInstance effect)
         {
+            particule.particleEffects["Snow"].Trigger(Vector2.Zero);
             if (updateHero)
                 Heroes.ElementAt(0).Update(gameTime, effect);
 
@@ -134,6 +137,11 @@ namespace GravityTutorial
                 }
             }
 
+            foreach (moving_platform item in moving_platform)
+            {
+                Heroes[0].Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile5");
+                item.update();
+            }
 
             foreach (Bonus gold in Bonuses)
             {
@@ -191,11 +199,15 @@ namespace GravityTutorial
         {
             spriteBatch.Draw(Ressource.background, new Rectangle(0, -200, map.Width, Ressource.screenHeight + 500), Color.White);
             map.Draw(spriteBatch);
+
+            foreach (moving_platform item in moving_platform)
+            {
+                item.Draw(spriteBatch);
+            }
+
             foreach (Bonus gold in Bonuses)
             {
-
                 gold.Draw(spriteBatch);
-
             }
 
 

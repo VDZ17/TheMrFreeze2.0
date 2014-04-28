@@ -127,6 +127,7 @@
     <Compile Include="LevelGeneration\Level.cs" />
     <Compile Include="LevelGeneration\loadfile.cs" />
     <Compile Include="LevelGeneration\Map.cs" />
+    <Compile Include="LevelGeneration\moving_platform.cs" />
     <Compile Include="Menu\Button.cs" />
     <Compile Include="Menu\ControleButton.cs" />
     <Compile Include="Menu\LevelButton.cs" />

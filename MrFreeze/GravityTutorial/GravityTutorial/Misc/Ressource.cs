@@ -21,7 +21,7 @@ namespace GravityTutorial
         public static Texture2D Player_animation,
             background,
             Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox,
-            Gold, Items, Loser, igloo, healthbar, Bullet;
+            Gold, Items, Loser, igloo, healthbar, Bullet, moving_plateform;
 
         public static Texture2D Ennemy3, Ennemy2;
 
@@ -88,6 +88,7 @@ namespace GravityTutorial
             background = Content.Load<Texture2D>(InGameFile + "back");
             Loser = Content.Load<Texture2D>(InGameFile + "bleucrash");
             igloo = Content.Load<Texture2D>(InGameFile + "Tile10");
+            moving_plateform = Content.Load<Texture2D>("Tile5");
 
             //TOUCHES
             Key.Add(inGameAction.Shoot, Keys.LeftShift);
@@ -165,7 +166,7 @@ namespace GravityTutorial
             SimpleRain = Content.Load<ParticleEffect>(particules + "SimpleRain");
             StarTrail = Content.Load<ParticleEffect>(particules + "StarTrail");
             WaterJet = Content.Load<ParticleEffect>(particules + "WaterJet");
-            snow = Content.Load<ParticleEffect>(particules + "snow_good");
+            snow = Content.Load<ParticleEffect>(particules + "snow_lens");
 
 
             particule.particleEffects.Add("Snow", snow);

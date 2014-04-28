@@ -16,6 +16,7 @@ namespace GravityTutorial
         public Vector2 velocity;
         public Vector2 origin;
 
+        public bool explose;
         public bool IsVisible;
         int Timer;
         int AnimationSpeed;
@@ -37,6 +38,7 @@ namespace GravityTutorial
             AnimationSpeed = 100;
             frameCollumn = 0;
             effect_stable = effect;
+            explose = false;
         }
 
         public void animate_bullet()
@@ -63,9 +65,13 @@ namespace GravityTutorial
             if (this.hitbox_bullet.Collide_object(Tile.Rectangle))
             {
                 this.IsVisible = false;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 40)
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 20)
                 {
-                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                    if (!(explose))
+                    {
+                        particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                        explose = true;
+                    }
                 }
             }
         }

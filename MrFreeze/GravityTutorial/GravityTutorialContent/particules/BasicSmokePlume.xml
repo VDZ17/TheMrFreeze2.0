@@ -54,13 +54,13 @@
       <BlendMode>Alpha</BlendMode>
       <TriggerOffset>0 0</TriggerOffset>
       <MinimumTriggerPeriod>0.05</MinimumTriggerPeriod>
-      <Direction>-1.57</Direction>
+      <Direction>-1</Direction>
       <ConeAngle>0.6</ConeAngle>
     </Item>
     <Item Type="Emitters:ConeEmitter">
       <Name>Smoke 2</Name>
       <Budget>500</Budget>
-      <Term>3</Term>
+      <Term>1</Term>
       <ReleaseQuantity>1</ReleaseQuantity>
       <Enabled>true</Enabled>
       <ReleaseSpeed>

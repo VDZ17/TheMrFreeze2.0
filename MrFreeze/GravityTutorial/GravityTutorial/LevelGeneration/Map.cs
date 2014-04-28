@@ -54,6 +54,10 @@ namespace GravityTutorial
                     {
                         Level.Bonuses.Add(new gold(new Vector2(x * size, y * size)));
                     }
+                    if (number == 5)
+                    {
+                        Level.moving_platform.Add(new moving_platform(new Vector2(x * size, y * size), Ressource.moving_plateform));
+                    }
                     if (number == 10)
                     {
                         Level.Bonuses.Add(new igloo(new Vector2(x * size, y * size)));

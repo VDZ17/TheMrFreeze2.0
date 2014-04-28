@@ -3,13 +3,13 @@
   <Asset Type="ProjectMercury.ParticleEffect">
     <Item Type="ProjectMercury.Emitters.LineEmitter">
       <Name>Emitter01</Name>
-      <Budget>1000</Budget>
-      <Term>3.5</Term>
+      <Budget>3000</Budget>
+      <Term>5.5</Term>
       <ReleaseQuantity>1</ReleaseQuantity>
       <Enabled>true</Enabled>
       <ReleaseSpeed>
-        <Value>150</Value>
-        <Variation>50</Variation>
+        <Value>10</Value>
+        <Variation>25</Variation>
       </ReleaseSpeed>
       <ReleaseColour>
         <Value>1 1 1</Value>
@@ -20,25 +20,25 @@
         <Variation>0</Variation>
       </ReleaseOpacity>
       <ReleaseScale>
-        <Value>32</Value>
-        <Variation>16</Variation>
+        <Value>5</Value>
+        <Variation>0</Variation>
       </ReleaseScale>
       <ReleaseRotation>
-        <Value>0</Value>
-        <Variation>0</Variation>
+        <Value>10</Value>
+        <Variation>3</Variation>
       </ReleaseRotation>
-      <ReleaseImpulse>0 0</ReleaseImpulse>
-      <ParticleTextureAssetName>FlowerBurst</ParticleTextureAssetName>
+      <ReleaseImpulse>0 3</ReleaseImpulse>
+      <ParticleTextureAssetName>Cloud</ParticleTextureAssetName>
       <Modifiers>
         <Item Type="ProjectMercury.Modifiers.LinearGravityModifier">
-          <Gravity>0 250</Gravity>
+          <Gravity>0 40</Gravity>
         </Item>
       </Modifiers>
       <BlendMode>Alpha</BlendMode>
       <TriggerOffset>0 0</TriggerOffset>
       <MinimumTriggerPeriod>0</MinimumTriggerPeriod>
-      <Length>800</Length>
-      <Angle>-3</Angle>
+      <Length>5000</Length>
+      <Angle>3</Angle>
       <Rectilinear>false</Rectilinear>
       <EmitBothWays>false</EmitBothWays>
     </Item>
