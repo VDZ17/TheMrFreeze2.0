@@ -170,7 +170,7 @@ namespace GravityTutorial
                     nbr_sprite = 4;
                     player_Height = 41;
                     player_Width = 32;
-                    AnimationSpeed = 12;
+                    AnimationSpeed = 3;
 
                 }
                 else
@@ -213,6 +213,7 @@ namespace GravityTutorial
 
         public void Update(GameTime gameTime, SoundEffectInstance effect)
         {
+            particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
             //DEFINITION
@@ -356,9 +357,16 @@ namespace GravityTutorial
             }
 
             //SORTIE ECRAN
-            if (position.Y > 1200)
+            if (position.Y < 3000)
             {
-                life_changment = -300000;
+                //life_changment = -life;
+            }
+
+
+            if (Hud.youlose)
+            {
+                Game1.inGame = false;
+                Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
             }
 
 
@@ -370,7 +378,6 @@ namespace GravityTutorial
         public void Collision(Rectangle obstacle, int xoffset, int yoffset, SoundEffectInstance effect, string name)
         {
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
-
             if (name == "Tile1" || name == "Tile2" || name == "Tile5")
             {
                 if (rectangle.isOnTopOf(obstacle))
@@ -470,7 +477,7 @@ namespace GravityTutorial
             }
             else if (stop)
             {
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width + 1, 64, player_Width - 1, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
             else if (jump)
             {

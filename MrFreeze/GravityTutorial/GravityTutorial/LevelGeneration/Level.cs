@@ -21,6 +21,7 @@ namespace GravityTutorial
         public List<moving_platform> moving_platform;
         public List<Ennemy3> Ennemies3;
         public List<Ennemy2> Ennemies2;
+        public List<Ennemy1> Ennemies1;
         public List<Bonus> Bonuses;
         public int[,] read;
         public loadfile file = new loadfile();
@@ -41,6 +42,7 @@ namespace GravityTutorial
             Bonuses = new List<Bonus>();
             Ennemies3 = Map.Ennemies3;
             Ennemies2 = Map.Ennemies2;
+            Ennemies1 = Map.Ennemies1;
 
             switch (lvl)
             {
@@ -191,9 +193,10 @@ namespace GravityTutorial
                     else
                         timerEnd3++;
                 }
-
-
-
+            }
+            foreach (Ennemy1 e in Ennemies1)
+            {
+                e.Update(gameTime);
             }
         }
 
@@ -229,6 +232,10 @@ namespace GravityTutorial
                 e.Draw(spriteBatch);
             }
             foreach (Ennemy2 e in Ennemies2)
+            {
+                e.Draw(spriteBatch);
+            }
+            foreach (Ennemy1 e in Ennemies1)
             {
                 e.Draw(spriteBatch);
             }

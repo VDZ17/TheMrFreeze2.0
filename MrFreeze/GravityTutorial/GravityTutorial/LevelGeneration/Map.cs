@@ -14,6 +14,7 @@ namespace GravityTutorial
         public List<CollisionTiles> InvisibleTiles = new List<CollisionTiles>();
         public static List<Ennemy3> Ennemies3 = new List<Ennemy3>();
         public static List<Ennemy2> Ennemies2 = new List<Ennemy2>();
+        public static List<Ennemy1> Ennemies1 = new List<Ennemy1>();
 
         /*public List<CollisionTiles> CollisionTiles
         {
@@ -80,6 +81,11 @@ namespace GravityTutorial
                     if (number == 14)
                     {
                         Ennemies2.Add(new Ennemy2(Ressource.Ennemy2, new Vector2(x * size, y * size - 45)));
+                    }
+                    if (number == 15)
+                    {
+                        Ennemies1.Add(new Ennemy1(Ressource.Ennemy1, new Vector2(x * size, y * size - 14)));
+
                     }
 
                     width = (x + 1) * size;

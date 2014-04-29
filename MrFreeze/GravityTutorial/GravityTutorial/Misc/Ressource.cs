@@ -23,7 +23,7 @@ namespace GravityTutorial
             Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox,
             Gold, Items, Loser, igloo, healthbar, Bullet, moving_plateform;
 
-        public static Texture2D Ennemy3, Ennemy2;
+        public static Texture2D Ennemy3, Ennemy2, Ennemy1;
 
         public static ParticleEffect
             BasicExplosion, Basicfireball, BasicSmokePlume, BeamMeUp, CampFire, FlowerBloom, MagicTrail, Paparazzi, SimpleRain, StarTrail, WaterJet, snow;
@@ -82,6 +82,7 @@ namespace GravityTutorial
             // ENEMIES
             Ennemy3 = Content.Load<Texture2D>(EnnemiesFile + "Ennemy3");
             Ennemy2 = Content.Load<Texture2D>(EnnemiesFile + "Ennemy2-2");
+            Ennemy1 = Content.Load<Texture2D>(EnnemiesFile + "Ennemy1");
 
 
             //GAME
