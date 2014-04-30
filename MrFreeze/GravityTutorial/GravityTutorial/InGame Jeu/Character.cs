@@ -378,7 +378,7 @@ namespace GravityTutorial
         public void Collision(Rectangle obstacle, int xoffset, int yoffset, SoundEffectInstance effect, string name)
         {
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
-            if (name == "Tile1" || name == "Tile2" || name == "Tile5")
+            if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6")
             {
                 if (rectangle.isOnTopOf(obstacle))
                 {
@@ -477,7 +477,18 @@ namespace GravityTutorial
             }
             else if (stop)
             {
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                if (attack)
+                {
+                    player_Height = 43;
+                    player_Width = 51;
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle(player_Width, 64 + 41 + 43, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                }
+                else
+                {
+                    player_Height = 41;
+                    player_Width = 32;
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                }
             }
             else if (jump)
             {

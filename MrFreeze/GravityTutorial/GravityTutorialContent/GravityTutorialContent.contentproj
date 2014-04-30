@@ -167,20 +167,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InGameRessources\igloo.png">
-      <Name>igloo</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="InGameRessources\Tile10.png">
-      <Name>Tile10</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Beam.png">
       <Name>Beam</Name>
       <Importer>TextureImporter</Importer>
@@ -405,13 +391,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CharacterRessources\healthbar.jpg">
-      <Name>healthbar</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="EnnemiesResources\Ennemy3.png">
       <Name>Ennemy3</Name>
       <Importer>TextureImporter</Importer>
@@ -476,6 +455,27 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EnnemiesResources\Ennemy1.png">
+      <Name>Ennemy1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InGameRessources\Tile10.png">
+      <Name>Tile10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CharacterRessources\healthbar.png">
+      <Name>healthbar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Compile Include="Tile5.png">
       <Name>Tile5</Name>
       <Importer>TextureImporter</Importer>
@@ -483,8 +483,13 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="EnnemiesResources\Ennemy1.png">
-      <Name>Ennemy1</Name>
+    <Compile Include="InGameRessources\fissure.png">
+      <Name>fissure</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+    <Compile Include="InGameRessources\complet.png">
+      <Name>complet</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

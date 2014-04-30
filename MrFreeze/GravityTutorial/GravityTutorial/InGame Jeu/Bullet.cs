@@ -35,7 +35,7 @@ namespace GravityTutorial
             Timer = 0;
             nbr_sprite = 10;
             frameLine = 0;
-            AnimationSpeed = 100;
+            AnimationSpeed = 500;
             frameCollumn = 0;
             effect_stable = effect;
             explose = false;
@@ -58,20 +58,44 @@ namespace GravityTutorial
             }
         }
 
+
+        public void Update(Destroying_platform Tile)
+        {
+            animate_bullet();
+            hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
+            if (this.hitbox_bullet.isOnRightOf(Tile.hitbox) || this.hitbox_bullet.isOnLeftOf(Tile.hitbox))
+            {
+                this.IsVisible = false;
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                {
+                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                }
+            }
+        }
+        public void Update(moving_platform Tile)
+        {
+            animate_bullet();
+            hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
+            if (this.hitbox_bullet.isOnRightOf(Tile.hitbox) || this.hitbox_bullet.isOnLeftOf(Tile.hitbox))
+            {
+                this.IsVisible = false;
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                {
+                        particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                }
+            }
+        }
         public void Update(CollisionTiles Tile)
         {
             animate_bullet();
             hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
-            if (this.hitbox_bullet.Collide_object(Tile.Rectangle))
+            if (this.hitbox_bullet.isOnRightOf(Tile.Rectangle) || this.hitbox_bullet.isOnLeftOf(Tile.Rectangle))
             {
                 this.IsVisible = false;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 20)
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
                 {
-                    if (!(explose))
-                    {
                         particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
-                        explose = true;
-                    }
+
                 }
             }
         }

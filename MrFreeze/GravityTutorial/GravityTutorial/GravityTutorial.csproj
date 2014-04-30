@@ -125,6 +125,7 @@
     <Compile Include="InGame Jeu\Ennemy2.cs" />
     <Compile Include="InGame Jeu\Ennemy3.cs" />
     <Compile Include="InGame Jeu\health.cs" />
+    <Compile Include="LevelGeneration\Destroying_platform.cs" />
     <Compile Include="LevelGeneration\Level.cs" />
     <Compile Include="LevelGeneration\loadfile.cs" />
     <Compile Include="LevelGeneration\Map.cs" />

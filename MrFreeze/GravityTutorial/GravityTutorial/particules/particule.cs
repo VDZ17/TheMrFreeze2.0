@@ -26,7 +26,7 @@ namespace GravityTutorial
             particleEffects = new Dictionary<string, ParticleEffect>(); 
             particleRenderer = new SpriteBatchRenderer
             {
-                GraphicsDeviceService = Game1.graphics
+                GraphicsDeviceService = Game1.graphics_particle
             };
         }
 

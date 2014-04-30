@@ -51,6 +51,10 @@ namespace GravityTutorial
                     {
                         CollisionTiles.Add(new CollisionTiles(number, new Rectangle(x * size, y * size, size, size)));
                     }
+                    if (number == 6)
+                    {
+                        Level.destroy_platform.Add(new Destroying_platform(new Vector2(x * size, y * size), Ressource.complet));
+                    }
                     if (number == 4)
                     {
                         Level.Bonuses.Add(new gold(new Vector2(x * size, y * size)));

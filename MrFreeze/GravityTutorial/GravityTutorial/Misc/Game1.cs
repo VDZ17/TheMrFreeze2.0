@@ -21,9 +21,9 @@ namespace GravityTutorial
     public class Game1 : Microsoft.Xna.Framework.Game
     {
         // GENERAL DATA
-        public static GraphicsDeviceManager graphics;
+        public static GraphicsDeviceManager graphics_particle;
         public SpriteBatch spriteBatch;
-
+        public GraphicsDeviceManager graphics;
 
         public int height_size;
         public int width_size;
@@ -53,6 +53,7 @@ namespace GravityTutorial
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
+            graphics_particle = graphics;
             Content.RootDirectory = "Content";
             IsMouseVisible = true;
             graphics.ApplyChanges();

@@ -19,6 +19,7 @@ namespace GravityTutorial
         //FIELDS
         public static List<Character> Heroes;
         public List<moving_platform> moving_platform;
+        public List<Destroying_platform> destroy_platform;
         public List<Ennemy3> Ennemies3;
         public List<Ennemy2> Ennemies2;
         public List<Ennemy1> Ennemies1;
@@ -40,6 +41,9 @@ namespace GravityTutorial
             moving_platform = new List<GravityTutorial.moving_platform>();
             Heroes = new List<Character>();
             Bonuses = new List<Bonus>();
+            destroy_platform = new List<Destroying_platform>();
+
+
             Ennemies3 = Map.Ennemies3;
             Ennemies2 = Map.Ennemies2;
             Ennemies1 = Map.Ennemies1;
@@ -147,9 +151,32 @@ namespace GravityTutorial
                 }
             }
 
+            for (int i = 0; i < destroy_platform.Count; i++)
+            {
+                if ((destroy_platform[i].detruit))
+                {
+                    destroy_platform.RemoveAt(i);
+                    i--;
+                }
+
+            }
+            foreach (Destroying_platform item in destroy_platform)
+            {
+                Heroes[0].Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile6");
+                foreach (Bullet b in Heroes[0].Bullets)
+                {
+                    b.Update(item);
+                    item.update(b);
+                }
+            }
+
             foreach (moving_platform item in moving_platform)
             {
                 Heroes[0].Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile5");
+                foreach (Bullet b in Heroes[0].Bullets)
+                {
+                    b.Update(item);
+                }
                 item.update();
             }
 
@@ -205,6 +232,11 @@ namespace GravityTutorial
         {
             spriteBatch.Draw(Ressource.background, new Rectangle(0, -200, map.Width, Ressource.screenHeight + 500), Color.White);
             map.Draw(spriteBatch);
+
+            foreach (Destroying_platform item in destroy_platform)
+            {
+                item.Draw(spriteBatch);
+            }
 
             foreach (moving_platform item in moving_platform)
             {

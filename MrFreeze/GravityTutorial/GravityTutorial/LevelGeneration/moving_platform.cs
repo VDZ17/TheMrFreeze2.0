@@ -49,7 +49,7 @@ namespace GravityTutorial
 
         public void Draw(SpriteBatch spritebatch)
         {
-            spritebatch.Draw(texture, position, Color.White);
+            spritebatch.Draw(texture, new Rectangle((int)position.X, (int)position.Y,50,50), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
         }
     }
 }
