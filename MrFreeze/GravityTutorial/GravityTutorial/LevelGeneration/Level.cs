@@ -24,6 +24,7 @@ namespace GravityTutorial
         public List<Ennemy2> Ennemies2;
         public List<Ennemy1> Ennemies1;
         public List<Bonus> Bonuses;
+        public web Web;
         public int[,] read;
         public loadfile file = new loadfile();
         public Map map;
@@ -35,6 +36,7 @@ namespace GravityTutorial
         //CONSRTRUCTOR
         public Level(int lvl)
         {
+            Web = new web();
             string dir = (Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\level\\");
             this.lvl = lvl;
             map = new Map();
@@ -107,16 +109,19 @@ namespace GravityTutorial
 
 
         //UPDATE & DRAW
-        public void Update(GameTime gameTime, SoundEffectInstance effect)
+        public void Update(GameTime gameTime, SoundEffectInstance effect,Hud score)
         {
-
+            if (Hud.youwin)
+            {
+                Web.send_request(Ressource.pseudo,score.score,lvl);
+            }   
 
             if (Hud.youlose)
             {
                 Game1.inGame = false;
                 Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
             }
-
+            
             particule.particleEffects["Snow"].Trigger(Vector2.Zero);
             if (updateHero)
                 Heroes.ElementAt(0).Update(gameTime, effect);
@@ -158,7 +163,6 @@ namespace GravityTutorial
                     destroy_platform.RemoveAt(i);
                     i--;
                 }
-
             }
             foreach (Destroying_platform item in destroy_platform)
             {

@@ -26,7 +26,7 @@ namespace GravityTutorial
         public static Texture2D Ennemy3, Ennemy2, Ennemy1;
 
         public static ParticleEffect
-            BasicExplosion, Basicfireball, BasicSmokePlume, BeamMeUp, CampFire, FlowerBloom, MagicTrail, Paparazzi, SimpleRain, StarTrail, WaterJet, snow;
+            BasicExplosion, Basicfireball, BasicSmokePlume, BeamMeUp, CampFire, FlowerBloom, MagicTrail, Paparazzi, SimpleRain, StarTrail, WaterJet, snow, Goldparticle;
 
         public static SpriteFont Font;
         public static SpriteFont MenuPolice, ArialDefaultMenu;
@@ -172,8 +172,9 @@ namespace GravityTutorial
             StarTrail = Content.Load<ParticleEffect>(particules + "StarTrail");
             WaterJet = Content.Load<ParticleEffect>(particules + "WaterJet");
             snow = Content.Load<ParticleEffect>(particules + "snow_lens");
+            Goldparticle = Content.Load<ParticleEffect>((particules + "GoldParticle"));
 
-
+            particule.particleEffects.Add("GoldParticle", Goldparticle);
             particule.particleEffects.Add("Snow", snow);
             particule.particleEffects.Add("BasicSmokePlume", BasicSmokePlume);
             particule.particleEffects.Add("BasicExplosion", BasicExplosion);

@@ -24,12 +24,14 @@ namespace GravityTutorial
         int cd;
         bool new_cd;
         public static bool youlose;
+        public static bool youwin;
         Rectangle loser;
         bool saved;
 
         public Hud(TimeSpan timespan, Vector2 position_data)
         {
             //health
+            youwin = false;
             damage = 0;
             texture_life = Ressource.healthbar;
             position_life = new Vector2(0, 30);
@@ -114,7 +116,7 @@ namespace GravityTutorial
             { 
                 if(!(saved))
                 {
-                    this.Save((score) * 100, "Hadrien");
+                    this.Save((score) * 100, Ressource.pseudo);
                     saved = true;
                 }
 

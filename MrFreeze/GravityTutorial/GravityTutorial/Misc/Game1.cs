@@ -141,7 +141,7 @@ namespace GravityTutorial
 
             if (inGame)
             {
-                Level.Update(gameTime, Ressource.effect2);
+                Level.Update(gameTime, Ressource.effect2, score);
                 score.Update(Level.Heroes[0]);
                 camera.update(Level.Heroes.ElementAt(0).position, Level.map.Width, Level.map.Height);
 

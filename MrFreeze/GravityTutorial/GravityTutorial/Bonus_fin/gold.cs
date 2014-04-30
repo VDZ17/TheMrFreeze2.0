@@ -25,6 +25,7 @@ namespace GravityTutorial
             {
                 score.score += nbPoint;
                 hasBeenTaken = true;
+                particule.particleEffects["MagicTrail"].Trigger(new Vector2(hitbox.Center.X + Camera.Transform.Translation.X, hitbox.Center.Y + Camera.Transform.Translation.Y));
             }
         }
 

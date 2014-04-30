@@ -459,9 +459,6 @@ namespace GravityTutorial
                     effect.Pause();
                 }
 
-
-
-
                 if (position.X < 0)
                 { position.X = 0; }
                 if (position.X > xoffset - rectangle.Width)
