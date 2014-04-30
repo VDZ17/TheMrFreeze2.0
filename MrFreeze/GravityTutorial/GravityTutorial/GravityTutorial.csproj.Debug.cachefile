@@ -9,7 +9,6 @@ Content\ecranbleu.xnb
 Content\InGameRessources\bleucrash.xnb
 Content\MenuRessources\boutton.xnb
 Content\CharacterRessources\megaman_saut.xnb
-Content\InGameRessources\Tile10.xnb
 Content\Beam.xnb
 Content\BeamBlurred.xnb
 Content\Cloud001.xnb
@@ -48,7 +47,12 @@ Content\shoot.xnb
 Content\BonusRessources\Tile42.xnb
 Content\Cloud.xnb
 Content\InGameRessources\back.xnb
+Content\EnnemiesResources\Ennemy1.xnb
+Content\InGameRessources\Tile10.xnb
+Content\CharacterRessources\healthbar.xnb
 Content\Tile5.xnb
+Content\InGameRessources\fissure.xnb
+Content\InGameRessources\complet.xnb
 Content\vid.xnb
 Content\MusicRessources\SF-course_sable1.xnb
 Content\MusicRessources\DRUM_BASS.xnb
@@ -70,10 +74,6 @@ Content\particules\StarTrail.xnb
 Content\particules\WaterJet.xnb
 Content\particules\snow_good.xnb
 Content\particules\snow_lens.xnb
-Content\EnnemiesResources\Ennemy1.xnb
-Content\CharacterRessources\healthbar.xnb
-Content\InGameRessources\fissure.xnb
-Content\InGameRessources\complet.xnb
 Content\particules\GoldParticle.xnb
 Content\vid.wmv
 Content\MusicRessources\DRUM_BASS.wma

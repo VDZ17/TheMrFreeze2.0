@@ -143,6 +143,10 @@ namespace GravityTutorial
                 {
                     e.Collision(tile.Rectangle, tile.Tile_name);
                 }
+                foreach (Ennemy1 e in Ennemies1)
+                {
+                    e.Collision(tile.Rectangle, tile.Tile_name);
+                }
             }
 
 
