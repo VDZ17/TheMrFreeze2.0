@@ -50,7 +50,7 @@ namespace GravityTutorial.InGame_Jeu
         int timerHitting;
         int timerHittingFrequency;
         bool rollingHit;
-
+        public int life;
 
         public Ennemy1(Texture2D newTexture, Vector2 newPosition)
         {
@@ -68,6 +68,7 @@ namespace GravityTutorial.InGame_Jeu
             this.rollingHit = false;
             this.timerHitting = 0;
             this.timerHittingFrequency = 16;
+            this.life = 10;
         }
 
         public void Update(GameTime gameTime)
@@ -291,11 +292,6 @@ namespace GravityTutorial.InGame_Jeu
             else
             {
                 this.velocity.X = 0;
-                if (this.state != State1.Stop)
-                    this.state = State1.Stop;
-
-                updateHitbox();
-                updateDirection();
             }
         }
 

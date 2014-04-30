@@ -44,6 +44,9 @@ namespace GravityTutorial.InGame_Jeu
         State3 state;
         public bool hasHit;
 
+        //ATTRIBUTS
+        public int life;
+
 
 
         public Ennemy3(Texture2D newTexture, Vector2 newPosition)
@@ -59,6 +62,7 @@ namespace GravityTutorial.InGame_Jeu
             this.Timer = 0;
             this.animationSpeed = 5;
             this.hasHit = false;
+            int life = 30;
         }
 
 

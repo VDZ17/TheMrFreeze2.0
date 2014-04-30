@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework;
+using GravityTutorial.InGame_Jeu;
 
 namespace GravityTutorial
 {
@@ -96,6 +97,49 @@ namespace GravityTutorial
                 {
                         particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
 
+                }
+            }
+        }
+
+        public void Update(Ennemy3 Tile)
+        {
+            animate_bullet();
+            hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
+            if (this.hitbox_bullet.isOnRightOf(Tile.rectangle) || this.hitbox_bullet.isOnLeftOf(Tile.rectangle))
+            {
+                this.IsVisible = false;
+                Tile.life += -5;
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                {
+                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                }
+            }
+        }
+        public void Update(Ennemy2 Tile)
+        {
+            animate_bullet();
+            hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
+            if (this.hitbox_bullet.isOnRightOf(Tile.rectangle) || this.hitbox_bullet.isOnLeftOf(Tile.rectangle))
+            {
+                this.IsVisible = false;
+                Tile.life += -5;
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                {
+                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                }
+            }
+        }
+        public void Update(Ennemy1 Tile)
+        {
+            animate_bullet();
+            hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
+            if (this.hitbox_bullet.isOnRightOf(Tile.rectangle) || this.hitbox_bullet.isOnLeftOf(Tile.rectangle))
+            {
+                this.IsVisible = false;
+                Tile.life += -5;
+                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                {
+                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
                 }
             }
         }

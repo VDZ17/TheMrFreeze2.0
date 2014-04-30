@@ -211,6 +211,14 @@ namespace GravityTutorial
                     }
                 }
 
+                foreach (Bullet b in Heroes[0].Bullets)
+                {
+                    if (b.hitbox_bullet.Intersects(e.rectangle))
+                    {
+                        b.Update(e);
+                    }
+                }
+
             }
             foreach (Ennemy3 e in Ennemies3)
             {
@@ -218,7 +226,18 @@ namespace GravityTutorial
                 if (e.hasHit)
                     updateHero = false;
 
+
                 e.Update(gameTime);
+
+
+                foreach (Bullet b in Heroes[0].Bullets)
+                {
+                    if(b.hitbox_bullet.Intersects(e.rectangle))
+                    {
+                        b.Update(e);
+                    }
+                }
+
 
                 if (!updateHero)
                 {
@@ -232,7 +251,28 @@ namespace GravityTutorial
             foreach (Ennemy1 e in Ennemies1)
             {
                 e.Update(gameTime);
+                foreach (Bullet b in Heroes[0].Bullets)
+                {
+                    b.Update(e);
+                }
             }
+
+            for (int i = 0; i < Ennemies1.Count; i++)
+            {
+                if (Ennemies1[i].life <= 0)
+                    Ennemies1.RemoveAt(i);
+            }
+            for (int i = 0; i < Ennemies2.Count; i++)
+            {
+                if (Ennemies2[i].life <= 0)
+                    Ennemies2.RemoveAt(i);
+            }
+            for (int i = 0; i < Ennemies3.Count; i++)
+            {
+                if (Ennemies3[i].life <= 0)
+                    Ennemies3.RemoveAt(i);
+            }
+
         }
 
 

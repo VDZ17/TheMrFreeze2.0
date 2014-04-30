@@ -47,6 +47,7 @@ namespace GravityTutorial.InGame_Jeu
         //Attributs
         public bool finalHit;
         public bool firstHit;
+        public int life;
 
 
         public Ennemy2(Texture2D newTexture, Vector2 newPosition)
@@ -64,6 +65,7 @@ namespace GravityTutorial.InGame_Jeu
             this.animationSpeed = 1;
             this.finalHit = false;
             this.firstHit = false;
+            this.life = 5;
         }
 
 
