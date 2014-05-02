@@ -51,6 +51,10 @@ namespace GravityTutorial.InGame_Jeu
         int timerHittingFrequency;
         bool rollingHit;
         public int life;
+        bool hasJumped;
+        int jumpTimer;
+        int jumpTimerFrequency;
+
 
         public Ennemy1(Texture2D newTexture, Vector2 newPosition)
         {
@@ -69,6 +73,9 @@ namespace GravityTutorial.InGame_Jeu
             this.timerHitting = 0;
             this.timerHittingFrequency = 16;
             this.life = 10;
+            this.hasJumped = false;
+            this.jumpTimerFrequency = 200;
+            this.jumpTimer = 0;
         }
 
         public void Update(GameTime gameTime)
@@ -76,8 +83,11 @@ namespace GravityTutorial.InGame_Jeu
             rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
 
             //Is running after the character
-            if (this.state != State1.Bonus && this.state != State1.Rolling && this.state != State1.Hitting)
+            if (this.state != State1.Bonus && this.state != State1.Rolling && this.state != State1.Hitting && state != State1.Jumping)
+            {
                 Reaching(Level.Heroes[0]);
+                jumpTimer++;
+            }
 
             //Damages while Rolling
             if (this.state == State1.Rolling)
@@ -94,10 +104,7 @@ namespace GravityTutorial.InGame_Jeu
 
             updatePositionY();
             updatePositionX();
-            Bonus();
             Animate();
-            Console.WriteLine(this.state);
-
         }
 
         void updatePositionY()
@@ -212,6 +219,22 @@ namespace GravityTutorial.InGame_Jeu
             }
 
             #endregion
+            #region JUMPING
+            else if (this.state == State1.Jumping)
+            {
+                this.Timer++;
+                if (this.Timer >= this.animationSpeed)
+                {
+                    this.Timer = 0;
+                    this.frameCollumn++;
+                    if (this.frameCollumn >= this.nbSprites)
+                    {
+                        this.frameCollumn = nbSprites;
+                    }
+                }
+                
+            }
+            #endregion
         }
 
         void Hitting(Character player)
@@ -247,25 +270,57 @@ namespace GravityTutorial.InGame_Jeu
 
         public void Collision(Rectangle newRectangle, string name)
         {
-            if (name == "Tile1" || name == "Tile2" || name == "Tile12")
+            if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6" || name == "Tile16")
             {
+                Rectangle jumpRectangle = new Rectangle((int)position.X, (int)position.Y, height, width);
+
                 if (rectangle.isOnTopOf(newRectangle))
                 {
-                    rectangle.Y = newRectangle.Y - rectangle.Height;
                     velocity.Y = 0;
                     velocity.Y += -0.15f;
-                }
-                if (rectangle.isOnLeftOf(newRectangle))
-                {
-                    if (this.velocity.X > 0)
-                        position.X = newRectangle.X - rectangle.Width;
+                    rectangle.Y = newRectangle.Y - this.rectangle.Height;
+
+                    if (this.state != State1.Jumping)
+                        Bonus();
+                    if (this.state == State1.Jumping)
+                    {
+                        position.Y = newRectangle.Y - this.rectangle.Height;
+                        this.state = State1.Stop;
+                        updateHitbox();
+                    }
                 }
 
-                if (rectangle.isOnRightOf(newRectangle))
+                else if (rectangle.isOnLeftOf(newRectangle))
+                {
+                    if (this.velocity.X > 0)
+                    {
+                        position.X = newRectangle.X - rectangle.Width;
+                    }
+                    if (this.state != State1.Rolling && this.state != State1.Jumping && this.state != State1.Hitting)
+                    {
+                        this.position.Y += -30;
+                        this.velocity.Y = -5f;
+                        this.state = State1.Jumping;
+                        updateHitbox();
+                        Animate();
+                    }
+                }
+
+
+                else if (rectangle.isOnRightOf(newRectangle))
                 {
                     if (this.velocity.X < 0)
+                    {
                         position.X = newRectangle.X + newRectangle.Width;
-                    this.velocity.X = 0;
+                    }
+                    if (this.state != State1.Rolling && this.state != State1.Jumping && this.state != State1.Hitting)
+                    {
+                        this.position.Y += -30;
+                        this.velocity.Y = -5f;
+                        this.state = State1.Jumping;
+                        updateHitbox();
+                    }
+
                 }
             }
 
@@ -302,10 +357,10 @@ namespace GravityTutorial.InGame_Jeu
             {
                 this.velocity.X = 0;
                 bonusTimer = 0;
-                if (this.state == State1.Hitting)
-                    this.position.Y += -9;
-                else if (this.state == State1.Running)
-                    this.position.Y += -14;
+                if (this.state == State1.Running || this.state == State1.Stop)
+                {
+                    this.position.Y += -15;
+                }
                 this.state = State1.Bonus;
                 updateHitbox();
                 this.Animate();
@@ -372,7 +427,7 @@ namespace GravityTutorial.InGame_Jeu
                 this.width = 76;
                 this.height = 93;
                 this.nbSprites = 6;
-                this.animationSpeed = 8;
+                this.animationSpeed = 12;
             }
             #endregion
             #region HITTING
@@ -390,7 +445,7 @@ namespace GravityTutorial.InGame_Jeu
                 this.width = 81;
                 this.height = 76;
                 this.nbSprites = 12;
-                this.animationSpeed = 6;
+                this.animationSpeed = 10;
             }
             #endregion
             #region ROLLING
@@ -404,23 +459,32 @@ namespace GravityTutorial.InGame_Jeu
             #endregion
         }
 
+        void Jump()
+        {
+            this.velocity.Y = -5;
+            this.state = State1.Jumping;
+            updateHitbox();
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
-            Rectangle fixY = this.rectangle;
-            fixY.Y = this.rectangle.Y + 5;
-
             if (this.state == State1.Spawning)
                 spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             else if (this.state == State1.Stop)
-                spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 64, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             else if (this.state == State1.Running)
-                spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 64 + 57, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             else if (this.state == State1.Bonus)
                 spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57 + 57 + 85 + 93, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             else if (this.state == State1.Rolling)
                 spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 489 - 53, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             else if (this.state == State1.Hitting)
                 spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57 + 57, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            else if (this.state == State1.Jumping)
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 489 - 53 - 76 - 93 - 3, width, height - 1), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            else
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+
         }
     }
 

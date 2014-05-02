@@ -43,8 +43,10 @@ namespace GravityTutorial
         {
             Tile_name = ("Tile" + i);
             position_tile = new Vector2(newRectangle.X, newRectangle.Y);
-            if (i != 12 && i != 13)
+            if (i != 12 && i != 13 && i != 16)
                 texture = Content.Load<Texture2D>("Tile" + i);
+            if(i == 16)
+                texture = Content.Load<Texture2D>("Tile" + 1);
             this.Rectangle = newRectangle;
         }
     }

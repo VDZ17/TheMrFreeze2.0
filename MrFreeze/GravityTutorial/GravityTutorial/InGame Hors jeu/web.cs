@@ -31,14 +31,14 @@ namespace GravityTutorial
             string sLine = "";
             int i = 0;
 
-            while (sLine != null)
-            {
-                i++;
-                sLine = objReader.ReadLine();
-                if (sLine != null)
-                    Console.WriteLine("{0}:{1}", i, sLine);
-            }
-            Console.ReadLine();
+            //while (sLine != null)
+            //{
+            //    i++;
+            //    sLine = objReader.ReadLine();
+            //    if (sLine != null)
+            //        Console.WriteLine("{0}:{1}", i, sLine);
+            ////}
+            //Console.ReadLine();
         }
     }
 }

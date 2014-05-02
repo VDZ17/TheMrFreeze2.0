@@ -321,6 +321,7 @@ namespace GravityTutorial
                 hasJumped2 = true;
             }
             float i = 1;
+
             velocity.Y += 0.15f * i;
 
 
@@ -378,7 +379,7 @@ namespace GravityTutorial
         public void Collision(Rectangle obstacle, int xoffset, int yoffset, SoundEffectInstance effect, string name)
         {
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
-            if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6")
+            if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6" || name == "Tile16")
             {
                 if (rectangle.isOnTopOf(obstacle))
                 {

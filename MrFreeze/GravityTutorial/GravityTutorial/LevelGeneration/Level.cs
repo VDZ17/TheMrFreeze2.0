@@ -111,11 +111,6 @@ namespace GravityTutorial
         //UPDATE & DRAW
         public void Update(GameTime gameTime, SoundEffectInstance effect,Hud score)
         {
-            if (Hud.youwin)
-            {
-                Web.send_request(Ressource.pseudo,score.score,lvl);
-            }   
-
             if (Hud.youlose)
             {
                 Game1.inGame = false;
@@ -176,6 +171,10 @@ namespace GravityTutorial
                     b.Update(item);
                     item.update(b);
                 }
+                foreach (Ennemy1 e in Ennemies1)
+                {
+                    e.Collision(item.hitbox, "Tile5");
+                }
             }
 
             foreach (moving_platform item in moving_platform)
@@ -184,6 +183,10 @@ namespace GravityTutorial
                 foreach (Bullet b in Heroes[0].Bullets)
                 {
                     b.Update(item);
+                }
+                foreach (Ennemy1 e in Ennemies1)
+                {
+                    e.Collision(item.hitbox, "Tile5");
                 }
                 item.update();
             }
@@ -269,9 +272,14 @@ namespace GravityTutorial
             }
             for (int i = 0; i < Ennemies3.Count; i++)
             {
-                if (Ennemies3[i].life <= 0)
+                if (Ennemies3[i].life <= 0 || Ennemies3[i].position.Y > 500)
                     Ennemies3.RemoveAt(i);
             }
+
+            if (Hud.youwin)
+            {
+                Web.send_request(Ressource.pseudo, score.score, lvl);
+            }   
 
         }
 

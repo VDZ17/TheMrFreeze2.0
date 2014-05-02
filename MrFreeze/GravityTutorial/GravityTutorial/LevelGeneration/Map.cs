@@ -39,7 +39,6 @@ namespace GravityTutorial
 
         public void Generate(int[,] map, int size, Level Level)
         {           
-
             for (int x = 0; x < map.GetLength(1); x++)
             {
                 for (int y = 0; y < map.GetLength(0); y++)
@@ -47,7 +46,7 @@ namespace GravityTutorial
                     int number = map[y, x];
 
 
-                    if (number == 1 || number == 2)
+                    if (number == 1 || number == 2 || number == 16)
                     {
                         CollisionTiles.Add(new CollisionTiles(number, new Rectangle(x * size, y * size, size, size)));
                     }
