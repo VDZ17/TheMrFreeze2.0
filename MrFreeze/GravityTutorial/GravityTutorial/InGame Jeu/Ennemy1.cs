@@ -82,28 +82,17 @@ namespace GravityTutorial.InGame_Jeu
         {
             rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
 
-            //Is running after the character
-            if (this.state != State1.Bonus && this.state != State1.Rolling && this.state != State1.Hitting && state != State1.Jumping)
-            {
-                Reaching(Level.Heroes[0]);
-                jumpTimer++;
-            }
-
-            //Damages while Rolling
-            if (this.state == State1.Rolling)
-            {
-                if (this.rectangle.Intersects(Level.Heroes[0].rectangle) && rollingHit == false)
-                {
-                    rollingHit = true;
-                    Level.Heroes[0].life_changment = -100;
-                }
-            }
-
-            if (this.state != State1.Rolling)
-                Hitting(Level.Heroes[0]);
-
+            //update position
             updatePositionY();
             updatePositionX();
+
+
+            if (this.state != State1.Spawning && this.state != State1.Jumping && this.state != State1.Hitting)
+            {
+                Reaching(Level.Heroes[0]);
+            }
+
+            Hitting(Level.Heroes[0]);
             Animate();
         }
 
@@ -120,7 +109,7 @@ namespace GravityTutorial.InGame_Jeu
 
         void Animate()
         {
-            #region SPAWN
+            #region SPAWNING
             if (this.state == State1.Spawning)
             {
                 this.Timer++;
@@ -229,35 +218,31 @@ namespace GravityTutorial.InGame_Jeu
                     this.frameCollumn++;
                     if (this.frameCollumn >= this.nbSprites)
                     {
-                        this.frameCollumn = nbSprites;
+                        this.frameCollumn = 1;
+                        this.state = State1.Running;
+                        updateHitbox();
                     }
                 }
-                
+
             }
             #endregion
         }
 
         void Hitting(Character player)
         {
-            //if (player.position.X + player.player_Width >= this.position.X && 
-            //    player.position.X <= this.position.X + this.width)
-
             if (player.rectangle.Intersects(this.rectangle))
             {
-                if (this.state != State1.Hitting)
-                    this.position.Y += -23;
-
                 this.state = State1.Hitting;
                 updateHitbox();
+                this.velocity.X = 0;
             }
-
-            if (this.state == State1.Hitting && !(player.position.X + player.player_Width >= this.position.X && player.position.X <= this.position.X + this.width))
+            else if( this.state == State1.Hitting && !(player.rectangle.Intersects(this.rectangle)))
             {
-                this.position.Y += 23;
                 this.state = State1.Stop;
                 updateHitbox();
             }
-            if (this.state == State1.Hitting)
+
+            if (this.state == State1.Hitting && player.rectangle.Intersects(this.rectangle))
             {
                 timerHitting++;
                 if (timerHitting >= timerHittingFrequency)
@@ -276,18 +261,18 @@ namespace GravityTutorial.InGame_Jeu
 
                 if (rectangle.isOnTopOf(newRectangle))
                 {
-                    velocity.Y = 0;
-                    velocity.Y += -0.15f;
-                    rectangle.Y = newRectangle.Y - this.rectangle.Height;
-
                     if (this.state != State1.Jumping)
-                        Bonus();
-                    if (this.state == State1.Jumping)
                     {
-                        position.Y = newRectangle.Y - this.rectangle.Height;
-                        this.state = State1.Stop;
-                        updateHitbox();
+                        velocity.Y = 0;
+                        position.Y = newRectangle.Y - this.height;
                     }
+                    else
+                    {
+                        velocity.Y = 0;
+                        velocity.Y += -0.15f;
+                        rectangle.Y = newRectangle.Y - this.height;
+                    }
+
                 }
 
                 else if (rectangle.isOnLeftOf(newRectangle))
@@ -296,14 +281,9 @@ namespace GravityTutorial.InGame_Jeu
                     {
                         position.X = newRectangle.X - rectangle.Width;
                     }
-                    if (this.state != State1.Rolling && this.state != State1.Jumping && this.state != State1.Hitting)
-                    {
-                        this.position.Y += -30;
-                        this.velocity.Y = -5f;
-                        this.state = State1.Jumping;
-                        updateHitbox();
-                        Animate();
-                    }
+                    if (this.state != State1.Spawning)
+                        Jump();
+
                 }
 
 
@@ -313,17 +293,10 @@ namespace GravityTutorial.InGame_Jeu
                     {
                         position.X = newRectangle.X + newRectangle.Width;
                     }
-                    if (this.state != State1.Rolling && this.state != State1.Jumping && this.state != State1.Hitting)
-                    {
-                        this.position.Y += -30;
-                        this.velocity.Y = -5f;
-                        this.state = State1.Jumping;
-                        updateHitbox();
-                    }
-
+                    if (this.state != State1.Spawning)
+                        Jump();
                 }
             }
-
         }
 
         void Reaching(Character player)
@@ -344,10 +317,6 @@ namespace GravityTutorial.InGame_Jeu
                 updateDirection();
                 updateHitbox();
             }
-            else
-            {
-                this.velocity.X = 0;
-            }
         }
 
         void Bonus()
@@ -363,7 +332,6 @@ namespace GravityTutorial.InGame_Jeu
                 }
                 this.state = State1.Bonus;
                 updateHitbox();
-                this.Animate();
             }
         }
 
@@ -461,6 +429,8 @@ namespace GravityTutorial.InGame_Jeu
 
         void Jump()
         {
+            frameCollumn = 1;
+            this.position.Y += -40;
             this.velocity.Y = -5;
             this.state = State1.Jumping;
             updateHitbox();

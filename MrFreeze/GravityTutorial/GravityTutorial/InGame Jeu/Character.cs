@@ -216,8 +216,13 @@ namespace GravityTutorial
             particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
+
+
+            Console.WriteLine(rectangle);
+            Console.WriteLine("H :" + player_Height + "; W : " + player_Width);
+
             //DEFINITION
-            rectangle = new Rectangle((int)position.X, (int)position.Y, 44, 50);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
 
             //RESPAWN
             if (Keyboard.GetState().IsKeyDown(Keys.R))
@@ -373,6 +378,8 @@ namespace GravityTutorial
 
             sprite_update(spawn, attack, stop, jump);
             UpdateBullet();
+
+            rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
         }
 
         //COLLISION
@@ -424,7 +431,6 @@ namespace GravityTutorial
                         effect.Resume();
                         effect.Pause();
                     }
-
                 }
 
                 //COLISION

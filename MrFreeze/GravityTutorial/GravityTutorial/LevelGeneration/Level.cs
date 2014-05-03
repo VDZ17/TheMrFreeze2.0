@@ -109,14 +109,14 @@ namespace GravityTutorial
 
 
         //UPDATE & DRAW
-        public void Update(GameTime gameTime, SoundEffectInstance effect,Hud score)
+        public void Update(GameTime gameTime, SoundEffectInstance effect, Hud score)
         {
             if (Hud.youlose)
             {
                 Game1.inGame = false;
                 Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
             }
-            
+
             particule.particleEffects["Snow"].Trigger(Vector2.Zero);
             if (updateHero)
                 Heroes.ElementAt(0).Update(gameTime, effect);
@@ -235,7 +235,7 @@ namespace GravityTutorial
 
                 foreach (Bullet b in Heroes[0].Bullets)
                 {
-                    if(b.hitbox_bullet.Intersects(e.rectangle))
+                    if (b.hitbox_bullet.Intersects(e.rectangle))
                     {
                         b.Update(e);
                     }
@@ -278,8 +278,16 @@ namespace GravityTutorial
 
             if (Hud.youwin)
             {
-                Web.send_request(Ressource.pseudo, score.score, lvl);
-            }   
+                try
+                {
+                    Web.send_request(Ressource.pseudo, score.score, lvl);
+                }
+                catch (Exception) 
+                {
+
+                }
+                    
+            }
 
         }
 
