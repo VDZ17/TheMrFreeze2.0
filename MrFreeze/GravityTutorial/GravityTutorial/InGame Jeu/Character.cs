@@ -118,7 +118,7 @@ namespace GravityTutorial
             {
                 newBullet = new Bullet(Ressource.Bullet, new Vector2(-10, 0), this.Effect);
             }
-            newBullet.position = new Vector2(this.position.X + 10, this.position.Y - 3);
+            newBullet.position = new Vector2(this.position.X + 10, this.position.Y - 10);
             newBullet.IsVisible = true;
 
             if (Bullets.Count < 1)
@@ -148,7 +148,10 @@ namespace GravityTutorial
                     this.frameCollumn++;
                     if (this.frameCollumn >= this.nbr_sprite)
                     {
-                        this.frameCollumn = 1;
+                        if (stop == false && attack == false)
+                            this.frameCollumn = 2;
+                        else
+                            this.frameCollumn = 1;
                     }
                 }
             }
@@ -209,6 +212,8 @@ namespace GravityTutorial
                     }
                 }
             }
+            rectangle.Width = player_Width;
+            rectangle.Height = player_Height;
         }
 
         public void Update(GameTime gameTime, SoundEffectInstance effect)
@@ -216,9 +221,12 @@ namespace GravityTutorial
             particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
+
+            Console.WriteLine("jump = " + jump + ", stop = " + stop);
+            Console.WriteLine(rectangle);
             //DEFINITION
-            //rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
-            rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
+            //rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);
 
             //RESPAWN
             if (Keyboard.GetState().IsKeyDown(Keys.R))
@@ -317,7 +325,6 @@ namespace GravityTutorial
 
             if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) && hasJumped && !hasJumped2 && CurrentItem == Item.Type.DoubleJump && !cooldownDoubleJump)
             {
-                position.Y -= 5f;
                 velocity.Y = -saut;
                 hasJumped2 = true;
             }
@@ -359,9 +366,9 @@ namespace GravityTutorial
             }
 
             //SORTIE ECRAN
-            if (position.Y < 3000)
+            if (position.Y > 3000)
             {
-                //life_changment = -life;
+                life_changment = -life;
             }
 
 
@@ -371,17 +378,16 @@ namespace GravityTutorial
                 Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
             }
 
-
             sprite_update(spawn, attack, stop, jump);
             UpdateBullet();
-
-            rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
         }
 
         //COLLISION
         public void Collision(Rectangle obstacle, int xoffset, int yoffset, SoundEffectInstance effect, string name)
         {
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
+            //Rectangle playerRunning = new Rectangle((int)position.X, (int)position.Y, player_Height, player_Width);
+
             if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6" || name == "Tile16")
             {
                 if (rectangle.isOnTopOf(obstacle))
@@ -402,24 +408,35 @@ namespace GravityTutorial
                         }
                         else
                         {
-                            effect.Resume();
                             effect.Pause();
                         }
                     }
                     else
                     {
-                        effect.Resume();
                         effect.Pause();
                     }
 
                     if (hasJumped)
                     {
-                        effect.Resume();
                         effect.Pause();
                     }
 
-                    rectangle.Y = obstacle.Y - rectangle.Height;
+                    if (jump == false)
+                        position.Y = obstacle.Y - player_Height;
+                    else
+                        rectangle.Y = obstacle.Y - rectangle.Height;
+
                     velocity.Y = 0;
+
+                    if (jump)
+                    {
+                        jump = false;
+                    }
+                    if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]) || Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]))
+                    {
+                        jump = false;
+                        stop = false;
+                    }
                     hasJumped = false;
                     hasDoubleJumped = false;
                     if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) == true)
@@ -427,25 +444,20 @@ namespace GravityTutorial
                         effect.Resume();
                         effect.Pause();
                     }
+                    this.sprite_update(spawn, attack, stop, jump);
                 }
 
                 //COLISION
 
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
-                    position.X = obstacle.X - rectangle.Width;
-                    if (this.velocity.X < 0)
-                    {
-                        this.position.X += this.velocity.X;
-                    }
+                    if (this.velocity.X > 0)
+                        position.X = obstacle.X - rectangle.Width;
                 }
                 else if (rectangle.isOnRightOf(obstacle))
                 {
-                    position.X = obstacle.X + obstacle.Width;
-                    if (this.velocity.X > 0)
-                    {
-                        this.position.X += this.velocity.X;
-                    }
+                    if (this.velocity.X < 0)
+                        position.X = obstacle.X + obstacle.Width;
                 }
                 else if (player_plus_1.isOnBotOf(obstacle))
                 {
@@ -466,6 +478,8 @@ namespace GravityTutorial
                 { position.X = 0; }
                 if (position.X > xoffset - rectangle.Width)
                 { position.X = xoffset - rectangle.Width; }
+
+                rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
             }
         }
 
