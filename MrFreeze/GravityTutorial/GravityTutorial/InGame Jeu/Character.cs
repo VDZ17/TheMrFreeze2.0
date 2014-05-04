@@ -140,6 +140,9 @@ namespace GravityTutorial
                     if (this.frameCollumn >= this.nbr_sprite)
                     {
                         spawn = false;
+                        this.position.Y += 23;
+                        this.position.X += 20;
+                        frameCollumn = 1;
                     }
                 }
                 #endregion
@@ -421,43 +424,48 @@ namespace GravityTutorial
                         effect.Pause();
                     }
 
-                    if (jump == false)
-                        position.Y = obstacle.Y - player_Height;
-                    else
-                        rectangle.Y = obstacle.Y - rectangle.Height;
+                    if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]) || Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Right]))
+                    {
+                        if (jump)
+                            jump = false;
+
+                        if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]))
+                        {
+                            jump = true;
+                        }
+
+
+                    }
+
+
+                    hasJumped = false;
+
 
                     velocity.Y = 0;
-
-                    if (jump)
-                    {
-                        jump = false;
-                    }
-                    if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]) || Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]))
-                    {
-                        jump = false;
-                        stop = false;
-                    }
-                    hasJumped = false;
                     hasDoubleJumped = false;
+
                     if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) == true)
                     {
                         effect.Resume();
                         effect.Pause();
                     }
                     this.sprite_update(spawn, attack, stop, jump);
+
+                    if (!jump)
+                        position.Y = obstacle.Y - rectangle.Height;
+                    else
+                        rectangle.Y = obstacle.Y - rectangle.Height;
                 }
 
                 //COLISION
 
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
-                    if (this.velocity.X > 0)
-                        position.X = obstacle.X - rectangle.Width;
+                    position.X = obstacle.X - rectangle.Width;
                 }
                 else if (rectangle.isOnRightOf(obstacle))
                 {
-                    if (this.velocity.X < 0)
-                        position.X = obstacle.X + obstacle.Width;
+                    position.X = obstacle.X + obstacle.Width;
                 }
                 else if (player_plus_1.isOnBotOf(obstacle))
                 {
