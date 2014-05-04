@@ -216,13 +216,9 @@ namespace GravityTutorial
             particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
-
-
-            Console.WriteLine(rectangle);
-            Console.WriteLine("H :" + player_Height + "; W : " + player_Width);
-
             //DEFINITION
-            rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
+            //rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
+            rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);
 
             //RESPAWN
             if (Keyboard.GetState().IsKeyDown(Keys.R))
