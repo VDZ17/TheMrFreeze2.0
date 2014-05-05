@@ -67,7 +67,7 @@ namespace GravityTutorial
                     {
                         Level.destroy_platform.Add(new Destroying_platform(new Vector2(x * size, y * size), Ressource.complet));
                     }
-                    if (number == 4)
+                    if (number == 4) //Gold
                     {
                         Level.Bonuses.Add(new gold(new Vector2(x * size, y * size)));
                     }
@@ -88,7 +88,7 @@ namespace GravityTutorial
                             InvisibleTiles.Add(new CollisionTiles(number, new Rectangle((x + 2) * size, y * size, 5, size)));
 
                     }
-                    //ENNEMY3
+                    //ENNEMY
                     if (number == 13)
                     {
                         Ennemies3.Add(new Ennemy3(Ressource.Ennemy3, new Vector2(x * size, y * size - 100)));
@@ -102,6 +102,12 @@ namespace GravityTutorial
                     {
                         Ennemies1.Add(new Ennemy1(Ressource.Ennemy1, new Vector2(x * size, y * size - 14)));
 
+                    }
+
+                    //BONUS
+                    if (number == 100)
+                    {
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.DoubleJump,1));
                     }
 
                     width = (x + 1) * size;

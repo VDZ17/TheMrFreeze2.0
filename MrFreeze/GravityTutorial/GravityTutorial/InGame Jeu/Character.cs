@@ -366,7 +366,7 @@ namespace GravityTutorial
             }
 
             //SORTIE ECRAN
-            if (position.Y > 3000)
+            if (position.Y > 1500)
             {
                 life_changment = -life;
             }

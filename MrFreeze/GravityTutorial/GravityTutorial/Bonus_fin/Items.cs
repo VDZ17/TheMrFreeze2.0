@@ -26,14 +26,14 @@ namespace GravityTutorial
             Gold,
             Invincibility,
             DoubleJump,
-            IceNova,
+            /*IceNova,
             LazerBeam,
             Shield,
             SpeedUp,
             TimeStop,
             SpeedDown,
             LittleJump,
-            ReverseDirection,
+            ReverseDirection,*/
             None,
         }
 
@@ -49,7 +49,7 @@ namespace GravityTutorial
         }
 
         //UPDATE & DRAW
-        public virtual void Update(Character player, Hud score)
+        public void Update(Character player, Hud score)
         {
             if (player.rectangle.Collide_object(hitbox) && !hasBeenTaken)
             {
@@ -58,7 +58,7 @@ namespace GravityTutorial
             }
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             if (!hasBeenTaken)
             {

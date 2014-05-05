@@ -18,18 +18,23 @@ namespace GravityTutorial
     {
         //FIELDS
         public static List<Character> Heroes;
+
         public List<moving_platform> moving_platform;
         public List<Destroying_platform> destroy_platform;
+
         public List<Ennemy3> Ennemies3;
         public List<Ennemy2> Ennemies2;
         public List<Ennemy1> Ennemies1;
+
         public List<Bonus> Bonuses;
+        public List<Item> Items;
+
         public web Web;
         public int[,] read;
         public loadfile file = new loadfile();
         public Map map;
         public int lvl;
-        public static bool updateHero = true;
+        public static bool updateHero;
         int timerspeedAttack3 = 30;
         int timerEnd3 = 0;
 
@@ -41,14 +46,25 @@ namespace GravityTutorial
             string dir = (Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\level\\");
             this.lvl = lvl;
             map = new Map();
+
+            updateHero = true;
             moving_platform = new List<GravityTutorial.moving_platform>();
+
             Heroes = new List<Character>();
             Bonuses = new List<Bonus>();
+            Items = new List<Item>();
             destroy_platform = new List<Destroying_platform>();
 
             Ennemies1 = Map.Ennemies1;
             Ennemies2 = Map.Ennemies2;
             Ennemies3 = Map.Ennemies3;
+
+            for (int i = 0; i < Ennemies1.Count; i++)
+                Ennemies1.RemoveAt(i);
+            for (int i = 0; i < Ennemies2.Count; i++)
+                Ennemies2.RemoveAt(i);
+            for (int i = 0; i < Ennemies3.Count; i++)
+                Ennemies3.RemoveAt(i);
 
             switch (lvl)
             {
@@ -59,12 +75,6 @@ namespace GravityTutorial
                 case 1:
                     {
                         int block_size = 50;
-                        for (int i = 0; i < Ennemies1.Count; i++)
-                            Ennemies1.RemoveAt(i);
-                        for (int i = 0; i < Ennemies2.Count; i++)
-                            Ennemies2.RemoveAt(i);
-                        for (int i = 0; i < Ennemies3.Count; i++)
-                            Ennemies3.RemoveAt(i);
                         map.Generate(file.read(dir + "lvl1.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
                         Console.WriteLine("case1");
@@ -202,6 +212,11 @@ namespace GravityTutorial
                 gold.Update(Heroes.ElementAt(0), Game1.score);
             }
 
+            foreach (Item i in Items)
+            {
+                i.Update(Heroes.ElementAt(0), Game1.score);
+            }
+
             //Updates Ennemies
             foreach (Ennemy2 e in Ennemies2)
             {
@@ -317,6 +332,11 @@ namespace GravityTutorial
             foreach (Bonus gold in Bonuses)
             {
                 gold.Draw(spriteBatch);
+            }
+
+            foreach (Item i in Items)
+            {
+                i.Draw(spriteBatch);
             }
 
 

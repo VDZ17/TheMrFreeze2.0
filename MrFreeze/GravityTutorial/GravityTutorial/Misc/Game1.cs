@@ -48,6 +48,7 @@ namespace GravityTutorial
         public static Boolean exitgame = false;
         public static Menu menu;
         public static bool inGame;
+        public static bool reload;
 
         //CONSTRUCTOR
         public Game1()
@@ -70,6 +71,7 @@ namespace GravityTutorial
             VidPlayer = new VideoPlayer();
             menu = new Menu(Menu.MenuType.none, 0, Ressource.BackgroundMenuMain);
             inGame = false;
+            reload = false;
             
             base.Initialize();
         }
@@ -138,6 +140,19 @@ namespace GravityTutorial
             //if (Keyboard.GetState().IsKeyDown(Keys.Enter)) Exit();
             if (exitgame)
                 this.Exit();
+
+            if (reload)
+            {
+                reload = false;
+                if (Level != null)
+                {
+                    Level = new Level(Level.lvl);  
+                }
+                Hud.youlose = false;
+                Hud.youwin = false;
+                score = new Hud(new TimeSpan(0, 0, 50), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
+                score.rectangle_life.Width = 150;
+            }
 
             if (inGame)
             {

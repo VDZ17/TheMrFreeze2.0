@@ -43,7 +43,6 @@ namespace GravityTutorial
             this.position = Vector2.One;
             this.position_timer = new Vector2(position_data.X - 100, 10);
             loser = new Rectangle(0, 0, (int)position_data.X, (int)position_data.Y);
-
         }
 
         public void Save(double score, string pseudo)
@@ -105,6 +104,8 @@ namespace GravityTutorial
                     rectangle_life.Width += damage;
                 }
             }
+
+
             if (rectangle_life.Width <= 0)
                 youlose = true;
 

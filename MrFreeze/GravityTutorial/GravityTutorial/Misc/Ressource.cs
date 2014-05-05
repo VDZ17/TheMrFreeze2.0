@@ -96,11 +96,11 @@ namespace GravityTutorial
             moving_plateform = Content.Load<Texture2D>("Tile5");
 
             //TOUCHES
-            Key.Add(inGameAction.Shoot, Keys.LeftShift);
             Key.Add(inGameAction.Left, Keys.Left);
             Key.Add(inGameAction.Right, Keys.Right);
             Key.Add(inGameAction.Jump, Keys.Space);
             Key.Add(inGameAction.Pause, Keys.Escape);
+            Key.Add(inGameAction.Shoot, Keys.A);
 
             //MENU
             Button = Content.Load<Texture2D>(MenuFile + "boutton");
@@ -134,9 +134,9 @@ namespace GravityTutorial
             MenuString.Add("Anglais", new Tuple<string, string>("Anglais", "English"));
             MenuString.Add("Page 1", new Tuple<string, string>("Page 1", "Page 1"));
             MenuString.Add("Page 2", new Tuple<string, string>("Page 2", "Page 2"));
-            //MenuString.Add("Pseudo actuel", new Tuple<string, string>("Pseudo actuel : ", "Current pseudo : "));
             MenuString.Add("Pseudo", new Tuple<string, string>("Pseudo", "Pseudo"));
             MenuString.Add("Valider", new Tuple<string, string>("Valider", "Validate"));
+            MenuString.Add("Tir", new Tuple<string, string>("Tir", "Shoot"));
 
 
             //PARAMETERS
@@ -149,7 +149,7 @@ namespace GravityTutorial
 
             //ITEMS
             Gold = Content.Load<Texture2D>(BonusFile + "Tile4");
-            //Items = Content.Load<Texture2D>(BonusFile + "items");
+            Items = Content.Load<Texture2D>(BonusFile + "items");
 
             //SOUND 
             effect = Content.Load<SoundEffect>(MusicFile + "SF-course_sable1");

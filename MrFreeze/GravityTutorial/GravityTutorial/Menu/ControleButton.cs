@@ -60,6 +60,10 @@ namespace GravityTutorial
             {
                 ActualKey = "Down";
             }
+            else
+            {
+                ActualKey = "!!!";
+            }
 
 
             isChanging = false;

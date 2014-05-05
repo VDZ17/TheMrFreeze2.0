@@ -18,7 +18,8 @@ namespace GravityTutorial
 
         public enum Type 
         { 
-            Gold, Igloo,
+            Gold, 
+            Igloo,
         }
 
         public Bonus(Vector2 pos, Texture2D texture, Type type)
