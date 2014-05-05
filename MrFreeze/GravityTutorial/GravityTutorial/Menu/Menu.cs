@@ -219,6 +219,10 @@ namespace GravityTutorial
                     }
                 case MenuType.reloadlevel:
                     {
+
+                        Hud.youlose = false;
+                        Hud.youwin = false;
+
                         Game1.inGame = true;
 
                         Game1.Level = new Level(Game1.Level.lvl);

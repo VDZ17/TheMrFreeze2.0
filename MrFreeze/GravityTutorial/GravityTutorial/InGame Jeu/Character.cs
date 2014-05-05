@@ -80,7 +80,7 @@ namespace GravityTutorial
             cooldownDoubleJump = false;
 
             CurrentItem = Item.Type.DoubleJump;
-            life = 150;
+            this.life = 150;
         }
 
         public void UpdateBullet()
@@ -224,9 +224,6 @@ namespace GravityTutorial
             particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
-
-            Console.WriteLine("jump = " + jump + ", stop = " + stop);
-            Console.WriteLine(rectangle);
             //DEFINITION
             rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
             //rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);

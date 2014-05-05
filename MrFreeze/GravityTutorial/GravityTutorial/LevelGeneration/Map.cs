@@ -38,7 +38,20 @@ namespace GravityTutorial
 
 
         public void Generate(int[,] map, int size, Level Level)
-        {           
+        {
+            for (int i = 0; i < Ennemies1.Count; i++)
+            {
+                Ennemies1.RemoveAt(i);
+            }
+            for (int i = 0; i < Ennemies2.Count; i++)
+            {
+                Ennemies2.RemoveAt(i);
+            }
+            for (int i = 0; i < Ennemies3.Count; i++)
+            {
+                Ennemies3.RemoveAt(i);
+            }
+
             for (int x = 0; x < map.GetLength(1); x++)
             {
                 for (int y = 0; y < map.GetLength(0); y++)
@@ -78,7 +91,7 @@ namespace GravityTutorial
                     //ENNEMY3
                     if (number == 13)
                     {
-                        Ennemies3.Add(new Ennemy3(Ressource.Ennemy3, new Vector2(x * size, y * size - 77)));
+                        Ennemies3.Add(new Ennemy3(Ressource.Ennemy3, new Vector2(x * size, y * size - 100)));
 
                     }
                     if (number == 14)

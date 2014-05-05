@@ -33,6 +33,7 @@ namespace GravityTutorial
         int timerspeedAttack3 = 30;
         int timerEnd3 = 0;
 
+
         //CONSRTRUCTOR
         public Level(int lvl)
         {
@@ -45,10 +46,9 @@ namespace GravityTutorial
             Bonuses = new List<Bonus>();
             destroy_platform = new List<Destroying_platform>();
 
-
-            Ennemies3 = Map.Ennemies3;
-            Ennemies2 = Map.Ennemies2;
             Ennemies1 = Map.Ennemies1;
+            Ennemies2 = Map.Ennemies2;
+            Ennemies3 = Map.Ennemies3;
 
             switch (lvl)
             {
@@ -59,9 +59,15 @@ namespace GravityTutorial
                 case 1:
                     {
                         int block_size = 50;
+                        for (int i = 0; i < Ennemies1.Count; i++)
+                            Ennemies1.RemoveAt(i);
+                        for (int i = 0; i < Ennemies2.Count; i++)
+                            Ennemies2.RemoveAt(i);
+                        for (int i = 0; i < Ennemies3.Count; i++)
+                            Ennemies3.RemoveAt(i);
                         map.Generate(file.read(dir + "lvl1.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
-
+                        Console.WriteLine("case1");
                         break;
                     }
                 case 2:
@@ -203,6 +209,7 @@ namespace GravityTutorial
                 e.hit(Heroes.ElementAt(0));
                 if (e.firstHit)
                 {
+                    Heroes.ElementAt(0).velocity.X = 0;
 
                     if (e.direction == Direction2.Right)
                     {
@@ -272,7 +279,7 @@ namespace GravityTutorial
             }
             for (int i = 0; i < Ennemies3.Count; i++)
             {
-                if (Ennemies3[i].life <= 0 || Ennemies3[i].position.Y > 500)
+                if (Ennemies3[i].life <= 0)
                     Ennemies3.RemoveAt(i);
             }
 
