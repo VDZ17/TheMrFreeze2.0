@@ -29,7 +29,7 @@ namespace GravityTutorial
             BasicExplosion, Basicfireball, BasicSmokePlume, BeamMeUp, CampFire, FlowerBloom, MagicTrail, Paparazzi, SimpleRain, StarTrail, WaterJet, snow, Goldparticle;
 
         public static SpriteFont Font;
-        public static SpriteFont MenuPolice, ArialDefaultMenu;
+        public static SpriteFont MenuPolice, ArialDefaultMenu, SmallMenuPolice;
 
         public static SoundEffect effect;
         public static Song song;
@@ -109,6 +109,7 @@ namespace GravityTutorial
             Title = Content.Load<Texture2D>(MenuFile + "title");
             TextBox = Content.Load<Texture2D>(MenuFile + "champtxt");
             MenuPolice = Content.Load<SpriteFont>(MenuFile + "MenuFont");
+            SmallMenuPolice = Content.Load<SpriteFont>(MenuFile + "SmallMenuFont");
             ArialDefaultMenu = Content.Load<SpriteFont>(MenuFile + "ArialDefaultMenu");
             pseudo = "USER";
 

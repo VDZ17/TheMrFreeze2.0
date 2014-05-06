@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 
-namespace GravityTutorial.LevelGeneration
+namespace GravityTutorial
 {
     public class loadfile
     {
@@ -39,6 +39,24 @@ namespace GravityTutorial.LevelGeneration
             }
 
 
+        }
+
+        public static List<string> read_score(string path)
+        {
+            using (StreamReader streamReader = new StreamReader(path))
+            {
+                List<string> data = new List<string>();
+                int y = 0;
+
+                do
+                {
+                    string line = streamReader.ReadLine();
+                    data.Add(line);
+                    y++;
+                } while (!streamReader.EndOfStream);
+
+                return data;
+            }
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.IO;
 
 namespace GravityTutorial
 {
@@ -403,25 +404,45 @@ namespace GravityTutorial
                 string tpsRestant = (Game1.score.timer).ToString();
                 string score = (Game1.score.score + Game1.score.timer * 10).ToString();
 
-                Vector2 posCoin = new Vector2(10, 250);
-                Vector2 posChrono = new Vector2(10, 300);
+                int xpos = (int)(Ressource.screenWidth / 3 - Ressource.SmallMenuPolice.MeasureString("TOTAL : " + score).Length() / 2);
+
+                Vector2 posCoin = new Vector2(xpos, 200);
+                Vector2 posChrono = new Vector2(xpos, 240);
 
                 spriteBatch.Draw(Ressource.Gold, posCoin, Color.White);
                 //spriteBatch.Draw(Ressource.Chrono, posChrono, Color.White);
-                spriteBatch.DrawString(Ressource.MenuPolice, "x " + nbCoin, new Vector2(70, 250), Color.White);
-                spriteBatch.DrawString(Ressource.MenuPolice, tpsRestant + " s", new Vector2(70,300), Color.White);
-                spriteBatch.DrawString(Ressource.MenuPolice, "TOTAL : " + score, new Vector2(10, 350), Color.White);
+                spriteBatch.DrawString(Ressource.SmallMenuPolice, "x " + nbCoin, new Vector2(xpos + 40, 200), Color.White);
+                spriteBatch.DrawString(Ressource.SmallMenuPolice, tpsRestant + " s", new Vector2(xpos + 40, 240), Color.White);
+                spriteBatch.DrawString(Ressource.SmallMenuPolice, "TOTAL : " + score, new Vector2(xpos, 280), Color.White);
 
                 //RIGHT
-                string hightscore; //FIXME
+                List<string> hightscore = loadfile.read_score((Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore"+ Game1.Level.lvl + ".txt"));
 
+                int maxpos = (int)(2*Ressource.screenWidth / 3 - Ressource.SmallMenuPolice.MeasureString("Hightscore").Length()/2);
 
-            
+                foreach (string s in hightscore)
+                {
+                    int tempo = (int)(2*Ressource.screenWidth / 3 - Ressource.SmallMenuPolice.MeasureString(s).Length()/2);
+                    if (tempo > maxpos)
+                    {
+                        maxpos = tempo;
+                    }
+                }
+
+                Vector2 pos = new Vector2(maxpos, 200);
+                spriteBatch.DrawString(Ressource.SmallMenuPolice, "Hightscore :", pos, Color.White);
+                pos.X += 10;
+                foreach (string s in hightscore)
+                {
+                    pos.Y += 40;
+                    spriteBatch.DrawString(Ressource.SmallMenuPolice, s, pos, Color.White);
+                }            
             }
 
             if (actualType == MenuType.loose)
             {
                 string str;
+
                 if (Game1.score.timer <= 0)
                 {
 
@@ -434,15 +455,13 @@ namespace GravityTutorial
                     {
                         str = Ressource.MenuString["Time"].Item2;
                     }
-
-                    
                 }
+
                 else
                 {
                     if (Ressource.parameter[2])
                     {
                         str = Ressource.MenuString["Nolife"].Item1;
-
                     }
                     else
                     {
