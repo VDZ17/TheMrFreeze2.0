@@ -356,11 +356,11 @@ namespace GravityTutorial
             {
                 MediaPlayer.Stop();
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (Keyboard.GetState().IsKeyDown(Keys.Subtract))
             {
                 life_changment += -1;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Z))
+            if (Keyboard.GetState().IsKeyDown(Keys.Add))
             {
                 life_changment += 1;
             }
@@ -443,7 +443,6 @@ namespace GravityTutorial
 
                     if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) == true)
                     {
-                        effect.Resume();
                         effect.Pause();
                     }
                     this.sprite_update(spawn, attack, stop, jump);

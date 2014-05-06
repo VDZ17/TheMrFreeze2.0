@@ -61,6 +61,7 @@ Content\MusicRessources\DRUM&BASS.xnb
 Content\InGameRessources\Arial.xnb
 Content\MenuRessources\ArialDefaultMenu.xnb
 Content\MenuRessources\MenuFont.xnb
+Content\MenuRessources\SmallMenuFont.xnb
 Content\particules\BasicExplosion.xnb
 Content\particules\BasicFireball.xnb
 Content\particules\BasicSmokePlume.xnb
@@ -76,7 +77,6 @@ Content\particules\WaterJet.xnb
 Content\particules\snow_good.xnb
 Content\particules\snow_lens.xnb
 Content\particules\GoldParticle.xnb
-Content\MenuRessources\SmallMenuFont.xnb
 Content\vid.wmv
 Content\MusicRessources\DRUM_BASS.wma
 Content\MusicRessources\DRUM&BASS.wma
