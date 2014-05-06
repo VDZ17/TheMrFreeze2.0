@@ -118,7 +118,7 @@ namespace GravityTutorial
             {
                 newBullet = new Bullet(Ressource.Bullet, new Vector2(-10, 0), this.Effect);
             }
-            newBullet.position = new Vector2(this.position.X + 10, this.position.Y - 10);
+            newBullet.position = new Vector2(this.position.X + 10, this.position.Y - 15);
             newBullet.IsVisible = true;
 
             if (Bullets.Count < 1)
