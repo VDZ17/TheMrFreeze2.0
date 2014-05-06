@@ -356,11 +356,11 @@ namespace GravityTutorial
             {
                 MediaPlayer.Stop();
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.A))
+            if (Keyboard.GetState().IsKeyDown(Keys.Subtract))
             {
                 life_changment += -1;
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Z))
+            if (Keyboard.GetState().IsKeyDown(Keys.Add))
             {
                 life_changment += 1;
             }

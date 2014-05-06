@@ -32,7 +32,7 @@ namespace GravityTutorial
         public web Web;
         public int[,] read;
         public loadfile file = new loadfile();
-        public Map map;
+        public static Map map;
         public int lvl;
         public static bool updateHero;
         int timerspeedAttack3 = 30;
@@ -285,17 +285,26 @@ namespace GravityTutorial
             for (int i = 0; i < Ennemies1.Count; i++)
             {
                 if (Ennemies1[i].life <= 0)
+                {
+                    Bonuses.Add(new gold(Ennemies1[i].position));
                     Ennemies1.RemoveAt(i);
+                }
             }
             for (int i = 0; i < Ennemies2.Count; i++)
             {
                 if (Ennemies2[i].life <= 0)
+                {
+                    Bonuses.Add(new gold(Ennemies2[i].position));
                     Ennemies2.RemoveAt(i);
+                }
             }
             for (int i = 0; i < Ennemies3.Count; i++)
             {
                 if (Ennemies3[i].life <= 0)
+                {
+                    Bonuses.Add(new gold(Ennemies3[i].position));
                     Ennemies3.RemoveAt(i);
+                }
             }
 
             if (Hud.youwin)
@@ -316,7 +325,7 @@ namespace GravityTutorial
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(Ressource.background, new Rectangle(0, -200, map.Width, Ressource.screenHeight + 500), Color.White);
+            
             map.Draw(spriteBatch);
 
             foreach (Destroying_platform item in destroy_platform)

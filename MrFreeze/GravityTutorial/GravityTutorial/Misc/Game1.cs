@@ -180,6 +180,10 @@ namespace GravityTutorial
                     spriteBatch.Draw(VidPlayer.GetTexture(), vidRectangle, Color.White);*/
             if (inGame || menu.actualType == Menu.MenuType.pause || menu.actualType == Menu.MenuType.loose || menu.actualType == Menu.MenuType.win)
             {
+                spriteBatch.Begin();
+                spriteBatch.Draw(Ressource.background, new Rectangle((int)(Camera.Transform.Translation.X * 0.1f), (int)(Camera.Transform.Translation.Y * 0.1f), Level.map.Width, Ressource.screenHeight), Color.White);
+                spriteBatch.End();
+
                 spriteBatch.Begin(SpriteSortMode.Deferred,
                         BlendState.AlphaBlend,
                         null, null, null, null,
