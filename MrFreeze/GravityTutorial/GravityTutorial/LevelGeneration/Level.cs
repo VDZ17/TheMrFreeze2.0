@@ -225,6 +225,7 @@ namespace GravityTutorial
                 if (e.firstHit)
                 {
                     Heroes.ElementAt(0).velocity.X = 0;
+                    e.timerAttack = 0;
 
                     if (e.direction == Direction2.Right)
                     {

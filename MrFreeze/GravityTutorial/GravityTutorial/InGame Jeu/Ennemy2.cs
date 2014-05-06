@@ -48,6 +48,8 @@ namespace GravityTutorial.InGame_Jeu
         public bool finalHit;
         public bool firstHit;
         public int life;
+        int timerAttackFrequency;
+        public int timerAttack;
 
 
         public Ennemy2(Texture2D newTexture, Vector2 newPosition)
@@ -66,6 +68,8 @@ namespace GravityTutorial.InGame_Jeu
             this.finalHit = false;
             this.firstHit = false;
             this.life = 5;
+            this.timerAttackFrequency = 420;
+            this.timerAttack = 420;
         }
 
 
@@ -190,10 +194,12 @@ namespace GravityTutorial.InGame_Jeu
 
         public void hit(Character player)
         {
+            timerAttack++;
 
             if (this.direction == Direction2.Right)
             {
-                if (player.position.X < this.position.X + 50 && player.position.Y + player.player_Height > this.position.Y && finalHit == false)
+                if (player.position.X < this.position.X + 50 && player.position.Y + player.player_Height >= this.position.Y &&
+                    player.position.Y + player.player_Height <= this.position.Y + this.height + 2 && finalHit == false)
                 {
                     this.state = State2.hitting;
                     updateHitbox(state);
@@ -204,7 +210,8 @@ namespace GravityTutorial.InGame_Jeu
             }
             else if (this.direction == Direction2.Left)
             {
-                if (player.position.X > this.position.X - 50 && player.position.Y + player.player_Height > this.position.Y && finalHit == false)
+                if (player.position.X > this.position.X - 50 && player.position.Y + player.player_Height >= this.position.Y &&
+                     player.position.Y + player.player_Height <= this.position.Y + this.height && finalHit == false)
                 {
                     this.state = State2.hitting;
                     updateHitbox(state);
@@ -223,9 +230,11 @@ namespace GravityTutorial.InGame_Jeu
                     firstHit = false;
                     this.state = State2.Waiting;
                     updateHitbox(state);
-                    
                 }
+
             }
+            if (this.timerAttack >= this.timerAttackFrequency)
+                finalHit = false;
 
         }
 
@@ -233,6 +242,8 @@ namespace GravityTutorial.InGame_Jeu
         {
             Rectangle fixY = this.rectangle;
             fixY.Y = this.rectangle.Y + 2;
+
+            Console.WriteLine(this.timerAttack);
 
             if (this.state == State2.Waiting)
                 spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
