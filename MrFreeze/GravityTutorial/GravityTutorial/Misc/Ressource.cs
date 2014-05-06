@@ -137,6 +137,9 @@ namespace GravityTutorial
             MenuString.Add("Pseudo", new Tuple<string, string>("Pseudo", "Pseudo"));
             MenuString.Add("Valider", new Tuple<string, string>("Valider", "Validate"));
             MenuString.Add("Tir", new Tuple<string, string>("Tir", "Shoot"));
+            MenuString.Add("Time", new Tuple<string, string>("Temps ecoule !", "Time out !"));
+            MenuString.Add("Nolife", new Tuple<string, string>("Tu es mort !", "You died !"));
+
 
 
             //PARAMETERS

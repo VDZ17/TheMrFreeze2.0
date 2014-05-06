@@ -90,15 +90,21 @@ namespace GravityTutorial
             }
 
             int Xtitle = (Ressource.screenWidth / 2) - 350;
-            int Ytitle = 50;
+            //int Ytitle = 50;
+            int Ytitle = 10;
+            int YtitleOptions = -50;
 
             int Xbutton = (Ressource.screenWidth / 2) - 250;
             int Xbutton0 = (Ressource.screenWidth / 4) - 250;
             int Xbutton1 = (3 * Ressource.screenWidth / 4) - 250; ;
-            int Ybutton0 = 350;
+            /*int Ybutton0 = 350;
             int Ybutton1 = 450;
             int Ybutton2 = 550;
-            int Ybutton3 = 650;
+            int Ybutton3 = 650;*/
+            int Ybutton0 = 250;
+            int Ybutton1 = 350;
+            int Ybutton2 = 450;
+            int Ybutton3 = 550;
 
             int nbPlay = 1;
             if (Ressource.parameter[2])
@@ -240,8 +246,8 @@ namespace GravityTutorial
                     {
                         actualMenu = new Menu(MenuType.loose, 2, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 5);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Accueil"], MenuType.welcome);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
                         break;
                     }
                 case MenuType.win:
@@ -275,7 +281,7 @@ namespace GravityTutorial
                 case MenuType.setpseudo:
                     {
                         actualMenu = new Menu(type, 1, Ressource.BackgroundMenuMain, 0, 0, 0, 1);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.option);
                         actualMenu.Pseudo[0] = new Pseudo(new Vector2(Xbutton, Ybutton2));
                         break;
@@ -390,12 +396,61 @@ namespace GravityTutorial
 
             title.Draw(spriteBatch);
 
-            if (actualType == MenuType.win || actualType == MenuType.loose)
+            if (actualType == MenuType.win)
             {
-                string score = Game1.score.score.ToString();
-                string pseudo = Ressource.pseudo;
-                spriteBatch.DrawString(Ressource.MenuPolice, "Score de " + pseudo + " :", new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString("Score de " + pseudo + " :").Length() / 2, 350), Color.White);
-                spriteBatch.DrawString(Ressource.MenuPolice, score, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(score).Length() / 2, 410), Color.White);
+                //LEFT
+                string nbCoin = (Game1.score.score/10).ToString();
+                string tpsRestant = (Game1.score.timer).ToString();
+                string score = (Game1.score.score + Game1.score.timer * 10).ToString();
+
+                Vector2 posCoin = new Vector2(10, 250);
+                Vector2 posChrono = new Vector2(10, 300);
+
+                spriteBatch.Draw(Ressource.Gold, posCoin, Color.White);
+                //spriteBatch.Draw(Ressource.Chrono, posChrono, Color.White);
+                spriteBatch.DrawString(Ressource.MenuPolice, "x " + nbCoin, new Vector2(70, 250), Color.White);
+                spriteBatch.DrawString(Ressource.MenuPolice, tpsRestant + " s", new Vector2(70,300), Color.White);
+                spriteBatch.DrawString(Ressource.MenuPolice, "TOTAL : " + score, new Vector2(10, 350), Color.White);
+
+                //RIGHT
+                string hightscore; //FIXME
+
+
+            
+            }
+
+            if (actualType == MenuType.loose)
+            {
+                string str;
+                if (Game1.score.timer <= 0)
+                {
+
+                    if (Ressource.parameter[2])
+                    {
+                        str = Ressource.MenuString["Time"].Item1;
+
+                    }
+                    else
+                    {
+                        str = Ressource.MenuString["Time"].Item2;
+                    }
+
+                    
+                }
+                else
+                {
+                    if (Ressource.parameter[2])
+                    {
+                        str = Ressource.MenuString["Nolife"].Item1;
+
+                    }
+                    else
+                    {
+                        str = Ressource.MenuString["Nolife"].Item2;
+                    }
+                }
+
+                spriteBatch.DrawString(Ressource.MenuPolice, str, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(str).Length() / 2, 250), Color.White);
             }
         }
 

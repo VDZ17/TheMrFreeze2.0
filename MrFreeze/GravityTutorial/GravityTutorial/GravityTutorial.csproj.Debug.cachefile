@@ -53,6 +53,7 @@ Content\CharacterRessources\healthbar.xnb
 Content\Tile5.xnb
 Content\InGameRessources\fissure.xnb
 Content\InGameRessources\complet.xnb
+Content\BonusRessources\items.xnb
 Content\vid.xnb
 Content\MusicRessources\SF-course_sable1.xnb
 Content\MusicRessources\DRUM_BASS.xnb
@@ -75,7 +76,6 @@ Content\particules\WaterJet.xnb
 Content\particules\snow_good.xnb
 Content\particules\snow_lens.xnb
 Content\particules\GoldParticle.xnb
-Content\BonusRessources\items.xnb
 Content\vid.wmv
 Content\MusicRessources\DRUM_BASS.wma
 Content\MusicRessources\DRUM&BASS.wma

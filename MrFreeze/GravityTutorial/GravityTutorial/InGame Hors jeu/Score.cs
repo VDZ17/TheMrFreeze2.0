@@ -51,7 +51,7 @@ namespace GravityTutorial
             dicotop5.Add(new Tuple<string, double>(pseudo, score));
             StreamReader fluxInfos2;
             string ligne;
-            using (fluxInfos2 = new StreamReader(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore.txt"))
+            using (fluxInfos2 = new StreamReader(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore"+ Game1.Level.lvl + ".txt"))
             {
                 ligne = fluxInfos2.ReadLine();
                 while (ligne != null)
@@ -64,7 +64,7 @@ namespace GravityTutorial
             }
             var DicoTrie = (from entry in dicotop5 orderby entry.Item2 descending select entry);
             StreamWriter fluxInfos3;
-            using (fluxInfos3 = new StreamWriter((Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore.txt")))
+            using (fluxInfos3 = new StreamWriter(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore" + Game1.Level.lvl + ".txt"))
             {
 
             }
@@ -77,7 +77,7 @@ namespace GravityTutorial
                 {
                     i++;
                     StreamWriter fluxInfos;
-                    using (fluxInfos = new StreamWriter(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore.txt", true))
+                    using (fluxInfos = new StreamWriter(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore"+ Game1.Level.lvl + ".txt"))
                     {
                         fluxInfos.WriteLine(pair.Item1 + '/' + pair.Item2);
                     }
