@@ -1,0 +1,787 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<XnaContent xmlns:Pipeline="Microsoft.Xna.Framework.Content.Pipeline">
+  <Asset Type="Pipeline:BuildItemCollection">
+    <Item>
+      <Source>MenuRessources\title.png</Source>
+      <Name>MenuRessources\title</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\title.xnb</Output>
+      <Time>2014-05-07T13:22:46.1205663+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Tile2.png</Source>
+      <Name>Tile2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Tile2.xnb</Output>
+      <Time>2014-05-07T13:22:46.6389067+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Tile1.png</Source>
+      <Name>Tile1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Tile1.xnb</Output>
+      <Time>2014-05-07T13:22:46.6369057+02:00</Time>
+    </Item>
+    <Item>
+      <Source>CharacterRessources\walkpetit.png</Source>
+      <Name>CharacterRessources\walkpetit</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\CharacterRessources\walkpetit.xnb</Output>
+      <Time>2014-05-07T13:22:45.3040208+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\backgroundmenu.png</Source>
+      <Name>MenuRessources\backgroundmenu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\backgroundmenu.xnb</Output>
+      <Time>2014-05-07T13:22:46.0955466+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\backgroundmenugris.png</Source>
+      <Name>MenuRessources\backgroundmenugris</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\backgroundmenugris.xnb</Output>
+      <Time>2014-05-07T13:22:46.1065537+02:00</Time>
+    </Item>
+    <Item>
+      <Source>BonusRessources\Tile4.png</Source>
+      <Name>BonusRessources\Tile4</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\BonusRessources\Tile4.xnb</Output>
+      <Time>2014-05-07T18:55:36.1343461+02:00</Time>
+    </Item>
+    <Item>
+      <Source>ecranbleu.jpg</Source>
+      <Name>ecranbleu</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\ecranbleu.xnb</Output>
+      <Time>2014-05-07T13:22:46.6499138+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InGameRessources\bleucrash.jpg</Source>
+      <Name>InGameRessources\bleucrash</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\InGameRessources\bleucrash.xnb</Output>
+      <Time>2014-05-07T13:22:46.0164936+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\boutton.png</Source>
+      <Name>MenuRessources\boutton</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\boutton.xnb</Output>
+      <Time>2014-05-07T13:22:46.1075542+02:00</Time>
+    </Item>
+    <Item>
+      <Source>CharacterRessources\megaman_saut.png</Source>
+      <Name>CharacterRessources\megaman_saut</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\CharacterRessources\megaman_saut.xnb</Output>
+      <Time>2014-05-07T13:22:45.3030204+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Beam.png</Source>
+      <Name>Beam</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Beam.xnb</Output>
+      <Time>2014-05-07T13:22:45.2930146+02:00</Time>
+    </Item>
+    <Item>
+      <Source>BeamBlurred.png</Source>
+      <Name>BeamBlurred</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\BeamBlurred.xnb</Output>
+      <Time>2014-05-07T13:22:45.2940142+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Cloud001.png</Source>
+      <Name>Cloud001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Cloud001.xnb</Output>
+      <Time>2014-05-07T13:22:45.3060218+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Cloud002.png</Source>
+      <Name>Cloud002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Cloud002.xnb</Output>
+      <Time>2014-05-07T13:22:45.307023+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Cloud003.png</Source>
+      <Name>Cloud003</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Cloud003.xnb</Output>
+      <Time>2014-05-07T13:22:45.3080251+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Cloud004.png</Source>
+      <Name>Cloud004</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Cloud004.xnb</Output>
+      <Time>2014-05-07T13:22:45.3090252+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Flame.png</Source>
+      <Name>Flame</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Flame.xnb</Output>
+      <Time>2014-05-07T13:22:45.9874742+02:00</Time>
+    </Item>
+    <Item>
+      <Source>FlowerBurst.png</Source>
+      <Name>FlowerBurst</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\FlowerBurst.xnb</Output>
+      <Time>2014-05-07T13:22:45.9894763+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Laser.png</Source>
+      <Name>Laser</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Laser.xnb</Output>
+      <Time>2014-05-07T13:22:46.0204963+02:00</Time>
+    </Item>
+    <Item>
+      <Source>LensFlare.png</Source>
+      <Name>LensFlare</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\LensFlare.xnb</Output>
+      <Time>2014-05-07T13:22:46.0214971+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MultiDot.png</Source>
+      <Name>MultiDot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MultiDot.xnb</Output>
+      <Time>2014-05-07T13:22:46.1445789+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particle001.png</Source>
+      <Name>Particle001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Particle001.xnb</Output>
+      <Time>2014-05-07T13:22:46.5768668+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particle002.png</Source>
+      <Name>Particle002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Particle002.xnb</Output>
+      <Time>2014-05-07T13:22:46.5778656+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particle003.png</Source>
+      <Name>Particle003</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Particle003.xnb</Output>
+      <Time>2014-05-07T13:22:46.5798685+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particle004.png</Source>
+      <Name>Particle004</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Particle004.xnb</Output>
+      <Time>2014-05-07T13:22:46.5808682+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particle005.png</Source>
+      <Name>Particle005</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Particle005.xnb</Output>
+      <Time>2014-05-07T13:22:46.5828691+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particle006.png</Source>
+      <Name>Particle006</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Particle006.xnb</Output>
+      <Time>2014-05-07T13:22:46.58387+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Particle007.png</Source>
+      <Name>Particle007</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Particle007.xnb</Output>
+      <Time>2014-05-07T13:22:46.6118881+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Ring001.png</Source>
+      <Name>Ring001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Ring001.xnb</Output>
+      <Time>2014-05-07T13:22:46.6198939+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Ring002.png</Source>
+      <Name>Ring002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Ring002.xnb</Output>
+      <Time>2014-05-07T13:22:46.6218948+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SoftClumpy.png</Source>
+      <Name>SoftClumpy</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\SoftClumpy.xnb</Output>
+      <Time>2014-05-07T13:22:46.6238965+02:00</Time>
+    </Item>
+    <Item>
+      <Source>SoftSmokey.png</Source>
+      <Name>SoftSmokey</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\SoftSmokey.xnb</Output>
+      <Time>2014-05-07T13:22:46.6258982+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Spikey001.png</Source>
+      <Name>Spikey001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Spikey001.xnb</Output>
+      <Time>2014-05-07T13:22:46.6278992+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Spikey002.png</Source>
+      <Name>Spikey002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Spikey002.xnb</Output>
+      <Time>2014-05-07T13:22:46.6299005+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Splash.png</Source>
+      <Name>Splash</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Splash.xnb</Output>
+      <Time>2014-05-07T13:22:46.6309005+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Spray001.png</Source>
+      <Name>Spray001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Spray001.xnb</Output>
+      <Time>2014-05-07T13:22:46.6339027+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Star.png</Source>
+      <Name>Star</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Star.xnb</Output>
+      <Time>2014-05-07T13:22:46.634904+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Water001.png</Source>
+      <Name>Water001</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Water001.xnb</Output>
+      <Time>2014-05-07T13:22:46.6429093+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Water002.png</Source>
+      <Name>Water002</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Water002.xnb</Output>
+      <Time>2014-05-07T13:22:46.6439098+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Weeds.png</Source>
+      <Name>Weeds</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Weeds.xnb</Output>
+      <Time>2014-05-07T13:22:46.646912+02:00</Time>
+    </Item>
+    <Item>
+      <Source>CharacterRessources\FIXMegaman.png</Source>
+      <Name>CharacterRessources\FIXMegaman</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\CharacterRessources\FIXMegaman.xnb</Output>
+      <Time>2014-05-07T13:22:45.3000182+02:00</Time>
+    </Item>
+    <Item>
+      <Source>EnnemiesResources\Ennemy3.png</Source>
+      <Name>EnnemiesResources\Ennemy3</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\EnnemiesResources\Ennemy3.xnb</Output>
+      <Time>2014-05-07T13:22:45.9864737+02:00</Time>
+    </Item>
+    <Item>
+      <Source>EnnemiesResources\Ennemy2-2.png</Source>
+      <Name>EnnemiesResources\Ennemy2-2</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\EnnemiesResources\Ennemy2-2.xnb</Output>
+      <Time>2014-05-07T13:22:45.9844724+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\champtxt.png</Source>
+      <Name>MenuRessources\champtxt</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\champtxt.xnb</Output>
+      <Time>2014-05-07T13:22:46.1155595+02:00</Time>
+    </Item>
+    <Item>
+      <Source>shoot.png</Source>
+      <Name>shoot</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\shoot.xnb</Output>
+      <Time>2014-05-07T13:22:46.7419744+02:00</Time>
+    </Item>
+    <Item>
+      <Source>BonusRessources\Tile42.png</Source>
+      <Name>BonusRessources\Tile42</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\BonusRessources\Tile42.xnb</Output>
+      <Time>2014-05-07T13:22:45.2970168+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Cloud.png</Source>
+      <Name>Cloud</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Cloud.xnb</Output>
+      <Time>2014-05-07T13:22:45.3050221+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InGameRessources\back.jpg</Source>
+      <Name>InGameRessources\back</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\InGameRessources\back.xnb</Output>
+      <Time>2014-05-07T13:22:46.0084895+02:00</Time>
+    </Item>
+    <Item>
+      <Source>EnnemiesResources\Ennemy1.png</Source>
+      <Name>EnnemiesResources\Ennemy1</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\EnnemiesResources\Ennemy1.xnb</Output>
+      <Time>2014-05-07T13:22:45.9824719+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InGameRessources\Tile10.png</Source>
+      <Name>InGameRessources\Tile10</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\InGameRessources\Tile10.xnb</Output>
+      <Time>2014-05-07T13:22:45.9974824+02:00</Time>
+    </Item>
+    <Item>
+      <Source>CharacterRessources\healthbar.png</Source>
+      <Name>CharacterRessources\healthbar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\CharacterRessources\healthbar.xnb</Output>
+      <Time>2014-05-07T18:55:19.9075903+02:00</Time>
+    </Item>
+    <Item>
+      <Source>Tile5.png</Source>
+      <Name>Tile5</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\Tile5.xnb</Output>
+      <Time>2014-05-07T13:22:46.640908+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InGameRessources\fissure.png</Source>
+      <Name>InGameRessources\fissure</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\InGameRessources\fissure.xnb</Output>
+      <Time>2014-05-07T13:22:46.0194966+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InGameRessources\complet.png</Source>
+      <Name>InGameRessources\complet</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\InGameRessources\complet.xnb</Output>
+      <Time>2014-05-07T13:22:46.0184949+02:00</Time>
+    </Item>
+    <Item>
+      <Source>BonusRessources\items.png</Source>
+      <Name>BonusRessources\items</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\BonusRessources\items.xnb</Output>
+      <Time>2014-05-07T18:55:35.3488272+02:00</Time>
+    </Item>
+    <Item>
+      <Source>vid.wmv</Source>
+      <Name>vid</Name>
+      <Importer>WmvImporter</Importer>
+      <Processor>VideoProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\vid.xnb</Output>
+      <Extra>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\vid.wmv</Extra>
+      <Time>2014-05-07T13:22:46.7559845+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MusicRessources\SF-course_sable1.wav</Source>
+      <Name>MusicRessources\SF-course_sable1</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MusicRessources\SF-course_sable1.xnb</Output>
+      <Time>2014-05-07T13:22:46.5288345+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MusicRessources\shot.wav</Source>
+      <Name>MusicRessources\shot</Name>
+      <Importer>WavImporter</Importer>
+      <Processor>SoundEffectProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MusicRessources\shot.xnb</Output>
+      <Time>2014-05-07T18:43:19.7591493+02:00</Time>
+    </Item>
+    <Item>
+      <Source>InGameRessources\Arial.spritefont</Source>
+      <Name>InGameRessources\Arial</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\InGameRessources\Arial.xnb</Output>
+      <Time>2014-05-07T13:22:45.9964824+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\ArialDefaultMenu.spritefont</Source>
+      <Name>MenuRessources\ArialDefaultMenu</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\ArialDefaultMenu.xnb</Output>
+      <Time>2014-05-07T13:22:46.0255002+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\MenuFont.spritefont</Source>
+      <Name>MenuRessources\MenuFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\MenuFont.xnb</Output>
+      <Time>2014-05-07T13:22:46.0275015+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\SmallMenuFont.spritefont</Source>
+      <Name>MenuRessources\SmallMenuFont</Name>
+      <Importer>FontDescriptionImporter</Importer>
+      <Processor>FontDescriptionProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\SmallMenuFont.xnb</Output>
+      <Time>2014-05-07T13:22:46.0315054+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\BasicExplosion.xml</Source>
+      <Name>particules\BasicExplosion</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\BasicExplosion.xnb</Output>
+      <Time>2014-05-07T13:22:46.678934+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\BasicFireball.xml</Source>
+      <Name>particules\BasicFireball</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\BasicFireball.xnb</Output>
+      <Time>2014-05-07T13:22:46.6839363+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\BasicSmokePlume.xml</Source>
+      <Name>particules\BasicSmokePlume</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\BasicSmokePlume.xnb</Output>
+      <Time>2014-05-07T13:22:46.6869401+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\BeamMeUp.xml</Source>
+      <Name>particules\BeamMeUp</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\BeamMeUp.xnb</Output>
+      <Time>2014-05-07T13:22:46.6899407+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\CampFire.xml</Source>
+      <Name>particules\CampFire</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\CampFire.xnb</Output>
+      <Time>2014-05-07T13:22:46.6929425+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\FlowerBloom.xml</Source>
+      <Name>particules\FlowerBloom</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\FlowerBloom.xnb</Output>
+      <Time>2014-05-07T13:22:46.6969476+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\MagicTrail.xml</Source>
+      <Name>particules\MagicTrail</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\MagicTrail.xnb</Output>
+      <Time>2014-05-07T13:22:46.7029491+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\Paparazzi.xml</Source>
+      <Name>particules\Paparazzi</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\Paparazzi.xnb</Output>
+      <Time>2014-05-07T13:22:46.717958+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\SimpleRain.xml</Source>
+      <Name>particules\SimpleRain</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\SimpleRain.xnb</Output>
+      <Time>2014-05-07T13:22:46.728966+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\snow.xml</Source>
+      <Name>particules\snow</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\snow.xnb</Output>
+      <Time>2014-05-07T13:22:46.7369713+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\StarTrail.xml</Source>
+      <Name>particules\StarTrail</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\StarTrail.xnb</Output>
+      <Time>2014-05-07T13:22:46.7309677+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\WaterJet.xml</Source>
+      <Name>particules\WaterJet</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\WaterJet.xnb</Output>
+      <Time>2014-05-07T13:22:46.7339699+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\snow_good.xml</Source>
+      <Name>particules\snow_good</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\snow_good.xnb</Output>
+      <Time>2014-05-07T13:22:46.7389734+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\snow_lens.xml</Source>
+      <Name>particules\snow_lens</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\snow_lens.xnb</Output>
+      <Time>2014-05-07T15:19:34.9272228+02:00</Time>
+    </Item>
+    <Item>
+      <Source>particules\GoldParticle.xml</Source>
+      <Name>particules\GoldParticle</Name>
+      <Importer>XmlImporter</Importer>
+      <Processor>PassThroughProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\particules\GoldParticle.xnb</Output>
+      <Time>2014-05-07T13:22:46.6999469+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MusicRessources\Unsainstable29.mp3</Source>
+      <Name>MusicRessources\Unsainstable29</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MusicRessources\Unsainstable29.xnb</Output>
+      <Extra>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MusicRessources\Unsainstable29.wma</Extra>
+      <Time>2014-05-07T18:43:19.7561475+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MusicRessources\Endlessly.mp3</Source>
+      <Name>MusicRessources\Endlessly</Name>
+      <Importer>Mp3Importer</Importer>
+      <Processor>SongProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MusicRessources\Endlessly.xnb</Output>
+      <Extra>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MusicRessources\Endlessly.wma</Extra>
+      <Time>2014-05-07T18:43:19.7471405+02:00</Time>
+    </Item>
+    <Item>
+      <Source>CharacterRessources\fondhealthbar.png</Source>
+      <Name>CharacterRessources\fondhealthbar</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\CharacterRessources\fondhealthbar.xnb</Output>
+      <Time>2014-05-07T18:55:14.9082771+02:00</Time>
+    </Item>
+    <Item>
+      <Source>MenuRessources\sablier.png</Source>
+      <Name>MenuRessources\sablier</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+      <Options>None</Options>
+      <Output>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\MenuRessources\sablier.xnb</Output>
+      <Time>2014-05-07T18:55:51.3824561+02:00</Time>
+    </Item>
+    <BuildSuccessful>true</BuildSuccessful>
+    <Settings>
+      <TargetPlatform>Windows</TargetPlatform>
+      <TargetProfile>HiDef</TargetProfile>
+      <BuildConfiguration>Debug</BuildConfiguration>
+      <CompressContent>false</CompressContent>
+      <RootDirectory>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorialContent\</RootDirectory>
+      <LoggerRootDirectory>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\</LoggerRootDirectory>
+      <IntermediateDirectory>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorialContent\obj\x86\Debug\</IntermediateDirectory>
+      <OutputDirectory>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorial\bin\x86\Debug\Content\</OutputDirectory>
+    </Settings>
+    <Assemblies>
+      <Assembly>
+        <Key>C:\Users\Asus\Desktop\Epita\Projet\Save projet\V1.15 07-05-14\GravityTutorial\GravityTutorialContent\ProjectMercury.dll</Key>
+        <Value>2014-05-07T13:22:46.6188938+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.VideoImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.TextureImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.FBXImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.EffectImporter.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\Program Files (x86)\Microsoft XNA\XNA Game Studio\v4.0\References\Windows\x86\Microsoft.Xna.Framework.Content.Pipeline.AudioImporters.dll</Key>
+        <Value>2010-08-23T13:41:18+02:00</Value>
+      </Assembly>
+      <Assembly>
+        <Key>C:\WINDOWS\Microsoft.Net\assembly\GAC_32\Microsoft.Xna.Framework.Content.Pipeline\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Content.Pipeline.dll</Key>
+        <Value>2014-01-20T10:25:40.1271063+01:00</Value>
+      </Assembly>
+    </Assemblies>
+  </Asset>
+</XnaContent>

@@ -34,14 +34,14 @@ namespace GravityTutorial
             youwin = false;
             damage = 0;
             texture_life = Ressource.healthbar;
-            position_life = new Vector2(50, 30);
+            position_life = new Vector2(15, 45);
             rectangle_life = new Rectangle(0, 0, texture_life.Width, texture_life.Height);
 
             saved = false;
             this.score = 0;
             timer = timespan.TotalSeconds;
-            this.position = Vector2.One;
-            this.position_timer = new Vector2(position_data.X - 100, 10);
+            this.position = new Vector2(15, 1);
+            this.position_timer = new Vector2(position_data.X - 175, 10);
             loser = new Rectangle(0, 0, (int)position_data.X, (int)position_data.Y);
         }
 
@@ -117,8 +117,9 @@ namespace GravityTutorial
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Ressource.Font, "Score: " + this.score, position, Color.Red);
-            spriteBatch.DrawString(Ressource.Font, "Timer: " + this.timer, position_timer, Color.Red);
+            spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score: " + this.score, position, Color.White);
+            spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer: " + this.timer, position_timer, Color.White);
+            spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
             spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
         }
     }

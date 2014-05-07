@@ -40,11 +40,11 @@ namespace GravityTutorial
         {
             this.position = pos;
             this.texture = texture;
-            hitbox = new Rectangle((int)position.X, (int)position.Y, texture.Width, texture.Height);
+            hitbox = new Rectangle((int)position.X, (int)position.Y, 50,50);
             this.type = type;
             this.nb_texture = nb_texture;
             hasBeenTaken = false;
-            texture_size = 70;
+            texture_size = 50;
         }
 
         //UPDATE & DRAW
@@ -61,7 +61,7 @@ namespace GravityTutorial
         {
             if (!hasBeenTaken)
             {
-                spriteBatch.Draw(texture, position, new Rectangle((nb_texture - 1) * texture_size, 0, texture_size, texture_size), Color.White);
+                spriteBatch.Draw(texture, position, new Rectangle((nb_texture) * texture_size, 0, texture_size, texture_size), Color.White);
             }
         }
     }

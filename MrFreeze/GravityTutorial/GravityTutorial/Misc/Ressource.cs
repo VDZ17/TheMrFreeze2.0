@@ -20,8 +20,8 @@ namespace GravityTutorial
     {
         public static Texture2D Player_animation,
             background,
-            Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox,
-            Gold, Items, Loser, igloo, healthbar, Bullet, moving_plateform, fissure, complet;
+            Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox, Chrono,
+            Gold, Items, Loser, igloo, healthbar, fondHealthbar, Bullet, moving_plateform, fissure, complet;
 
         public static Texture2D Ennemy3, Ennemy2, Ennemy1;
 
@@ -75,6 +75,7 @@ namespace GravityTutorial
             //PLAYER
             Player_animation = Content.Load<Texture2D>(CharacterFile + "FIXMegaman");
             healthbar = Content.Load<Texture2D>(CharacterFile + "healthbar");
+            fondHealthbar = Content.Load<Texture2D>(CharacterFile + "fondhealthbar");
 
             //BLOCK
             fissure = Content.Load<Texture2D>(InGameFile + "fissure");
@@ -112,6 +113,7 @@ namespace GravityTutorial
             SmallMenuPolice = Content.Load<SpriteFont>(MenuFile + "SmallMenuFont");
             ArialDefaultMenu = Content.Load<SpriteFont>(MenuFile + "ArialDefaultMenu");
             pseudo = "USER";
+            Chrono = Content.Load<Texture2D>(MenuFile + "sablier");
 
             //MENUSTRING
             MenuString.Add("Retour", new Tuple<string, string>("Retour", "Back"));

@@ -406,11 +406,11 @@ namespace GravityTutorial
 
                 int xpos = (int)(Ressource.screenWidth / 3 - Ressource.SmallMenuPolice.MeasureString("TOTAL : " + score).Length() / 2);
 
-                Vector2 posCoin = new Vector2(xpos, 205);
+                Vector2 posCoin = new Vector2(xpos - 10, 195);
                 Vector2 posChrono = new Vector2(xpos, 245);
 
                 spriteBatch.Draw(Ressource.Gold, posCoin, Color.White);
-                //spriteBatch.Draw(Ressource.Chrono, posChrono, Color.White);
+                spriteBatch.Draw(Ressource.Chrono, posChrono, Color.White);
                 spriteBatch.DrawString(Ressource.SmallMenuPolice, "x " + nbCoin, new Vector2(xpos + 40, 200), Color.White);
                 spriteBatch.DrawString(Ressource.SmallMenuPolice, tpsRestant + " s", new Vector2(xpos + 40, 240), Color.White);
                 spriteBatch.DrawString(Ressource.SmallMenuPolice, "TOTAL : " + score, new Vector2(xpos, 280), Color.White);
@@ -430,7 +430,7 @@ namespace GravityTutorial
                 }
 
                 Vector2 pos = new Vector2(maxpos, 200);
-                spriteBatch.DrawString(Ressource.SmallMenuPolice, "Hightscore :", pos, Color.White);
+                spriteBatch.DrawString(Ressource.SmallMenuPolice, "Highscore :", pos, Color.White);
                 int c = 0;
                 foreach (string s in hightscore)
                 {
