@@ -90,7 +90,7 @@ namespace GravityTutorial
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl3.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 15 * block_size)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0 * block_size)));
                         break;
                     }
                 case 4:

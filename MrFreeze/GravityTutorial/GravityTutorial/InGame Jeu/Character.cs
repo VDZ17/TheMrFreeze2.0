@@ -169,6 +169,9 @@ namespace GravityTutorial
                 else
                 {
                     Bullets.Add(newBullet);
+                    if (Ressource.parameter[1])
+                        Ressource.shot2.Play();
+
                 }
 
 
@@ -303,6 +306,19 @@ namespace GravityTutorial
             //BONUS
             if (CurrentItem != PreviousItem && CurrentItem != Item.Type.None)
             {
+                //Musiques invincible
+                if (CurrentItem == Item.Type.Invincibility && Ressource.parameter[0])
+                {
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(Ressource.song2);
+                    MediaPlayer.Volume = 0.5f;
+                }
+                else if (PreviousItem == Item.Type.Invincibility && CurrentItem != Item.Type.Invincibility && Ressource.parameter[0])
+                {
+                    MediaPlayer.Stop();
+                    MediaPlayer.Play(Ressource.song);
+                    MediaPlayer.Volume = 1;
+                }
                 currentTimerBonus = 0;
                 IsTimerBonusOn = true;
             }
@@ -394,6 +410,8 @@ namespace GravityTutorial
                 Left = defaultLeft;
                 Right = defaultRight;
             }
+
+
 
             // SET UP
             if (Keyboard.GetState().IsKeyDown(Right))
@@ -492,8 +510,9 @@ namespace GravityTutorial
             if (Ressource.parameter[0] && MediaPlayer.State != MediaState.Playing)
             {
                 MediaPlayer.Play(Ressource.song);
-                MediaPlayer.Volume = 0.1f;
+                MediaPlayer.Volume = 1;
             }
+
 
             else if (Ressource.parameter[0] == false)
             {

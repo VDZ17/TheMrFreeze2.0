@@ -481,7 +481,7 @@ namespace GravityTutorial
             if (Ressource.parameter[0] && MediaPlayer.State != MediaState.Playing)
             {
                 MediaPlayer.Play(Ressource.song);
-                MediaPlayer.Volume = 0.1f;
+                MediaPlayer.Volume = 1;
             }
 
             else if (Ressource.parameter[0] == false)

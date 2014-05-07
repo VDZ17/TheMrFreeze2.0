@@ -31,9 +31,9 @@ namespace GravityTutorial
         public static SpriteFont Font;
         public static SpriteFont MenuPolice, ArialDefaultMenu, SmallMenuPolice;
 
-        public static SoundEffect effect;
-        public static Song song;
-        public static SoundEffectInstance effect2;
+        public static SoundEffect effect, shot;
+        public static Song song, song2;
+        public static SoundEffectInstance effect2, shot2;
 
         public static Video vid;
 
@@ -158,7 +158,14 @@ namespace GravityTutorial
             //SOUND 
             effect = Content.Load<SoundEffect>(MusicFile + "SF-course_sable1");
             effect2 = effect.CreateInstance();
-            song = Content.Load<Song>(MusicFile + "DRUM&BASS");
+            shot = Content.Load<SoundEffect>(MusicFile + "shot");
+            shot2 = shot.CreateInstance();
+            song = Content.Load<Song>(MusicFile + "Endlessly");
+            song2 = Content.Load<Song>(MusicFile + "Unsainstable29");
+
+            shot2.Volume = 0.4f;
+            
+
 
             //INTRO
             vid = Content.Load<Video>("vid");
