@@ -93,7 +93,6 @@ namespace GravityTutorial
             if (!vidHasBeenPlayed)
             {
                 VidPlayer.Play(Ressource.vid);
-                vidHasBeenPlayed = true;
             }
 
 
@@ -135,6 +134,8 @@ namespace GravityTutorial
             if (sizeChanged)
             {
                 camera = new Camera(GraphicsDevice.Viewport);
+                vidRectangle = new Rectangle(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y,
+                GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
                 
             }
             //if (Keyboard.GetState().IsKeyDown(Keys.Enter)) Exit();
@@ -166,7 +167,11 @@ namespace GravityTutorial
             {
                 menu.Update(Mouse.GetState(), Keyboard.GetState(), ref menu, sizeChanged);
             }
-             
+
+            if (VidPlayer.State == MediaState.Stopped)
+            {
+                vidHasBeenPlayed = true;
+            }
             base.Update(gameTime);
         }
 
@@ -174,36 +179,42 @@ namespace GravityTutorial
         {
             GraphicsDevice.Clear(Color.Blue);
             //PROCESS
-            /* VIDEO A FIX
-                    spriteBatch.Begin();
-                    spriteBatch.Draw(VidPlayer.GetTexture(), vidRectangle, Color.White);*/
-            if (inGame || menu.actualType == Menu.MenuType.pause || menu.actualType == Menu.MenuType.loose || menu.actualType == Menu.MenuType.win)
+            if (!vidHasBeenPlayed)
             {
                 spriteBatch.Begin();
-                spriteBatch.Draw(Ressource.background, new Rectangle((int)(Camera.Transform.Translation.X * 0.01f), (int)(Camera.Transform.Translation.Y * 0.01f), Level.map.Width, Level.map.Height), Color.White);
-                
+                spriteBatch.Draw(VidPlayer.GetTexture(), vidRectangle, Color.White);
                 spriteBatch.End();
-
-                spriteBatch.Begin(SpriteSortMode.Deferred,
-                        BlendState.AlphaBlend,
-                        null, null, null, null,
-                        Camera.Transform);
-                Level.Draw(spriteBatch);
-                spriteBatch.End();
-
-                particule.Draw();
-
-                // HUD
-                spriteBatch.Begin();
-                score.Draw(spriteBatch);
-                spriteBatch.End();
-
             }
-            if (!inGame)
+            else
             {
-                spriteBatch.Begin();
-                menu.Draw(spriteBatch, Mouse.GetState());
-                spriteBatch.End();
+                if (inGame || menu.actualType == Menu.MenuType.pause || menu.actualType == Menu.MenuType.loose || menu.actualType == Menu.MenuType.win)
+                {
+                    spriteBatch.Begin();
+                    spriteBatch.Draw(Ressource.background, new Rectangle((int)(Camera.Transform.Translation.X * 0.01f), (int)(Camera.Transform.Translation.Y * 0.01f), Level.map.Width, GraphicsDevice.Viewport.Height), Color.White);
+
+                    spriteBatch.End();
+
+                    spriteBatch.Begin(SpriteSortMode.Deferred,
+                            BlendState.AlphaBlend,
+                            null, null, null, null,
+                            Camera.Transform);
+                    Level.Draw(spriteBatch);
+                    spriteBatch.End();
+
+                    particule.Draw();
+
+                    // HUD
+                    spriteBatch.Begin();
+                    score.Draw(spriteBatch);
+                    spriteBatch.End();
+
+                }
+                if (!inGame)
+                {
+                    spriteBatch.Begin();
+                    menu.Draw(spriteBatch, Mouse.GetState());
+                    spriteBatch.End();
+                }
             }
             base.Draw(gameTime);
         }

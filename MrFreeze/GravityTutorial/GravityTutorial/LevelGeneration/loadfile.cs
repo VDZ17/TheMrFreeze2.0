@@ -8,7 +8,6 @@ namespace GravityTutorial
 {
     public static class loadfile
     {
-
         public static int[,] read(string path)
         {
             using (StreamReader streamReader = new StreamReader(path))
@@ -137,6 +136,7 @@ namespace GravityTutorial
                 }
             }*/
         }
+
         public static List<string> read_score(string path)
         {
             using (StreamReader streamReader = new StreamReader(path))

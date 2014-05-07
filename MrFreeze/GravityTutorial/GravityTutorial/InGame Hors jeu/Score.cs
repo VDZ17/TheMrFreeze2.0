@@ -34,7 +34,7 @@ namespace GravityTutorial
             youwin = false;
             damage = 0;
             texture_life = Ressource.healthbar;
-            position_life = new Vector2(0, 30);
+            position_life = new Vector2(50, 30);
             rectangle_life = new Rectangle(0, 0, texture_life.Width, texture_life.Height);
 
             saved = false;
