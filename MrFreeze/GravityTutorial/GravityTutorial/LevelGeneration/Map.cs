@@ -107,7 +107,31 @@ namespace GravityTutorial
                     //BONUS
                     if (number == 100)
                     {
-                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.DoubleJump,1));
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.DoubleJump, number - 100));
+                    }
+                    if (number == 101)
+                    {
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.MoonJump, number - 100));
+                    }
+                    if (number == 102)
+                    {
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.MultiShot, number - 100));
+                    }
+                    if (number == 103)
+                    {
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.SuperSpeed, number - 100));
+                    }
+                    if (number == 104)
+                    {
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.SlowSpeed, number - 100));
+                    }
+                    if (number == 105)
+                    {
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.Invincibility, number - 100));
+                    }
+                    if (number == 106)
+                    {
+                        Level.Items.Add(new Item(new Vector2(x * size, y * size), Ressource.Items, Item.Type.ReverseDirection, number - 100));
                     }
 
                     width = (x + 1) * size;

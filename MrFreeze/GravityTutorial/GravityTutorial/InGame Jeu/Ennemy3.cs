@@ -206,7 +206,7 @@ namespace GravityTutorial.InGame_Jeu
         //Hit
         public void hit(Character player)
         {
-            if (this.rectangle.Intersects(player.rectangle) && (this.state == State3.Walking))
+            if (this.rectangle.Intersects(player.rectangle) && (this.state == State3.Walking) && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
             {
                 state = State3.Taking;
                 updateHitbox(state);
@@ -223,10 +223,10 @@ namespace GravityTutorial.InGame_Jeu
 
             if (state == State3.Walking)
                 spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            
+
             else if (state == State3.Taking)
                 spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 77 + 1, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            
+
 
         }
 

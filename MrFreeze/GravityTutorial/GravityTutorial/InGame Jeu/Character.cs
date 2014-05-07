@@ -30,7 +30,9 @@ namespace GravityTutorial
 
         //BULLETS
         public List<Bullet> Bullets;
-
+        int defaultNbBullet;
+        int nbBullet;
+        int timerBullet;
 
         //HEALTH
         public int life_changment;
@@ -40,12 +42,15 @@ namespace GravityTutorial
         Texture2D texture;
         public Vector2 position;
         public Vector2 velocity;
+        float defaultSpeed;
+        float speed;
 
         //SAUT
         public bool hasJumped;
         public bool hasJumped2;
         public bool hasDoubleJumped;
-        public int saut = 6;
+        public int saut;
+        int defaultSaut;
         bool cooldownDoubleJump;
 
         //HITBOX
@@ -57,10 +62,20 @@ namespace GravityTutorial
         Direction Direction;
         int Timer;
         int AnimationSpeed;
+        Color color;
         //int AnimationSpeedJump = 7;
 
         //BONUS
         public Item.Type CurrentItem;
+        public int timerBonus;
+        int currentTimerBonus;
+        bool IsTimerBonusOn;
+        Item.Type PreviousItem;
+        int TimerColor;
+        Keys defaultRight;
+        Keys defaultLeft;
+        Keys Left;
+        Keys Right;
 
         public Character(Texture2D newTexture, Vector2 newPosition)
         {
@@ -69,6 +84,9 @@ namespace GravityTutorial
             life_changment = 0;
 
             Bullets = new List<Bullet> { };
+            defaultNbBullet = 1;
+            timerBullet = 0;
+
             isDead = false;
             hasJumped2 = true;
             spawn = true;
@@ -78,9 +96,27 @@ namespace GravityTutorial
             this.Timer = 0;
             this.frameCollumn = 1;
             cooldownDoubleJump = false;
+            color = Color.White;
 
-            CurrentItem = Item.Type.DoubleJump;
+
+            defaultSaut = 6;
+            saut = 6;
+
+            defaultSpeed = 5f;
+            speed = 5f;
+
+            timerBonus = 20 * 60;
+            currentTimerBonus = 0;
+            IsTimerBonusOn = false;
+
+            PreviousItem = Item.Type.None;
+            CurrentItem = Item.Type.None;
             this.life = 150;
+
+            defaultLeft = Ressource.Key[Ressource.inGameAction.Left];
+            defaultRight = Ressource.Key[Ressource.inGameAction.Right];
+            Left = defaultLeft;
+            Right = defaultRight;
         }
 
         public void UpdateBullet()
@@ -121,9 +157,21 @@ namespace GravityTutorial
             newBullet.position = new Vector2(this.position.X + 10, this.position.Y - 15);
             newBullet.IsVisible = true;
 
-            if (Bullets.Count < 1)
+            if (Bullets.Count < nbBullet)
             {
-                Bullets.Add(newBullet);
+                if (CurrentItem == Item.Type.MultiShot)
+                {
+                    if (timerBullet % 10 == 0)
+                    {
+                        Bullets.Add(newBullet);
+                    }
+                }
+                else
+                {
+                    Bullets.Add(newBullet);
+                }
+
+
             }
         }
 
@@ -246,24 +294,119 @@ namespace GravityTutorial
             {
                 Animate();
             }
-            if (Keyboard.GetState().IsKeyUp(Ressource.Key[Ressource.inGameAction.Right]) && (Keyboard.GetState().IsKeyUp(Ressource.Key[Ressource.inGameAction.Left])))
+            if (Keyboard.GetState().IsKeyUp(Right) && (Keyboard.GetState().IsKeyUp(Left)))
             {
                 stop = true;
                 Animate();
             }
 
+            //BONUS
+            if (CurrentItem != PreviousItem && CurrentItem != Item.Type.None)
+            {
+                currentTimerBonus = 0;
+                IsTimerBonusOn = true;
+            }
+
+            if (IsTimerBonusOn)
+            {
+                currentTimerBonus++;
+            }
+
+            if (currentTimerBonus > timerBonus)
+            {
+                CurrentItem = Item.Type.None;
+                IsTimerBonusOn = false;
+            }
+            PreviousItem = CurrentItem;
+
+            if (CurrentItem == Item.Type.MoonJump)
+            {
+                saut = (int)(1.3 * defaultSaut);
+            }
+            else
+            {
+                saut = defaultSaut;
+            }
+
+            if (CurrentItem == Item.Type.MultiShot)
+            {
+                nbBullet = 5;
+            }
+            else
+            {
+                nbBullet = defaultNbBullet;
+            }
+            timerBullet++;
+
+            if (CurrentItem == Item.Type.SuperSpeed)
+            {
+                speed = 2 * defaultSpeed;
+            }
+            else if (CurrentItem == Item.Type.SlowSpeed)
+            {
+                speed = 3f;
+            }
+            else
+            {
+                speed = defaultSpeed;
+            }
+
+            if (CurrentItem == Item.Type.Invincibility)
+            {
+                TimerColor++;
+                if (TimerColor < 10)
+                {
+                    color = Color.Red;
+                }
+                else if (TimerColor < 20)
+                {
+                    color = Color.Orange;
+                }
+                else if (TimerColor < 30)
+                {
+                    color = Color.Yellow;
+                }
+                else if (TimerColor < 40)
+                {
+                    color = Color.LimeGreen;
+                }
+                else if (TimerColor < 50)
+                {
+                    color = Color.LightBlue;
+                }
+                else if (TimerColor < 60)
+                {
+                    color = Color.Pink;
+                }
+                else
+                {
+                    TimerColor = 0;
+                }
+            }
+
+            if (CurrentItem == Item.Type.ReverseDirection)
+            {
+                Left = defaultRight;
+                Right = defaultLeft;
+            }
+            else
+            {
+                Left = defaultLeft;
+                Right = defaultRight;
+            }
+
             // SET UP
-            if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Right]))
+            if (Keyboard.GetState().IsKeyDown(Right))
             {
                 stop = false;
-                velocity.X = 5f;
+                velocity.X = speed;
                 this.Direction = Direction.Right;
                 this.Animate();
             }
-            else if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]))
+            else if (Keyboard.GetState().IsKeyDown(Left))
             {
                 stop = false;
-                velocity.X = -5f;
+                velocity.X = -speed;
                 this.Direction = Direction.Left;
                 this.Animate();
             }
@@ -310,7 +453,7 @@ namespace GravityTutorial
             }
 
             //SAUT
-            if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) && hasJumped == false)
+            if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) && !hasJumped)
             {
                 jump = true;
                 position.Y -= 5f;
@@ -401,7 +544,7 @@ namespace GravityTutorial
                     }
                     if (Ressource.parameter[1] && this.hasJumped == false)
                     {
-                        if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]) || Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Right]))
+                        if (Keyboard.GetState().IsKeyDown(Left) || Keyboard.GetState().IsKeyDown(Right))
                         {
                             if (effect.State != SoundState.Playing)
                                 effect.Play();
@@ -421,7 +564,7 @@ namespace GravityTutorial
                         effect.Pause();
                     }
 
-                    if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Left]) || Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Right]))
+                    if (Keyboard.GetState().IsKeyDown(Left) || Keyboard.GetState().IsKeyDown(Right))
                     {
                         if (jump)
                             jump = false;
@@ -436,7 +579,7 @@ namespace GravityTutorial
 
 
                     hasJumped = false;
-
+                    hasJumped2 = false;
 
                     velocity.Y = 0;
                     hasDoubleJumped = false;
@@ -491,7 +634,7 @@ namespace GravityTutorial
         {
             if (spawn)
             {
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 0, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 0, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
             else if (stop)
             {
@@ -499,13 +642,13 @@ namespace GravityTutorial
                 {
                     player_Height = 43;
                     player_Width = 51;
-                    spriteBatch.Draw(this.texture, rectangle, new Rectangle(player_Width, 64 + 41 + 43, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle(player_Width, 64 + 41 + 43, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
                 else
                 {
                     player_Height = 41;
                     player_Width = 32;
-                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
             }
             else if (jump)
@@ -513,22 +656,22 @@ namespace GravityTutorial
 
                 if (attack)
                 {
-                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 55, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 55, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
                 else
                 {
-                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 1, player_Width, player_Height - 1), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 1, player_Width, player_Height - 1), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
             }
             else
             {
                 if (attack)
                 {
-                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
                 else
                 {
-                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41, player_Width, player_Height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+                    spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
             }
             foreach (Bullet bullet in Bullets)

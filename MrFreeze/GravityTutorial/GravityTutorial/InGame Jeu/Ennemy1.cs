@@ -98,10 +98,10 @@ namespace GravityTutorial.InGame_Jeu
             if (this.state != State1.Rolling)
                 Hitting(Level.Heroes[0]);
 
-            if (this.state == State1.Rolling && this.rectangle.Intersects(Level.Heroes[0].rectangle) && this.rollingHit == false)
+            if (this.state == State1.Rolling && this.rectangle.Intersects(Level.Heroes[0].rectangle) && this.rollingHit == false && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
             {
                 this.rollingHit = true;
-                Level.Heroes[0].life_changment = - 100;
+                Level.Heroes[0].life_changment = -100;
             }
 
             Console.WriteLine(state + " ; " + jumpTimer);
@@ -259,7 +259,7 @@ namespace GravityTutorial.InGame_Jeu
 
             }
 
-            if (this.state == State1.Hitting && player.rectangle.Intersects(hitboxHit))
+            if (this.state == State1.Hitting && player.rectangle.Intersects(hitboxHit) && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
             {
                 timerHitting++;
                 if (timerHitting >= timerHittingFrequency)

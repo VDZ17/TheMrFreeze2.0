@@ -199,7 +199,7 @@ namespace GravityTutorial.InGame_Jeu
             if (this.direction == Direction2.Right)
             {
                 if (player.position.X < this.position.X + 50 && player.position.Y + player.player_Height >= this.position.Y &&
-                    player.position.Y + player.player_Height <= this.position.Y + this.height + 2 && finalHit == false)
+                    player.position.Y + player.player_Height <= this.position.Y + this.height + 2 && finalHit == false && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
                 {
                     this.state = State2.hitting;
                     updateHitbox(state);
@@ -211,7 +211,7 @@ namespace GravityTutorial.InGame_Jeu
             else if (this.direction == Direction2.Left)
             {
                 if (player.position.X > this.position.X - 50 && player.position.Y + player.player_Height >= this.position.Y &&
-                     player.position.Y + player.player_Height <= this.position.Y + this.height && finalHit == false)
+                     player.position.Y + player.player_Height <= this.position.Y + this.height && finalHit == false && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
                 {
                     this.state = State2.hitting;
                     updateHitbox(state);

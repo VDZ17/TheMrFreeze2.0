@@ -23,17 +23,16 @@ namespace GravityTutorial
 
         public enum Type
         {
-            Gold,
             Invincibility,
             DoubleJump,
+            MoonJump,
+            MultiShot,
+            SuperSpeed,
+            SlowSpeed,
+            ReverseDirection,
             /*IceNova,
-            LazerBeam,
             Shield,
-            SpeedUp,
-            TimeStop,
-            SpeedDown,
-            LittleJump,
-            ReverseDirection,*/
+            TimeStop,*/
             None,
         }
 
@@ -51,7 +50,7 @@ namespace GravityTutorial
         //UPDATE & DRAW
         public void Update(Character player, Hud score)
         {
-            if (player.rectangle.Collide_object(hitbox) && !hasBeenTaken)
+            if (player.rectangle.Intersects(hitbox) && !hasBeenTaken)
             {
                 player.CurrentItem = type;
                 hasBeenTaken = true;
