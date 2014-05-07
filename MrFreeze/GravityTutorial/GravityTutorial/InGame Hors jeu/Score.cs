@@ -45,49 +45,7 @@ namespace GravityTutorial
             loser = new Rectangle(0, 0, (int)position_data.X, (int)position_data.Y);
         }
 
-        public void Save(double score, string pseudo)
-        {
-            System.Collections.Generic.List<Tuple<string, double>> dicotop5 = new List<Tuple<string, double>> { };
-            dicotop5.Add(new Tuple<string, double>(pseudo, score));
-            StreamReader fluxInfos2;
-            string ligne;
-            using (fluxInfos2 = new StreamReader(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore"+ Game1.Level.lvl + ".txt"))
-            {
-                ligne = fluxInfos2.ReadLine();
-                while (ligne != null)
-                {
-                    string[] done = ligne.Split('/');
-                    double point = double.Parse(done[1]);
-                    dicotop5.Add(new Tuple<string, double>(done[0], point));
-                    ligne = fluxInfos2.ReadLine();
-                }
-            }
-            var DicoTrie = (from entry in dicotop5 orderby entry.Item2 descending select entry);
-            StreamWriter fluxInfos3;
-            using (fluxInfos3 = new StreamWriter(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore" + Game1.Level.lvl + ".txt"))
-            {
-
-            }
-
-            int i = 0;
-            foreach (System.Tuple<string, double> pair in DicoTrie)
-            {
-
-                if (i < 5)
-                {
-                    i++;
-                    StreamWriter fluxInfos;
-                    using (fluxInfos = new StreamWriter(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore"+ Game1.Level.lvl + ".txt"))
-                    {
-                        fluxInfos.WriteLine(pair.Item1 + '/' + pair.Item2);
-                    }
-                }
-                else
-                {
-                    break;
-                }
-            }
-        }
+        
 
         public void Update(Character player)
         {
@@ -113,11 +71,11 @@ namespace GravityTutorial
 
 
 
-            if (youlose)
+            if (youwin)
             { 
                 if(!(saved))
                 {
-                    this.Save((score) * 100, Ressource.pseudo);
+                    loadfile.Save((score) + timer * 10, Ressource.pseudo);
                     saved = true;
                 }
 
@@ -126,7 +84,7 @@ namespace GravityTutorial
             {
                 if (!(youlose))
                 {
-                    this.Save((score) * 100, Ressource.pseudo);
+                    loadfile.Save((score) + timer * 10, Ressource.pseudo);
                 }
                 timer = 0;
                 youlose = true;

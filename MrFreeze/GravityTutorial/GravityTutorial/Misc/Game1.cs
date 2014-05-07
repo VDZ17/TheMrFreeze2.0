@@ -160,7 +160,6 @@ namespace GravityTutorial
                 score.Update(Level.Heroes[0]);
                 camera.update(Level.Heroes.ElementAt(0).position, Level.map.Width, Level.map.Height);
 
-                //particleEffect.Trigger(new Vector2(Level.Ennemies3[0].position.X+ camera.Transform.Translation.X, Level.Ennemies3[0].position.Y + camera.Transform.Translation.Y));
                 particule.Update(gameTime);
             }
             else
@@ -181,7 +180,7 @@ namespace GravityTutorial
             if (inGame || menu.actualType == Menu.MenuType.pause || menu.actualType == Menu.MenuType.loose || menu.actualType == Menu.MenuType.win)
             {
                 spriteBatch.Begin();
-                spriteBatch.Draw(Ressource.background, new Rectangle((int)(Camera.Transform.Translation.X * 0.01f), (int)(Camera.Transform.Translation.Y * 0.01f), Level.map.Width, Ressource.screenHeight + 500), Color.White);
+                spriteBatch.Draw(Ressource.background, new Rectangle((int)(Camera.Transform.Translation.X * 0.01f), (int)(Camera.Transform.Translation.Y * 0.01f), Level.map.Width, Level.map.Height), Color.White);
                 
                 spriteBatch.End();
 

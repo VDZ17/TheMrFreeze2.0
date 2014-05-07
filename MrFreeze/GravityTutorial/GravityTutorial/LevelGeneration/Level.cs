@@ -31,7 +31,6 @@ namespace GravityTutorial
 
         public web Web;
         public int[,] read;
-        public loadfile file = new loadfile();
         public Map map;
         public int lvl;
         public static bool updateHero;
@@ -75,7 +74,7 @@ namespace GravityTutorial
                 case 1:
                     {
                         int block_size = 50;
-                        map.Generate(file.read(dir + "lvl1.txt"), block_size, this);
+                        map.Generate(loadfile.read(dir + "lvl1.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
                         Console.WriteLine("case1");
                         break;
@@ -83,35 +82,35 @@ namespace GravityTutorial
                 case 2:
                     {
                         int block_size = 50;
-                        map.Generate(file.read(dir + "lvl2.txt"), block_size, this);
+                        map.Generate(loadfile.read(dir + "lvl2.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
                         break;
                     }
                 case 3:
                     {
                         int block_size = 50;
-                        map.Generate(file.read(dir + "lvl3.txt"), block_size, this);
+                        map.Generate(loadfile.read(dir + "lvl3.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 15 * block_size)));
                         break;
                     }
                 case 4:
                     {
                         int block_size = 50;
-                        map.Generate(file.read(dir + "lvl4.txt"), block_size, this);
+                        map.Generate(loadfile.read(dir + "lvl4.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
                         break;
                     }
                 case 5:
                     {
                         int block_size = 50;
-                        map.Generate(file.read(dir + "lvl5.txt"), block_size, this);
+                        map.Generate(loadfile.read(dir + "lvl5.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
                         break;
                     }
                 case 6:
                     {
                         int block_size = 50;
-                        map.Generate(file.read(dir + "lvl6.txt"), block_size, this);
+                        map.Generate(loadfile.read(dir + "lvl6.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
                         break;
                     }
@@ -311,12 +310,15 @@ namespace GravityTutorial
 
             if (Hud.youwin)
             {
+                loadfile.Save((score.score) + score.timer * 10, Ressource.pseudo);
                 try
                 {
                     Web.send_request(Ressource.pseudo, score.score, lvl);
                 }
                 catch (Exception) 
-                { }  
+                { 
+
+                }  
             }
 
         }

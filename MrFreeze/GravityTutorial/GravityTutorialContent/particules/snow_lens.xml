@@ -4,7 +4,7 @@
     <Item Type="ProjectMercury.Emitters.LineEmitter">
       <Name>Emitter01</Name>
       <Budget>3000</Budget>
-      <Term>5.5</Term>
+      <Term>6</Term>
       <ReleaseQuantity>1</ReleaseQuantity>
       <Enabled>true</Enabled>
       <ReleaseSpeed>

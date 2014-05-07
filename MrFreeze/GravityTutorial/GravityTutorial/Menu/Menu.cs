@@ -436,7 +436,7 @@ namespace GravityTutorial
                 {
                     pos.Y += 40;
                     c++;
-                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "(" + c.ToString() + ") " + s, pos, Color.White);
+                    spriteBatch.DrawString(Ressource.SmallMenuPolice, " " + c.ToString() + " - " + s, pos, Color.White);
                 }            
             }
 
