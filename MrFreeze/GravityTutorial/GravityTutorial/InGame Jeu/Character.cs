@@ -33,6 +33,8 @@ namespace GravityTutorial
         int defaultNbBullet;
         int nbBullet;
         int timerBullet;
+        Color bulletColor;
+
 
         //HEALTH
         public int life_changment;
@@ -77,6 +79,7 @@ namespace GravityTutorial
         Keys Left;
         Keys Right;
 
+
         public Character(Texture2D newTexture, Vector2 newPosition)
         {
             texture = newTexture;
@@ -86,6 +89,7 @@ namespace GravityTutorial
             Bullets = new List<Bullet> { };
             defaultNbBullet = 1;
             timerBullet = 0;
+            bulletColor = Color.White;
 
             isDead = false;
             hasJumped2 = true;
@@ -347,10 +351,12 @@ namespace GravityTutorial
             if (CurrentItem == Item.Type.MultiShot)
             {
                 nbBullet = 5;
+                bulletColor = Color.Yellow;
             }
             else
             {
                 nbBullet = defaultNbBullet;
+                bulletColor = Color.White;
             }
             timerBullet++;
 
@@ -398,6 +404,10 @@ namespace GravityTutorial
                 {
                     TimerColor = 0;
                 }
+            }
+            else
+            {
+                color = Color.White;
             }
 
             if (CurrentItem == Item.Type.ReverseDirection)
@@ -695,7 +705,7 @@ namespace GravityTutorial
             }
             foreach (Bullet bullet in Bullets)
             {
-                bullet.Draw(spriteBatch);
+                bullet.Draw(spriteBatch, bulletColor);
             }
         }
     }

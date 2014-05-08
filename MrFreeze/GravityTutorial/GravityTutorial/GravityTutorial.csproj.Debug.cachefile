@@ -54,6 +54,9 @@ Content\Tile5.xnb
 Content\InGameRessources\fissure.xnb
 Content\InGameRessources\complet.xnb
 Content\BonusRessources\items.xnb
+Content\CharacterRessources\fondhealthbar.xnb
+Content\MenuRessources\sablier.xnb
+Content\MenuRessources\fondbonus.xnb
 Content\vid.xnb
 Content\MusicRessources\SF-course_sable1.xnb
 Content\MusicRessources\shot.xnb
@@ -78,8 +81,6 @@ Content\particules\snow_lens.xnb
 Content\particules\GoldParticle.xnb
 Content\MusicRessources\Unsainstable29.xnb
 Content\MusicRessources\Endlessly.xnb
-Content\CharacterRessources\fondhealthbar.xnb
-Content\MenuRessources\sablier.xnb
 Content\vid.wmv
 Content\MusicRessources\Unsainstable29.wma
 Content\MusicRessources\Endlessly.wma

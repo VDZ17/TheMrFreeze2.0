@@ -18,7 +18,7 @@ namespace GravityTutorial
         public Type type;
         public bool hasBeenTaken;
 
-        int nb_texture;
+        public int nb_texture;
         int texture_size;
 
         public enum Type

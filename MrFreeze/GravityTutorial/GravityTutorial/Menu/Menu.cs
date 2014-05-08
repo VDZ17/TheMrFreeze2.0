@@ -128,7 +128,7 @@ namespace GravityTutorial
                         Game1.reload = true;
                         actualMenu = new Menu(type, 3, Ressource.BackgroundMenuMain);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 0);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Jouer"], MenuType.play);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Jouer"], MenuType.freeplay); //
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Options"], MenuType.option);
                         actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Quitter"], MenuType.close);
                         break;
@@ -180,8 +180,8 @@ namespace GravityTutorial
                 case MenuType.freeplay:
                     {
                         actualMenu = new Menu(MenuType.freeplay, 2, Ressource.BackgroundMenuMain, 0, 0, 6);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton0, Ybutton3 + 30), Ressource.MenuString["Retour"], MenuType.play);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), nbPlay);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton0, Ybutton3 + 30), Ressource.MenuString["Retour"], MenuType.welcome); //
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton3 + 30), Ressource.MenuString["Page 2"], MenuType.freeplay2);
                         actualMenu.LButtons[0] = new LevelButton(new Vector2(Xbutton0, Ybutton0), 1);
                         actualMenu.LButtons[1] = new LevelButton(new Vector2(Xbutton0, Ybutton1), 2);
@@ -194,8 +194,8 @@ namespace GravityTutorial
                 case MenuType.freeplay2:
                     {
                         actualMenu = new Menu(MenuType.freeplay, 2, Ressource.BackgroundMenuMain, 0, 0, 4);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton0, Ybutton2 + 30), Ressource.MenuString["Retour"], MenuType.play);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), nbPlay);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton0, Ybutton2 + 30), Ressource.MenuString["Retour"], MenuType.welcome); //
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton2 + 30), Ressource.MenuString["Page 1"], MenuType.freeplay);
                         actualMenu.LButtons[0] = new LevelButton(new Vector2(Xbutton0, Ybutton0), 7);
                         actualMenu.LButtons[1] = new LevelButton(new Vector2(Xbutton0, Ybutton1), 8);
@@ -447,7 +447,7 @@ namespace GravityTutorial
                 if (Game1.score.timer <= 0)
                 {
 
-                    if (Ressource.parameter[2])
+                    if (!Ressource.parameter[2])
                     {
                         str = Ressource.MenuString["Time"].Item1;
 
@@ -460,7 +460,7 @@ namespace GravityTutorial
 
                 else
                 {
-                    if (Ressource.parameter[2])
+                    if (!Ressource.parameter[2])
                     {
                         str = Ressource.MenuString["Nolife"].Item1;
                     }

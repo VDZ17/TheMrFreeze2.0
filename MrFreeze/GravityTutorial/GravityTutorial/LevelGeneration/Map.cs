@@ -75,7 +75,7 @@ namespace GravityTutorial
                     {
                         Level.moving_platform.Add(new moving_platform(new Vector2(x * size, y * size), Ressource.moving_plateform));
                     }
-                    if (number == 10)
+                    if (number == 10) //Star
                     {
                         Level.Bonuses.Add(new igloo(new Vector2(x * size, y * size)));
                     }
@@ -89,16 +89,16 @@ namespace GravityTutorial
 
                     }
                     //ENNEMY
-                    if (number == 13)
+                    if (number == 13) //Bleu
                     {
                         Ennemies3.Add(new Ennemy3(Ressource.Ennemy3, new Vector2(x * size, y * size - 100)));
 
                     }
-                    if (number == 14)
+                    if (number == 14) //Jaune
                     {
                         Ennemies2.Add(new Ennemy2(Ressource.Ennemy2, new Vector2(x * size, y * size - 45)));
                     }
-                    if (number == 15)
+                    if (number == 15) // Rouge boss
                     {
                         Ennemies1.Add(new Ennemy1(Ressource.Ennemy1, new Vector2(x * size, y * size - 14)));
 

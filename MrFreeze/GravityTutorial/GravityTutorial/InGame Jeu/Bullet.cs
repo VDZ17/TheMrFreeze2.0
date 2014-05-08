@@ -146,9 +146,9 @@ namespace GravityTutorial
 
 
 
-        public void Draw(SpriteBatch spritBatch)
+        public void Draw(SpriteBatch spritBatch, Color color)
         {
-            spritBatch.Draw(this.texture, hitbox_bullet, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), effect_stable, 0f);
+            spritBatch.Draw(this.texture, hitbox_bullet, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), color, 0f, new Vector2(0, 0), effect_stable, 0f);
         }
     }
 }

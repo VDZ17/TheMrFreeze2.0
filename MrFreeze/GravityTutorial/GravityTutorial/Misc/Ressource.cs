@@ -20,7 +20,7 @@ namespace GravityTutorial
     {
         public static Texture2D Player_animation,
             background,
-            Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox, Chrono,
+            Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox, Chrono, FondBonus,
             Gold, Items, Loser, igloo, healthbar, fondHealthbar, Bullet, moving_plateform, fissure, complet;
 
         public static Texture2D Ennemy3, Ennemy2, Ennemy1;
@@ -114,6 +114,7 @@ namespace GravityTutorial
             ArialDefaultMenu = Content.Load<SpriteFont>(MenuFile + "ArialDefaultMenu");
             pseudo = "USER";
             Chrono = Content.Load<Texture2D>(MenuFile + "sablier");
+            FondBonus = Content.Load<Texture2D>(MenuFile + "fondbonus");
 
             //MENUSTRING
             MenuString.Add("Retour", new Tuple<string, string>("Retour", "Back"));
@@ -143,6 +144,13 @@ namespace GravityTutorial
             MenuString.Add("Time", new Tuple<string, string>("Temps ecoule !", "Time out !"));
             MenuString.Add("Nolife", new Tuple<string, string>("Tu es mort !", "You died !"));
 
+            MenuString.Add("Invincibilite", new Tuple<string, string>("Invincibilite", "Invincibility"));
+            MenuString.Add("Double-saut", new Tuple<string, string>("Double-saut", "Double jump"));
+            MenuString.Add("Super saut", new Tuple<string, string>("Super saut", "Super jump"));
+            MenuString.Add("Super vitesse", new Tuple<string, string>("Super vitesse", "Speed up"));
+            MenuString.Add("Ralentissement", new Tuple<string, string>("Ralentissement", "Slow up"));
+            MenuString.Add("Tir rafalle", new Tuple<string, string>("Tir rafalle", "Multishot"));
+            MenuString.Add("Direction inversee", new Tuple<string, string>("Direction inverse", "Reverse control"));
 
 
             //PARAMETERS

@@ -114,6 +114,34 @@ namespace GravityTutorial
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
                         break;
                     }
+                case 7:
+                    {
+                        int block_size = 50;
+                        map.Generate(loadfile.read(dir + "lvl7.txt"), block_size, this);
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        break;
+                    }
+                case 8:
+                    {
+                        int block_size = 50;
+                        map.Generate(loadfile.read(dir + "lvl8.txt"), block_size, this);
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        break;
+                    }
+                case 9:
+                    {
+                        int block_size = 50;
+                        map.Generate(loadfile.read(dir + "lvl9.txt"), block_size, this);
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        break;
+                    }
+                case 10:
+                    {
+                        int block_size = 50;
+                        map.Generate(loadfile.read(dir + "lvl10.txt"), block_size, this);
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        break;
+                    }
                 default:
                     break;
             }
