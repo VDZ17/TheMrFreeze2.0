@@ -72,7 +72,7 @@ namespace GravityTutorial.InGame_Jeu
             this.rollingHit = false;
             this.timerHitting = 0;
             this.timerHittingFrequency = 16;
-            this.life = 10;
+            this.life = 20;
             this.hasJumped = false;
             this.jumpTimerFrequency = 200;
             this.jumpTimer = 0;

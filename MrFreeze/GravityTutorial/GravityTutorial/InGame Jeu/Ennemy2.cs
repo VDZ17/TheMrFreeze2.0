@@ -67,7 +67,7 @@ namespace GravityTutorial.InGame_Jeu
             this.animationSpeed = 1;
             this.finalHit = false;
             this.firstHit = false;
-            this.life = 5;
+            this.life = 10;
             this.timerAttackFrequency = 420;
             this.timerAttack = 420;
         }
