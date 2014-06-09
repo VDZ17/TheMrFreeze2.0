@@ -136,6 +136,7 @@
       <Name>MenuFont</Name>
       <Importer>FontDescriptionImporter</Importer>
       <Processor>FontDescriptionProcessor</Processor>
+      <SubType>Designer</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -434,8 +435,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InGameRessources\back.jpg">
-      <Name>back</Name>
+    <Compile Include="InGameRessources\backold.jpg">
+      <Name>backold</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>
@@ -543,6 +544,13 @@
   <ItemGroup>
     <Compile Include="MenuRessources\fondbonus.png">
       <Name>fondbonus</Name>
+      <Importer>TextureImporter</Importer>
+      <Processor>TextureProcessor</Processor>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="InGameRessources\back.png">
+      <Name>back</Name>
       <Importer>TextureImporter</Importer>
       <Processor>TextureProcessor</Processor>
     </Compile>

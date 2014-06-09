@@ -26,6 +26,8 @@ namespace GravityTutorial
         public List<Ennemy2> Ennemies2;
         public List<Ennemy1> Ennemies1;
 
+        public List<float> Distance;
+
         public List<Bonus> Bonuses;
         public List<Item> Items;
 
@@ -76,6 +78,7 @@ namespace GravityTutorial
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl1.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0)));
                         Console.WriteLine("case1");
                         break;
                     }
@@ -98,6 +101,7 @@ namespace GravityTutorial
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl4.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0)));
                         break;
                     }
                 case 5:
@@ -161,20 +165,35 @@ namespace GravityTutorial
             }
 
             particule.particleEffects["Snow"].Trigger(Vector2.Zero);
+
             if (updateHero)
-                Heroes.ElementAt(0).Update(gameTime, effect);
+                foreach (Character c in Heroes)
+                {
+                    c.Update(gameTime, effect);
+                    Console.WriteLine(c.life);
+                }
 
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
-                Heroes.ElementAt(0).Collision(tile.Rectangle, map.Width, map.Height, Ressource.effect2, tile.Tile_name);
-                foreach (Bullet b in Heroes[0].Bullets)
+                //Heroes.ElementAt(0).Collision(tile.Rectangle, map.Width, map.Height, Ressource.effect2, tile.Tile_name);
+
+                foreach (Character c in Heroes)
                 {
-                    b.Update(tile);
+                    c.Collision(tile.Rectangle, map.Width, map.Height, Ressource.effect2, tile.Tile_name);
+                }
+
+                foreach (Character c in Heroes)
+                {
+                    foreach (Bullet b in c.Bullets)
+                    {
+                        b.Update(tile, c);
+                    }
                 }
                 foreach (Ennemy3 e in Ennemies3)
                 {
                     e.Patrol(tile.Rectangle, tile.Tile_name);
                     e.Collision(tile.Rectangle, tile.Tile_name);
+
                     e.hit(Heroes.ElementAt(0));
                 }
                 foreach (Ennemy2 e in Ennemies2)
@@ -206,14 +225,25 @@ namespace GravityTutorial
                     i--;
                 }
             }
+
             foreach (Destroying_platform item in destroy_platform)
             {
-                Heroes[0].Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile6");
-                foreach (Bullet b in Heroes[0].Bullets)
+
+                foreach (Character c in Heroes)
                 {
-                    b.Update(item);
-                    item.update(b);
+                    c.Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile6");
                 }
+
+
+                foreach (Character c in Heroes)
+                {
+                    foreach (Bullet b in c.Bullets)
+                    {
+                        b.Update(item, c);
+                        item.update(b);
+                    }
+                }
+
                 foreach (Ennemy1 e in Ennemies1)
                 {
                     e.Collision(item.hitbox, "Tile5");
@@ -222,10 +252,18 @@ namespace GravityTutorial
 
             foreach (moving_platform item in moving_platform)
             {
-                Heroes[0].Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile5");
-                foreach (Bullet b in Heroes[0].Bullets)
+
+                foreach (Character c in Heroes)
                 {
-                    b.Update(item);
+                    c.Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile5");
+                }
+
+                foreach (Character c in Heroes)
+                {
+                    foreach (Bullet b in c.Bullets)
+                    {
+                        b.Update(item, c);
+                    }
                 }
                 foreach (Ennemy1 e in Ennemies1)
                 {
@@ -236,19 +274,31 @@ namespace GravityTutorial
 
             foreach (Bonus gold in Bonuses)
             {
-                gold.Update(Heroes.ElementAt(0), Game1.score);
+                foreach (Character c in Heroes)
+                {
+                    gold.Update(c, Game1.score);
+                }
+
             }
 
             foreach (Item i in Items)
             {
-                i.Update(Heroes.ElementAt(0), Game1.score);
+                foreach (Character c in Heroes)
+                {
+                    i.Update(c, Game1.score);
+                }
             }
 
             //Updates Ennemies
             foreach (Ennemy2 e in Ennemies2)
             {
                 e.Update(gameTime);
-                e.hit(Heroes.ElementAt(0));
+                foreach (Character c in Heroes)
+                {
+                    e.hit(c);
+                }
+                //e.hit(Heroes.ElementAt(0));
+
                 if (e.firstHit)
                 {
                     Heroes.ElementAt(0).velocity.X = 0;
@@ -264,30 +314,40 @@ namespace GravityTutorial
                     }
                 }
 
-                foreach (Bullet b in Heroes[0].Bullets)
+                foreach (Character c in Heroes)
                 {
-                    if (b.hitbox_bullet.Intersects(e.rectangle))
+                    foreach (Bullet b in c.Bullets)
                     {
-                        b.Update(e);
-                    }
-                }
+                        if (b.hitbox_bullet.Intersects(e.rectangle))
+                        {
+                            b.Update(e, c);
 
+                        }
+                    }
+
+                }
             }
+
+
+
             foreach (Ennemy3 e in Ennemies3)
             {
 
                 if (e.hasHit)
                     updateHero = false;
 
+                Console.WriteLine(Interaction.NearCharacter(e, Heroes));
+
+
 
                 e.Update(gameTime);
 
-
-                foreach (Bullet b in Heroes[0].Bullets)
+                foreach (Character c in Heroes)
                 {
-                    if (b.hitbox_bullet.Intersects(e.rectangle))
+                    foreach (Bullet b in c.Bullets)
                     {
-                        b.Update(e);
+                        if (b.hitbox_bullet.Intersects(e.rectangle))
+                            b.Update(e, c);
                     }
                 }
 
@@ -301,12 +361,21 @@ namespace GravityTutorial
                         timerEnd3++;
                 }
             }
+
+
+
+
             foreach (Ennemy1 e in Ennemies1)
             {
-                e.Update(gameTime);
-                foreach (Bullet b in Heroes[0].Bullets)
+                Character Nearest = Interaction.NearCharacter(e, Heroes);
+
+                e.Update(gameTime, Nearest);
+                foreach (Character c in Heroes)
                 {
-                    b.Update(e);
+                    foreach (Bullet b in c.Bullets)
+                    {
+                        b.Update(e, c);
+                    }
                 }
             }
 
@@ -336,25 +405,25 @@ namespace GravityTutorial
                 }
             }
 
-            if (Hud.youwin)
+            /*if (Hud.youwin)
             {
                 loadfile.Save((score.score) + score.timer * 10, Ressource.pseudo);
                 try
                 {
                     Web.send_request(Ressource.pseudo, score.score, lvl);
                 }
-                catch (Exception) 
-                { 
+                catch (Exception)
+                {
 
-                }  
-            }
+                }
+            }*/
 
         }
 
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            
+
             map.Draw(spriteBatch);
 
             foreach (Destroying_platform item in destroy_platform)

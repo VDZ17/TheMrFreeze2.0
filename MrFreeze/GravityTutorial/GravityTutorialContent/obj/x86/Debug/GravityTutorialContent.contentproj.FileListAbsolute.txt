@@ -1,0 +1,2 @@
+C:\Users\epita\Desktop\1905\MrFreeze\GravityTutorial\GravityTutorialContent\obj\x86\Debug\GravityTutorialContent.contentprojResolveAssemblyReference.cache
+C:\Users\Asus\Desktop\Epita\Projet\Save projet\V2.0 09-06-14\GravityTutorial\GravityTutorialContent\obj\x86\Debug\GravityTutorialContent.contentprojResolveAssemblyReference.cache

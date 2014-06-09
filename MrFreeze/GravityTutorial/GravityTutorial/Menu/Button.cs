@@ -14,7 +14,7 @@ namespace GravityTutorial
 
         public int SpriteHeight;
         public int SpriteWidth;
-        protected string Text;
+        public string Text;
 
         //CONSTRUCTOR
         public Button(Vector2 pos, Tuple<string, string> Text)

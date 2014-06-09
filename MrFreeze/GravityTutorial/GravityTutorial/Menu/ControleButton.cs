@@ -14,13 +14,25 @@ namespace GravityTutorial
         Ressource.inGameAction action;
         string ActualKey;
         public bool isChanging;
+        int nbJ;
 
         //CONSTRUCTOR
-        public ControleButton(Vector2 pos, Tuple<string, string> text, Ressource.inGameAction action)
+        public ControleButton(Vector2 pos, Tuple<string, string> text, Ressource.inGameAction action, int nbJ = 1)
             : base(pos, text)
         {
             this.action = action;
-            Keys k = Ressource.Key[action];
+            this.nbJ = nbJ;
+            Keys k;
+
+            if (nbJ == 1)
+            {
+                k = Ressource.KeyJ1[action];
+            }
+            else
+            {
+                k = Ressource.KeyJ2[action];
+            }
+
 
             if (((int)k >= 65 && (int)k <= 90))
             {
@@ -60,6 +72,10 @@ namespace GravityTutorial
             {
                 ActualKey = "Down";
             }
+            else if (k >= Keys.NumPad0 && k<= Keys.NumPad9)
+            {
+                ActualKey = "" + ((int)k - 96);
+            }
             else
             {
                 ActualKey = "!!!";
@@ -84,74 +100,150 @@ namespace GravityTutorial
             }
             if (isChanging)
             {
-                foreach (Keys k in (Keys[])Enum.GetValues(typeof(Keys)))
+                if (nbJ == 1)
                 {
-                    if (Keyboard.GetState().IsKeyDown(k)
-                        && (!(Ressource.Key.ContainsValue(k)) || Ressource.Key[action] == k))
+                    foreach (Keys k in (Keys[])Enum.GetValues(typeof(Keys)))
                     {
-                        if (((int)k >= 65 && (int)k <= 90))
+                        if (Keyboard.GetState().IsKeyDown(k)
+                            && (!(Ressource.KeyJ1.ContainsValue(k)) || Ressource.KeyJ1[action] == k))
                         {
-                            Ressource.Key[action] = k;
-                            ActualKey = "" + (char)k;
-                            isChanging = false;
-                            return;
-                        }
-                        else if (k == Keys.Space)
-                        {
-                            Ressource.Key[action] = k;
-                            ActualKey = "Spa.";
-                            isChanging = false;
-                            return;
-                        }
+                            if (((int)k >= 65 && (int)k <= 90))
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "" + (char)k;
+                                isChanging = false;
+                                return;
+                            }
+                            else if (k == Keys.Space)
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "Spa.";
+                                isChanging = false;
+                                return;
+                            }
 
-                        else if (k == Keys.Escape)
-                        {
-                            Ressource.Key[action] = k;
-                            ActualKey = "Esc.";
-                            isChanging = false;
-                            return;
-                        }
+                            else if (k == Keys.Escape)
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "Esc.";
+                                isChanging = false;
+                                return;
+                            }
 
-                        else if ((int)k >= (int)Keys.NumPad0 && (int)k <= (int)Keys.NumPad9)
-                        {
-                            Ressource.Key[action] = k;
-                            ActualKey = "" + (char)((int)k - (int)Keys.NumPad0 + 48);
-                            isChanging = false;
-                            return;
-                        }
+                            else if ((int)k >= (int)Keys.NumPad0 && (int)k <= (int)Keys.NumPad9)
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "" + (char)((int)k - (int)Keys.NumPad0 + 48);
+                                isChanging = false;
+                                return;
+                            }
 
-                        else if (k == Keys.Left)
-                        {
-                            Ressource.Key[action] = k;
-                            ActualKey = "<-";
-                            isChanging = false;
-                            return;
-                        }
+                            else if (k == Keys.Left)
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "<-";
+                                isChanging = false;
+                                return;
+                            }
 
-                        else if (k == Keys.Right)
-                        {
-                            Ressource.Key[action] = k;
-                            ActualKey = "->";
-                            isChanging = false;
-                            return;
-                        }
+                            else if (k == Keys.Right)
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "->";
+                                isChanging = false;
+                                return;
+                            }
 
-                        else if (k == Keys.Up)
-                        {
-                            Ressource.Key[action] = k;
-                            ActualKey = "Up";
-                            isChanging = false;
-                            return;
-                        }
+                            else if (k == Keys.Up)
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "Up";
+                                isChanging = false;
+                                return;
+                            }
 
-                        else if (k == Keys.Down)
-                        {
-                            Ressource.Key[action] = k;
-                            ActualKey = "Down";
-                            isChanging = false;
-                            return;
-                        }
+                            else if (k == Keys.Down)
+                            {
+                                Ressource.KeyJ1[action] = k;
+                                ActualKey = "Down";
+                                isChanging = false;
+                                return;
+                            }
 
+                        }
+                    }
+                }
+                else
+                {
+                    foreach (Keys k in (Keys[])Enum.GetValues(typeof(Keys)))
+                    {
+                        if (Keyboard.GetState().IsKeyDown(k)
+                            && (!(Ressource.KeyJ2.ContainsValue(k)) || Ressource.KeyJ2[action] == k))
+                        {
+                            if (((int)k >= 65 && (int)k <= 90))
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "" + (char)k;
+                                isChanging = false;
+                                return;
+                            }
+                            else if (k == Keys.Space)
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "Spa.";
+                                isChanging = false;
+                                return;
+                            }
+
+                            else if (k == Keys.Escape)
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "Esc.";
+                                isChanging = false;
+                                return;
+                            }
+
+                            else if ((int)k >= (int)Keys.NumPad0 && (int)k <= (int)Keys.NumPad9)
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "" + (char)((int)k - (int)Keys.NumPad0 + 48);
+                                isChanging = false;
+                                return;
+                            }
+
+                            else if (k == Keys.Left)
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "<-";
+                                isChanging = false;
+                                return;
+                            }
+
+                            else if (k == Keys.Right)
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "->";
+                                isChanging = false;
+                                return;
+                            }
+
+                            else if (k == Keys.Up)
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "Up";
+                                isChanging = false;
+                                return;
+                            }
+
+                            else if (k == Keys.Down)
+                            {
+                                Ressource.KeyJ2[action] = k;
+                                ActualKey = "Down";
+                                isChanging = false;
+                                return;
+                            }
+
+                        }
                     }
                 }
 

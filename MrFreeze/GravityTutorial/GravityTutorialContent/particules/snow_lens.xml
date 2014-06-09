@@ -4,7 +4,7 @@
     <Item Type="ProjectMercury.Emitters.LineEmitter">
       <Name>Emitter01</Name>
       <Budget>3000</Budget>
-      <Term>6</Term>
+      <Term>20</Term>
       <ReleaseQuantity>1</ReleaseQuantity>
       <Enabled>true</Enabled>
       <ReleaseSpeed>
@@ -31,7 +31,7 @@
       <ParticleTextureAssetName>Cloud</ParticleTextureAssetName>
       <Modifiers>
         <Item Type="ProjectMercury.Modifiers.LinearGravityModifier">
-          <Gravity>0 40</Gravity>
+          <Gravity>0 20</Gravity>
         </Item>
       </Modifiers>
       <BlendMode>Alpha</BlendMode>

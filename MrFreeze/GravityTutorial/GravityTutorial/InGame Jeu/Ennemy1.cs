@@ -78,7 +78,7 @@ namespace GravityTutorial.InGame_Jeu
             this.jumpTimer = 0;
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, Character player)
         {
             rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
 
@@ -90,21 +90,23 @@ namespace GravityTutorial.InGame_Jeu
 
             if (this.state != State1.Rolling && this.state != State1.Spawning && this.state != State1.Jumping && this.state != State1.Hitting && this.state != State1.Bonus)
             {
-                Reaching(Level.Heroes[0]);
+                Reaching(player);
             }
 
             jumpTimer++;
 
             if (this.state != State1.Rolling)
-                Hitting(Level.Heroes[0]);
-
-            if (this.state == State1.Rolling && this.rectangle.Intersects(Level.Heroes[0].rectangle) && this.rollingHit == false && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
             {
-                this.rollingHit = true;
-                Level.Heroes[0].life_changment = -100;
+                Hitting(player);
             }
 
-            Console.WriteLine(state + " ; " + jumpTimer);
+
+            if (this.state == State1.Rolling && this.rectangle.Intersects(player.rectangle) && this.rollingHit == false && player.CurrentItem != Item.Type.Invincibility)
+            {
+                this.rollingHit = true;
+                player.life_changment = -100;
+            }
+
             Bonus();
             Animate();
         }
@@ -256,10 +258,9 @@ namespace GravityTutorial.InGame_Jeu
             {
                 this.state = State1.Stop;
                 updateHitbox();
-
             }
 
-            if (this.state == State1.Hitting && player.rectangle.Intersects(hitboxHit) && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
+            if (this.state == State1.Hitting && player.rectangle.Intersects(hitboxHit) && player.CurrentItem != Item.Type.Invincibility)
             {
                 timerHitting++;
                 if (timerHitting >= timerHittingFrequency)

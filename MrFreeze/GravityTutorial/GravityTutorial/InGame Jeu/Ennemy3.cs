@@ -206,7 +206,7 @@ namespace GravityTutorial.InGame_Jeu
         //Hit
         public void hit(Character player)
         {
-            if (this.rectangle.Intersects(player.rectangle) && (this.state == State3.Walking) && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
+            if (this.rectangle.Intersects(player.rectangle) && (this.state == State3.Walking) && player.CurrentItem != Item.Type.Invincibility)
             {
                 state = State3.Taking;
                 updateHitbox(state);

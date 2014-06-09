@@ -50,9 +50,18 @@ namespace GravityTutorial
             reloadlevel,
             loose,
             win,
-            setcontrole,
-            defaultcommand,
+            setcontroleJ1,
+            defaultcommandJ1,
+            setcontroleJ2,
+            defaultcommandJ2,
             setpseudo,
+            sendhighscore,
+            multi,
+            host,
+            join,
+            multiplay1,
+            multiplay2,
+            multipause,
         }
 
         //CONSTRUCTOR
@@ -126,11 +135,12 @@ namespace GravityTutorial
                 case MenuType.welcome:
                     {
                         Game1.reload = true;
-                        actualMenu = new Menu(type, 3, Ressource.BackgroundMenuMain);
+                        actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 0);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Jouer"], MenuType.freeplay); //
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Options"], MenuType.option);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Quitter"], MenuType.close);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Jouer"], MenuType.freeplay);
+                        actualMenu.Buttons[3] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Multijoueur"], MenuType.multi);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Options"], MenuType.option);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Quitter"], MenuType.close);
                         break;
                     }
                 case MenuType.play:
@@ -144,17 +154,19 @@ namespace GravityTutorial
                     }
                 case MenuType.option:
                     {
-                        actualMenu = new Menu(type, 3, Ressource.BackgroundMenuMain, 3);
+                        actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain, 4);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
                         actualMenu.SButtons[0] = new SwitchButton(new Vector2(Xbutton0, Ybutton0), Ressource.MenuString["Musique"], 0);
                         actualMenu.SButtons[1] = new SwitchButton(new Vector2(Xbutton0, Ybutton1), Ressource.MenuString["Bruitages"], 1);
                         actualMenu.SButtons[2] = new SwitchButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Anglais"], 2);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton1), Ressource.MenuString["Touches"], MenuType.setcontrole);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Pseudo"], MenuType.setpseudo);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton1), Ressource.MenuString["Touches J1"], MenuType.setcontroleJ1);
+                        actualMenu.SButtons[3] = new SwitchButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Coop"], 3);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Touches J2"], MenuType.setcontroleJ2);
+                        actualMenu.Buttons[3] = new MenuButton(new Vector2(Xbutton0, Ybutton3), Ressource.MenuString["Pseudo"], MenuType.setpseudo);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton1, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         break;
                     }
-                case MenuType.setcontrole:
+                case MenuType.setcontroleJ1:
                     {
                         actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain, 0, 5);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
@@ -163,7 +175,20 @@ namespace GravityTutorial
                         actualMenu.CButtons[2] = new ControleButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Saut"], Ressource.inGameAction.Jump);
                         actualMenu.CButtons[3] = new ControleButton(new Vector2(Xbutton1, Ybutton1), Ressource.MenuString["Pause"], Ressource.inGameAction.Pause);
                         actualMenu.CButtons[4] = new ControleButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Tir"], Ressource.inGameAction.Shoot);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Par defaut"], MenuType.defaultcommand);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Par defaut"], MenuType.defaultcommandJ1);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.option);
+                        break;
+                    }
+                case MenuType.setcontroleJ2:
+                    {
+                        actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain, 0, 5);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
+                        actualMenu.CButtons[0] = new ControleButton(new Vector2(Xbutton0, Ybutton0), Ressource.MenuString["Droite"], Ressource.inGameAction.Right, 2);
+                        actualMenu.CButtons[1] = new ControleButton(new Vector2(Xbutton0, Ybutton1), Ressource.MenuString["Gauche"], Ressource.inGameAction.Left, 2);
+                        actualMenu.CButtons[2] = new ControleButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Saut"], Ressource.inGameAction.Jump, 2);
+                        actualMenu.CButtons[3] = new ControleButton(new Vector2(Xbutton1, Ybutton1), Ressource.MenuString["Pause"], Ressource.inGameAction.Pause, 2);
+                        actualMenu.CButtons[4] = new ControleButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Tir"], Ressource.inGameAction.Shoot, 2);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Par defaut"], MenuType.defaultcommandJ2);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.option);
                         break;
                     }
@@ -218,29 +243,12 @@ namespace GravityTutorial
                 case MenuType.unpause:
                     {
                         Game1.inGame = true;
-                        //Précharge la pause
-                        actualMenu = new Menu(MenuType.pause, 3, Ressource.BackgroundMenuPause);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Reprendre"], MenuType.unpause);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
                         break;
                     }
                 case MenuType.reloadlevel:
                     {
                         Game1.reload = true;
-
                         Game1.inGame = true;
-
-                        
-
-
-                        //Précharge la pause
-                        actualMenu = new Menu(MenuType.pause, 3, Ressource.BackgroundMenuPause);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Reprendre"], MenuType.unpause);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
                         break;
                     }
                 case MenuType.loose:
@@ -253,20 +261,21 @@ namespace GravityTutorial
                     }
                 case MenuType.win:
                     {
-                        actualMenu = new Menu(MenuType.win, 2, Ressource.BackgroundMenuPause);
+                        actualMenu = new Menu(MenuType.win, 3, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 4);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Envoiscore"], MenuType.sendhighscore);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Accueil"], MenuType.welcome);
                         break;
                     }
-                case MenuType.defaultcommand:
+                case MenuType.defaultcommandJ1:
                     {
 
-                        Ressource.Key[Ressource.inGameAction.Left] = Keys.Left;
-                        Ressource.Key[Ressource.inGameAction.Right] = Keys.Right;
-                        Ressource.Key[Ressource.inGameAction.Jump] = Keys.Space;
-                        Ressource.Key[Ressource.inGameAction.Pause] = Keys.Escape;
-                        Ressource.Key[Ressource.inGameAction.Shoot] = Keys.A;
+                        Ressource.KeyJ1[Ressource.inGameAction.Left] = Keys.Left;
+                        Ressource.KeyJ1[Ressource.inGameAction.Right] = Keys.Right;
+                        Ressource.KeyJ1[Ressource.inGameAction.Jump] = Keys.Up;
+                        Ressource.KeyJ1[Ressource.inGameAction.Pause] = Keys.Escape;
+                        Ressource.KeyJ1[Ressource.inGameAction.Shoot] = Keys.NumPad3;
 
                         actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain, 0, 5);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
@@ -275,7 +284,27 @@ namespace GravityTutorial
                         actualMenu.CButtons[2] = new ControleButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Saut"], Ressource.inGameAction.Jump);
                         actualMenu.CButtons[3] = new ControleButton(new Vector2(Xbutton1, Ybutton1), Ressource.MenuString["Pause"], Ressource.inGameAction.Pause);
                         actualMenu.CButtons[4] = new ControleButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Tir"], Ressource.inGameAction.Shoot);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Par defaut"], MenuType.defaultcommand);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Par defaut"], MenuType.defaultcommandJ1);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.option);
+                        break;
+                    }
+                case MenuType.defaultcommandJ2:
+                    {
+
+                        Ressource.KeyJ2[Ressource.inGameAction.Left] = Keys.Q;
+                        Ressource.KeyJ2[Ressource.inGameAction.Right] = Keys.D;
+                        Ressource.KeyJ2[Ressource.inGameAction.Jump] = Keys.Space;
+                        Ressource.KeyJ2[Ressource.inGameAction.Pause] = Keys.Escape;
+                        Ressource.KeyJ2[Ressource.inGameAction.Shoot] = Keys.Z;
+
+                        actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain, 0, 5);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
+                        actualMenu.CButtons[0] = new ControleButton(new Vector2(Xbutton0, Ybutton0), Ressource.MenuString["Droite"], Ressource.inGameAction.Right, 2);
+                        actualMenu.CButtons[1] = new ControleButton(new Vector2(Xbutton0, Ybutton1), Ressource.MenuString["Gauche"], Ressource.inGameAction.Left, 2);
+                        actualMenu.CButtons[2] = new ControleButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Saut"], Ressource.inGameAction.Jump, 2);
+                        actualMenu.CButtons[3] = new ControleButton(new Vector2(Xbutton1, Ybutton1), Ressource.MenuString["Pause"], Ressource.inGameAction.Pause, 2);
+                        actualMenu.CButtons[4] = new ControleButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Tir"], Ressource.inGameAction.Shoot, 2);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Par defaut"], MenuType.defaultcommandJ2);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.option);
                         break;
                     }
@@ -287,10 +316,49 @@ namespace GravityTutorial
                         actualMenu.Pseudo[0] = new Pseudo(new Vector2(Xbutton, Ybutton2));
                         break;
                     }
+                case MenuType.sendhighscore:
+                    {
+                        bool b = true;
+                        loadfile.Save((Game1.score.score) + Game1.score.timer * 10, Ressource.pseudo);
+                        try
+                        {
+                            Game1.Level.Web.send_request(Ressource.pseudo, Game1.score.score + (int)Game1.score.timer * 10, Game1.Level.lvl);
+                        }
+                        catch (Exception)
+                        {
+                            if (Ressource.parameter[2])
+                            {
+                                actualMenu.Buttons[2].Text = Ressource.MenuString["Echec"].Item2;
+                            }
+                            else
+                            {
+                                actualMenu.Buttons[2].Text = Ressource.MenuString["Echec"].Item1;
+                            }
+                            b = false;
+                        }
+
+                        if (Ressource.parameter[2] && b)
+                        {
+                            actualMenu.Buttons[2].Text = Ressource.MenuString["Envoye"].Item2;
+                        }
+                        if (!Ressource.parameter[2] && b)
+                        {
+                            actualMenu.Buttons[2].Text = Ressource.MenuString["Envoye"].Item1;
+                        }
+                        actualMenu.Buttons[2].nextMenu = MenuType.none;
+                        break;
+                    }
+                case MenuType.multi:
+                    {
+                        actualMenu = new Menu(type, 3, Ressource.BackgroundMenuMain);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Heberger"], MenuType.host);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Rejoindre"], MenuType.join);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Retour"], MenuType.welcome);
+                        break;
+                    }
                 default:
                     {
-                        actualMenu = new Menu(type, 0, Ressource.BackgroundMenuMain);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 0);
                         break;
                     }
             }
@@ -300,7 +368,7 @@ namespace GravityTutorial
         //UPDATE & DRAW
         public void Draw(SpriteBatch spriteBatch, MouseState mouse)
         {
-            spriteBatch.Draw(this.background, new Rectangle(0, 0, 1900, 1200), Color.White);
+            spriteBatch.Draw(this.background,new Rectangle(0,0,Ressource.screenWidth, Ressource.screenHeight), Color.White);
 
             Color color;
 

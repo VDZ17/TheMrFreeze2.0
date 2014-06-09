@@ -179,18 +179,18 @@ namespace GravityTutorial
         {
             GraphicsDevice.Clear(Color.Blue);
             //PROCESS
-            if (!vidHasBeenPlayed)
-            {
-                spriteBatch.Begin();
-                spriteBatch.Draw(VidPlayer.GetTexture(), vidRectangle, Color.White);
-                spriteBatch.End();
-            }
-            else
-            {
+            //if (!vidHasBeenPlayed)
+            //{
+            //    spriteBatch.Begin();
+            //    spriteBatch.Draw(VidPlayer.GetTexture(), vidRectangle, Color.White);
+            //    spriteBatch.End();
+            //}
+            //else
+            //{
                 if (inGame || menu.actualType == Menu.MenuType.pause || menu.actualType == Menu.MenuType.loose || menu.actualType == Menu.MenuType.win)
                 {
                     spriteBatch.Begin();
-                    spriteBatch.Draw(Ressource.background, new Rectangle((int)(Camera.Transform.Translation.X * 0.01f), (int)(Camera.Transform.Translation.Y * 0.01f), Level.map.Width, GraphicsDevice.Viewport.Height), Color.White);
+                    spriteBatch.Draw(Ressource.background, new Rectangle((int)(Camera.Transform.Translation.X * 0.1f), (int)(Camera.Transform.Translation.Y * 0.1f), /*Level.map.Width*/(int)(Ressource.background.Width * 1.5), /*GraphicsDevice.Viewport.Height*/ (int)(Ressource.background.Height*1.5)), Color.White);
 
                     spriteBatch.End();
 
@@ -215,7 +215,7 @@ namespace GravityTutorial
                     menu.Draw(spriteBatch, Mouse.GetState());
                     spriteBatch.End();
                 }
-            }
+            //}
             base.Draw(gameTime);
         }
     }

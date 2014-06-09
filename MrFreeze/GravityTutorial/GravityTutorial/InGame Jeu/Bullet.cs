@@ -60,48 +60,48 @@ namespace GravityTutorial
         }
 
 
-        public void Update(Destroying_platform Tile)
+        public void Update(Destroying_platform Tile, Character player)
         {
             animate_bullet();
             hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
             if (this.hitbox_bullet.isOnRightOf(Tile.hitbox) || this.hitbox_bullet.isOnLeftOf(Tile.hitbox))
             {
                 this.IsVisible = false;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                if (Vector2.Distance(position, player.position) > 10 || Vector2.Distance(position, player.position) < 10)
                 {
                     particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
                 }
             }
         }
-        public void Update(moving_platform Tile)
+        public void Update(moving_platform Tile, Character player)
         {
             animate_bullet();
             hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
             if (this.hitbox_bullet.isOnRightOf(Tile.hitbox) || this.hitbox_bullet.isOnLeftOf(Tile.hitbox))
             {
                 this.IsVisible = false;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                if (Vector2.Distance(position, player.position) > 10 || Vector2.Distance(position, player.position) < 10)
                 {
-                        particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
                 }
             }
         }
-        public void Update(CollisionTiles Tile)
+        public void Update(CollisionTiles Tile, Character player)
         {
             animate_bullet();
             hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
             if (this.hitbox_bullet.isOnRightOf(Tile.Rectangle) || this.hitbox_bullet.isOnLeftOf(Tile.Rectangle))
             {
                 this.IsVisible = false;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                if (Vector2.Distance(position, player.position) > 10 || Vector2.Distance(position, player.position) < 10)
                 {
-                        particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
+                    particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
 
                 }
             }
         }
 
-        public void Update(Ennemy3 Tile)
+        public void Update(Ennemy3 Tile, Character player)
         {
             animate_bullet();
             hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
@@ -109,13 +109,13 @@ namespace GravityTutorial
             {
                 this.IsVisible = false;
                 Tile.life += -5;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                if (Vector2.Distance(position, player.position) > 10 || Vector2.Distance(position, player.position) < 10)
                 {
                     particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
                 }
             }
         }
-        public void Update(Ennemy2 Tile)
+        public void Update(Ennemy2 Tile, Character player)
         {
             animate_bullet();
             hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
@@ -123,13 +123,13 @@ namespace GravityTutorial
             {
                 this.IsVisible = false;
                 Tile.life += -5;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                if (Vector2.Distance(position, player.position) > 10 || Vector2.Distance(position, player.position) < 10)
                 {
                     particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
                 }
             }
         }
-        public void Update(Ennemy1 Tile)
+        public void Update(Ennemy1 Tile, Character player)
         {
             animate_bullet();
             hitbox_bullet = new Rectangle((int)position.X, (int)position.Y, width, height);
@@ -137,7 +137,7 @@ namespace GravityTutorial
             {
                 this.IsVisible = false;
                 Tile.life += -5;
-                if (Vector2.Distance(position, Level.Heroes[0].position) > 10 || Vector2.Distance(position, Level.Heroes[0].position) < 10)
+                if (Vector2.Distance(position, player.position) > 10 || Vector2.Distance(position, player.position) < 10)
                 {
                     particule.particleEffects["BasicExplosion"].Trigger(new Vector2(hitbox_bullet.Center.X + Camera.Transform.Translation.X, hitbox_bullet.Center.Y + Camera.Transform.Translation.Y));
                 }

@@ -117,8 +117,8 @@ namespace GravityTutorial
             CurrentItem = Item.Type.None;
             this.life = 150;
 
-            defaultLeft = Ressource.Key[Ressource.inGameAction.Left];
-            defaultRight = Ressource.Key[Ressource.inGameAction.Right];
+            defaultLeft = Ressource.KeyJ1[Ressource.inGameAction.Left];
+            defaultRight = Ressource.KeyJ1[Ressource.inGameAction.Right];
             Left = defaultLeft;
             Right = defaultRight;
         }
@@ -232,6 +232,14 @@ namespace GravityTutorial
                     player_Height = 41;
                     player_Width = 32;
                     AnimationSpeed = 3;
+
+                    if (attack)
+                    {
+                        nbr_sprite = 16;
+                        player_Height = 43;
+                        player_Width = 51;
+                        AnimationSpeed = 3;
+                    }
 
                 }
                 else
@@ -445,14 +453,14 @@ namespace GravityTutorial
             }
 
             //PAUSE
-            if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Pause]))
+            if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Pause]))
             {
                 stop = true;
                 Game1.inGame = false;
             }
 
             //TIR
-            if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Shoot]))
+            if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Shoot]))
             {
                 Shoot();
                 if (hasJumped)
@@ -481,7 +489,7 @@ namespace GravityTutorial
             }
 
             //SAUT
-            if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) && !hasJumped)
+            if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]) && !hasJumped)
             {
                 jump = true;
                 position.Y -= 5f;
@@ -489,12 +497,12 @@ namespace GravityTutorial
                 hasJumped = true;
                 cooldownDoubleJump = true;
             }
-            if (Keyboard.GetState().IsKeyUp(Ressource.Key[Ressource.inGameAction.Jump]) && cooldownDoubleJump)
+            if (Keyboard.GetState().IsKeyUp(Ressource.KeyJ1[Ressource.inGameAction.Jump]) && cooldownDoubleJump)
             {
                 cooldownDoubleJump = false;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) && hasJumped && !hasJumped2 && CurrentItem == Item.Type.DoubleJump && !cooldownDoubleJump)
+            if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]) && hasJumped && !hasJumped2 && CurrentItem == Item.Type.DoubleJump && !cooldownDoubleJump)
             {
                 velocity.Y = -saut;
                 hasJumped2 = true;
@@ -598,7 +606,7 @@ namespace GravityTutorial
                         if (jump)
                             jump = false;
 
-                        if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]))
+                        if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]))
                         {
                             jump = true;
                         }
@@ -613,7 +621,7 @@ namespace GravityTutorial
                     velocity.Y = 0;
                     hasDoubleJumped = false;
 
-                    if (Keyboard.GetState().IsKeyDown(Ressource.Key[Ressource.inGameAction.Jump]) == true)
+                    if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]) == true)
                     {
                         effect.Pause();
                     }
@@ -629,10 +637,12 @@ namespace GravityTutorial
 
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
+                    if(!jump)
                     position.X = obstacle.X - rectangle.Width;
                 }
                 else if (rectangle.isOnRightOf(obstacle))
                 {
+                    if (!jump)
                     position.X = obstacle.X + obstacle.Width;
                 }
                 else if (player_plus_1.isOnBotOf(obstacle))

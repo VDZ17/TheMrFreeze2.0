@@ -46,7 +46,6 @@ Content\MenuRessources\champtxt.xnb
 Content\shoot.xnb
 Content\BonusRessources\Tile42.xnb
 Content\Cloud.xnb
-Content\InGameRessources\back.xnb
 Content\EnnemiesResources\Ennemy1.xnb
 Content\InGameRessources\Tile10.xnb
 Content\CharacterRessources\healthbar.xnb
@@ -81,6 +80,8 @@ Content\particules\snow_lens.xnb
 Content\particules\GoldParticle.xnb
 Content\MusicRessources\Unsainstable29.xnb
 Content\MusicRessources\Endlessly.xnb
+Content\InGameRessources\backold.xnb
+Content\InGameRessources\back.xnb
 Content\vid.wmv
 Content\MusicRessources\Unsainstable29.wma
 Content\MusicRessources\Endlessly.wma

@@ -37,7 +37,7 @@ namespace GravityTutorial
 
         public static Video vid;
 
-        public static bool[] parameter = new bool[3];
+        public static bool[] parameter = new bool[4];
 
         public enum inGameAction
         {
@@ -48,7 +48,9 @@ namespace GravityTutorial
             Shoot,
         };
 
-        public static Dictionary<Ressource.inGameAction, Microsoft.Xna.Framework.Input.Keys> Key =
+        public static Dictionary<Ressource.inGameAction, Microsoft.Xna.Framework.Input.Keys> KeyJ1 =
+           new Dictionary<Ressource.inGameAction, Microsoft.Xna.Framework.Input.Keys>();
+        public static Dictionary<Ressource.inGameAction, Microsoft.Xna.Framework.Input.Keys> KeyJ2 =
            new Dictionary<Ressource.inGameAction, Microsoft.Xna.Framework.Input.Keys>();
 
         public static Dictionary<string, Tuple<string, string>> MenuString = new Dictionary<string, Tuple<string, string>>();
@@ -97,11 +99,17 @@ namespace GravityTutorial
             moving_plateform = Content.Load<Texture2D>("Tile5");
 
             //TOUCHES
-            Key.Add(inGameAction.Left, Keys.Left);
-            Key.Add(inGameAction.Right, Keys.Right);
-            Key.Add(inGameAction.Jump, Keys.Space);
-            Key.Add(inGameAction.Pause, Keys.Escape);
-            Key.Add(inGameAction.Shoot, Keys.A);
+            KeyJ1.Add(inGameAction.Left, Keys.Left);
+            KeyJ1.Add(inGameAction.Right, Keys.Right);
+            KeyJ1.Add(inGameAction.Jump, Keys.Up);
+            KeyJ1.Add(inGameAction.Pause, Keys.Escape);
+            KeyJ1.Add(inGameAction.Shoot, Keys.NumPad3);
+
+            KeyJ2.Add(inGameAction.Left, Keys.Q);
+            KeyJ2.Add(inGameAction.Right, Keys.D);
+            KeyJ2.Add(inGameAction.Jump, Keys.Space);
+            KeyJ2.Add(inGameAction.Pause, Keys.Escape);
+            KeyJ2.Add(inGameAction.Shoot, Keys.Z);
 
             //MENU
             Button = Content.Load<Texture2D>(MenuFile + "boutton");
@@ -121,11 +129,15 @@ namespace GravityTutorial
             MenuString.Add("Jouer", new Tuple<string, string>("Jouer", "Play"));
             MenuString.Add("Options", new Tuple<string, string>("Options", "Options"));
             MenuString.Add("Quitter", new Tuple<string, string>("Quitter", "Quit"));
-            MenuString.Add("Touches", new Tuple<string, string>("Touches", "Keys"));
+
+            MenuString.Add("Touches J1", new Tuple<string, string>("Touches J1", "Keys P1"));
+            MenuString.Add("Touches J2", new Tuple<string, string>("Touches J2", "Keys P2"));
             MenuString.Add("Droite", new Tuple<string, string>("Droite", "Right"));
             MenuString.Add("Gauche", new Tuple<string, string>("Gauche", "Left"));
             MenuString.Add("Saut", new Tuple<string, string>("Saut", "Jump"));
             MenuString.Add("Pause", new Tuple<string, string>("Pause", "Pause"));
+            MenuString.Add("Tir", new Tuple<string, string>("Tir", "Shoot"));
+
             MenuString.Add("Niveau", new Tuple<string, string>("Niveau", "Level"));
             MenuString.Add("Reprendre", new Tuple<string, string>("Reprendre", "Back to game"));
             MenuString.Add("Aventure", new Tuple<string, string>("Aventure", "Aventure"));
@@ -135,12 +147,18 @@ namespace GravityTutorial
             MenuString.Add("Bruitages", new Tuple<string, string>("Bruitage", "Sounds"));
             MenuString.Add("Musique", new Tuple<string, string>("Musique", "Music"));
             MenuString.Add("Par defaut", new Tuple<string, string>("Par defaut", "Default"));
+            MenuString.Add("Coop", new Tuple<string, string>("Coop", "Coop"));
+
+            MenuString.Add("Envoiscore", new Tuple<string, string>("Envoi score", "Send score"));
+            MenuString.Add("Envoye", new Tuple<string, string>("Envoye !", "Sent !"));
+            MenuString.Add("Echec", new Tuple<string, string>("Echec ...", "Fail ..."));
+
             MenuString.Add("Anglais", new Tuple<string, string>("Anglais", "English"));
             MenuString.Add("Page 1", new Tuple<string, string>("Page 1", "Page 1"));
             MenuString.Add("Page 2", new Tuple<string, string>("Page 2", "Page 2"));
             MenuString.Add("Pseudo", new Tuple<string, string>("Pseudo", "Pseudo"));
             MenuString.Add("Valider", new Tuple<string, string>("Valider", "Validate"));
-            MenuString.Add("Tir", new Tuple<string, string>("Tir", "Shoot"));
+
             MenuString.Add("Time", new Tuple<string, string>("Temps ecoule !", "Time out !"));
             MenuString.Add("Nolife", new Tuple<string, string>("Tu es mort !", "You died !"));
 
@@ -152,11 +170,16 @@ namespace GravityTutorial
             MenuString.Add("Tir rafalle", new Tuple<string, string>("Tir rafalle", "Multishot"));
             MenuString.Add("Direction inversee", new Tuple<string, string>("Direction inverse", "Reverse control"));
 
+            MenuString.Add("Multijoueur", new Tuple<string, string>("Multijoueur", "Multiplayer"));
+            MenuString.Add("Heberger", new Tuple<string, string>("Heberger", "Host"));
+            MenuString.Add("Rejoindre", new Tuple<string, string>("Rejoindre", "Join"));
+
 
             //PARAMETERS
             parameter[0] = false; //Musique
             parameter[1] = false; //Bruitages
             parameter[2] = false; //English version
+            parameter[3] = false; //Coop
 
             //FONT
             Font = Content.Load<SpriteFont>(InGameFile + "Arial");
