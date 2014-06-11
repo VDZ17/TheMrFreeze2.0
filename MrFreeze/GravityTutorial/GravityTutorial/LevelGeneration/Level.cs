@@ -77,73 +77,149 @@ namespace GravityTutorial
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl1.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0)));
-                        Console.WriteLine("case1");
+
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0), 
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right], 
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot],2));
                         break;
                     }
                 case 2:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl2.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+
                         break;
                     }
                 case 3:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl3.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0 * block_size)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+
                         break;
                     }
                 case 4:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl4.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
                         break;
                     }
                 case 5:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl5.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+
                         break;
                     }
                 case 6:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl6.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(1500, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+
                         break;
                     }
                 case 7:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl7.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+
                         break;
                     }
                 case 8:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl8.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+
                         break;
                     }
                 case 9:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl9.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+                        
                         break;
                     }
                 case 10:
                     {
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl10.txt"), block_size, this);
-                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0)));
+                        Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right], 
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+
+                        if (Ressource.parameter[3])
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
                         break;
                     }
                 default:
@@ -170,7 +246,6 @@ namespace GravityTutorial
                 foreach (Character c in Heroes)
                 {
                     c.Update(gameTime, effect);
-                    Console.WriteLine(c.life);
                 }
 
             foreach (CollisionTiles tile in map.CollisionTiles)
@@ -335,9 +410,6 @@ namespace GravityTutorial
 
                 if (e.hasHit)
                     updateHero = false;
-
-                Console.WriteLine(Interaction.NearCharacter(e, Heroes));
-
 
 
                 e.Update(gameTime);

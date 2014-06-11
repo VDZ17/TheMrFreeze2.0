@@ -312,6 +312,15 @@ namespace GravityTutorial.InGame_Jeu
                     if (this.state != State1.Spawning && this.state != State1.Rolling && this.state != State1.Bonus && this.jumpTimer >= this.jumpTimerFrequency)
                         Jump();
                 }
+                else if (rectangle.isOnBotOf(newRectangle))
+                {
+                    if (velocity.Y < 0)
+                    {
+                        velocity.Y = -velocity.Y;
+                    }
+                    position.Y = newRectangle.Bottom + velocity.Y;
+                    updatePositionY();
+                }
             }
         }
 

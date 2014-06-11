@@ -14,10 +14,10 @@ namespace GravityTutorial
         public Vector2 position_life;
         public Rectangle rectangle_life;
 
-        public health()
+        public health(Vector2 position_life)
         {
             texture_life = Ressource.healthbar;
-            position_life = new Vector2(150, 150);
+            this.position_life = position_life;
             rectangle_life = new Rectangle(0, 0, texture_life.Width, texture_life.Height);
         }
 
@@ -40,9 +40,9 @@ namespace GravityTutorial
             }
 
         }
-        public void draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture_life, new Vector2(150, 150), rectangle_life, Color.White);
+            spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
         }
     }
 }

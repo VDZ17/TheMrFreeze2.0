@@ -25,6 +25,7 @@ namespace GravityTutorial
         public SpriteBatch spriteBatch;
         public GraphicsDeviceManager graphics;
 
+
         public int height_size;
         public int width_size;
 

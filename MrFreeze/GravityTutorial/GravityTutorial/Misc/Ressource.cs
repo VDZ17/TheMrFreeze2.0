@@ -104,6 +104,7 @@ namespace GravityTutorial
             KeyJ1.Add(inGameAction.Jump, Keys.Up);
             KeyJ1.Add(inGameAction.Pause, Keys.Escape);
             KeyJ1.Add(inGameAction.Shoot, Keys.NumPad3);
+       
 
             KeyJ2.Add(inGameAction.Left, Keys.Q);
             KeyJ2.Add(inGameAction.Right, Keys.D);

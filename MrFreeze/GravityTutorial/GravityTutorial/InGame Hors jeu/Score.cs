@@ -47,7 +47,7 @@ namespace GravityTutorial
             this.score = 0;
             timer = timespan.TotalSeconds;
             this.position = new Vector2(15, 1);
-            this.position_timer = new Vector2(position_data.X - 175, 10);
+            this.position_timer = new Vector2(position_data.X - 175, 1);
             loser = new Rectangle(0, 0, (int)position_data.X, (int)position_data.Y);
 
             typeBonus = Item.Type.None;
@@ -55,7 +55,7 @@ namespace GravityTutorial
             nomBonus = "";
         }
 
-        
+
 
         public void Update(Character player)
         {
@@ -82,8 +82,8 @@ namespace GravityTutorial
 
 
             if (youwin)
-            { 
-                if(!(saved))
+            {
+                if (!(saved))
                 {
                     loadfile.Save((score) + timer * 10, Ressource.pseudo);
                     saved = true;
@@ -170,25 +170,41 @@ namespace GravityTutorial
                     nomBonus = tuple.Item2;
                 }
             }
-            
-
-
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + this.score, position, Color.White);
-            spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + this.timer, position_timer, Color.White);
-            spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
-            spriteBatch.Draw(Ressource.FondBonus, new Rectangle((Ressource.screenWidth / 2) - 200, 10, 400, 50), Color.White);
-            if (typeBonus != Item.Type.None)
+            foreach (Character c in Level.Heroes)
             {
-                Item i = new Item(new Vector2((Ressource.screenWidth / 2) - 200, 10), Ressource.Items, typeBonus, nbBonus);
-                i.Draw(spriteBatch);
-                spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus,new Vector2((Ressource.screenWidth / 2) - 125, 15), Color.White);
+                if (c.player == 1)
+                {
+                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + this.score, position, Color.White);
+                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + this.timer, position_timer, Color.White);
+                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
+                    spriteBatch.Draw(Ressource.FondBonus, new Rectangle((Ressource.screenWidth / 2) - 200, 10, 400, 50), Color.White);
+                    if (typeBonus != Item.Type.None)
+                    {
+                        Item i = new Item(new Vector2((Ressource.screenWidth / 2) - 200, 10), Ressource.Items, typeBonus, nbBonus);
+                        i.Draw(spriteBatch);
+                        spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2((Ressource.screenWidth / 2) - 125, 15), Color.White);
+                    }
+
+                    spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
+                }
+                else
+                {
+                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(Ressource.screenWidth - 150 - 15 - 2, 45 - 2), Color.White);
+                    spriteBatch.Draw(Ressource.FondBonus, new Rectangle((Ressource.screenWidth / 2) - 200, 10, 400, 50), Color.White);
+                    if (typeBonus != Item.Type.None)
+                    {
+                        Item i = new Item(new Vector2((Ressource.screenWidth / 2) - 200, 10), Ressource.Items, typeBonus, nbBonus);
+                        i.Draw(spriteBatch);
+                        spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2((Ressource.screenWidth / 2) - 125, 15), Color.White);
+                    }
+
+                    spriteBatch.Draw(texture_life, new Vector2(Ressource.screenWidth - 150 - 15, 45), rectangle_life, Color.White);
+                }
             }
-            
-            spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
         }
     }
 }

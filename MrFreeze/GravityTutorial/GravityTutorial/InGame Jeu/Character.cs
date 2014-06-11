@@ -37,6 +37,7 @@ namespace GravityTutorial
 
 
         //HEALTH
+        health health;
         public int life_changment;
         public bool isDead;
 
@@ -65,7 +66,6 @@ namespace GravityTutorial
         int Timer;
         int AnimationSpeed;
         Color color;
-        //int AnimationSpeedJump = 7;
 
         //BONUS
         public Item.Type CurrentItem;
@@ -78,9 +78,15 @@ namespace GravityTutorial
         Keys defaultLeft;
         Keys Left;
         Keys Right;
+        Keys shootKey;
+        Keys jumpKey;
 
 
-        public Character(Texture2D newTexture, Vector2 newPosition)
+        public int player;
+
+
+
+        public Character(Texture2D newTexture, Vector2 newPosition, Keys left, Keys right, Keys jump, Keys shoot, int player)
         {
             texture = newTexture;
 
@@ -117,10 +123,15 @@ namespace GravityTutorial
             CurrentItem = Item.Type.None;
             this.life = 150;
 
-            defaultLeft = Ressource.KeyJ1[Ressource.inGameAction.Left];
-            defaultRight = Ressource.KeyJ1[Ressource.inGameAction.Right];
-            Left = defaultLeft;
-            Right = defaultRight;
+            defaultLeft = left;
+            defaultRight = right;
+
+            this.Left = defaultLeft;
+            this.Right = defaultRight;
+            this.shootKey = shoot;
+            this.jumpKey = jump;
+
+            this.player = player;
         }
 
         public void UpdateBullet()
@@ -289,7 +300,6 @@ namespace GravityTutorial
 
             //DEFINITION
             rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
-            //rectangle = new Rectangle((int)position.X, (int)position.Y, 50, 50);
 
             //RESPAWN
             if (Keyboard.GetState().IsKeyDown(Keys.R))
@@ -429,20 +439,32 @@ namespace GravityTutorial
                 Right = defaultRight;
             }
 
-
-
+            Console.WriteLine((Camera.center.X  - Camera.viewport.Width / 2) + Camera.viewport.Width);
+            
             // SET UP
             if (Keyboard.GetState().IsKeyDown(Right))
             {
                 stop = false;
-                velocity.X = speed;
+
+                if (player == 1 || (player == 2 && this.position.X + this.player_Width < (Camera.center.X  - Camera.viewport.Width / 2) + Camera.viewport.Width))
+                    velocity.X = speed;
+                else
+                    velocity.X = 0;
+
+                
+
+
                 this.Direction = Direction.Right;
                 this.Animate();
             }
             else if (Keyboard.GetState().IsKeyDown(Left))
             {
                 stop = false;
-                velocity.X = -speed;
+                if (player == 1 || (player == 2 && this.position.X  > (Camera.center.X - Camera.viewport.Width / 2)))
+                    velocity.X = -speed;
+                else
+                    velocity.X = 0;
+
                 this.Direction = Direction.Left;
                 this.Animate();
             }
@@ -460,7 +482,7 @@ namespace GravityTutorial
             }
 
             //TIR
-            if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Shoot]))
+            if (Keyboard.GetState().IsKeyDown(shootKey))
             {
                 Shoot();
                 if (hasJumped)
@@ -489,7 +511,7 @@ namespace GravityTutorial
             }
 
             //SAUT
-            if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]) && !hasJumped)
+            if (Keyboard.GetState().IsKeyDown(jumpKey) && !hasJumped)
             {
                 jump = true;
                 position.Y -= 5f;
@@ -497,12 +519,12 @@ namespace GravityTutorial
                 hasJumped = true;
                 cooldownDoubleJump = true;
             }
-            if (Keyboard.GetState().IsKeyUp(Ressource.KeyJ1[Ressource.inGameAction.Jump]) && cooldownDoubleJump)
+            if (Keyboard.GetState().IsKeyUp(jumpKey) && cooldownDoubleJump)
             {
                 cooldownDoubleJump = false;
             }
 
-            if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]) && hasJumped && !hasJumped2 && CurrentItem == Item.Type.DoubleJump && !cooldownDoubleJump)
+            if (Keyboard.GetState().IsKeyDown(jumpKey) && hasJumped && !hasJumped2 && CurrentItem == Item.Type.DoubleJump && !cooldownDoubleJump)
             {
                 velocity.Y = -saut;
                 hasJumped2 = true;
@@ -566,7 +588,7 @@ namespace GravityTutorial
         public void Collision(Rectangle obstacle, int xoffset, int yoffset, SoundEffectInstance effect, string name)
         {
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
-            //Rectangle playerRunning = new Rectangle((int)position.X, (int)position.Y, player_Height, player_Width);
+
 
             if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6" || name == "Tile16")
             {
@@ -606,7 +628,7 @@ namespace GravityTutorial
                         if (jump)
                             jump = false;
 
-                        if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]))
+                        if (Keyboard.GetState().IsKeyDown(jumpKey))
                         {
                             jump = true;
                         }
@@ -621,7 +643,7 @@ namespace GravityTutorial
                     velocity.Y = 0;
                     hasDoubleJumped = false;
 
-                    if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]) == true)
+                    if (Keyboard.GetState().IsKeyDown(jumpKey))
                     {
                         effect.Pause();
                     }
@@ -637,13 +659,13 @@ namespace GravityTutorial
 
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
-                    if(!jump)
-                    position.X = obstacle.X - rectangle.Width;
+                    if (!jump)
+                        position.X = obstacle.X - rectangle.Width;
                 }
                 else if (rectangle.isOnRightOf(obstacle))
                 {
                     if (!jump)
-                    position.X = obstacle.X + obstacle.Width;
+                        position.X = obstacle.X + obstacle.Width;
                 }
                 else if (player_plus_1.isOnBotOf(obstacle))
                 {
@@ -656,7 +678,6 @@ namespace GravityTutorial
 
                 if (this.velocity.Y > 0)
                 {
-                    effect.Resume();
                     effect.Pause();
                 }
 
@@ -717,6 +738,7 @@ namespace GravityTutorial
             {
                 bullet.Draw(spriteBatch, bulletColor);
             }
+
         }
     }
 

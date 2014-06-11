@@ -243,8 +243,6 @@ namespace GravityTutorial.InGame_Jeu
             Rectangle fixY = this.rectangle;
             fixY.Y = this.rectangle.Y + 2;
 
-            Console.WriteLine(this.timerAttack);
-
             if (this.state == State2.Waiting)
                 spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
             else if (this.state == State2.hitting)

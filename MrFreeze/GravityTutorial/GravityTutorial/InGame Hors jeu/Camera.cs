@@ -12,8 +12,8 @@ namespace GravityTutorial
         public static Matrix Transform;
        
 
-        public Vector2 center;
-        public Viewport viewport;
+        public static Vector2 center;
+        public static Viewport viewport;
         public Camera(Viewport newviewport)
         {
             viewport = newviewport;
