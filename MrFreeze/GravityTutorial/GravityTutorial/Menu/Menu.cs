@@ -247,8 +247,15 @@ namespace GravityTutorial
                     }
                 case MenuType.reloadlevel:
                     {
+
                         Game1.reload = true;
                         Game1.inGame = true;
+
+                        actualMenu = new Menu(MenuType.pause, 3, Ressource.BackgroundMenuPause);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Reprendre"], MenuType.unpause);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
                         break;
                     }
                 case MenuType.loose:
