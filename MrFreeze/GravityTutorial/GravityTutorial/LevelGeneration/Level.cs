@@ -236,7 +236,7 @@ namespace GravityTutorial
         {
             string s = "";
             #region character
-            foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/nbBonus/bonusvo/bonusvf+
+            foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/nbBonus/bonusvo/bonusvf+
             {
                 
                 s += "H/";
@@ -290,7 +290,7 @@ namespace GravityTutorial
                 }
 
 
-                //TODO colonne/ligne
+                s += h.frameCollumn + "/" + h.frameRow + "/" + h.player_Height + "/" + h.player_Width + "/";
 
                 int nbBonus = 0;
                 Tuple<string, string> tuple = new Tuple<string, string>("", "");
@@ -417,7 +417,7 @@ namespace GravityTutorial
             #endregion
 
             #region hud 
-            //S/score/timer/vieJ1/vieJ2/youloose/youwin+
+            //S/score/timer/vieJ1/vieJ2/youloose/youwin/ingame+
             s += "S/" + Game1.score.score + "/" + Game1.score.timer+ "/" + Game1.score.rectangle_life.Width + "/" + Game1.score.rectangle_life2.Width + "/";
             if (youlose)
             {
@@ -429,6 +429,15 @@ namespace GravityTutorial
             }
 
             if (youwin)
+            {
+                s += "1/";
+            }
+            else
+            {
+                s += "0/";
+            }
+
+            if (Game1.inGame)
             {
                 s += "1+";
             }
@@ -838,7 +847,7 @@ namespace GravityTutorial
             foreach (string a in splitted)
             {
                 #region Character
-                if (a[0] == 'H') //H/nbjoueur/x/y/couleur/sens/colonne/ligne/nbBonus/bonusvo/bonusvf+
+                if (a[0] == 'H') //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/nbBonus/bonusvo/bonusvf+
                 {
                     int i = 2;
                     string b = ToNextSlash(a, ref i);
@@ -878,11 +887,60 @@ namespace GravityTutorial
                         effect = SpriteEffects.FlipHorizontally;
                     }
 
-                    //TODO Collumn/row
+                    int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int player_Height = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int player_Width = Convert.ToInt32(ToNextSlash(a, ref i));
+
+                    Vector2 position = new Vector2(x,y);
 
                     int nbBonus = Convert.ToInt32(ToNextSlash(a, ref i));
                     string BonusNameEn = ToNextSlash(a, ref i);
                     string BonusNameFr = ToNextSlash(a, ref i);
+
+                    spriteBatch.Draw(Ressource.Player_animation, new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height), 
+                        new Rectangle((frameCollumn - 1) * player_Width, frameRow, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+
+
+                    if (nbPlayer == 1)
+                    {
+                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(10, 10, 400, 50), Color.White);
+                        if (nbBonus != 0)
+                        {
+                            Item item = new Item(new Vector2(10, 10), Ressource.Items, Item.Type.None, nbBonus);
+                            item.Draw(spriteBatch);
+                            string nomBonus = "";
+                            if (Ressource.parameter[2])
+                            {
+                                nomBonus = BonusNameEn;
+                            }
+                            else
+                            {
+                                nomBonus = BonusNameFr;
+                            }
+                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2(70, 15), Color.White);
+                        }
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(Ressource.screenWidth - 400 - 10, 10, 400, 50), Color.White);
+                        if (nbBonus != 0)
+                        {
+                            Item item = new Item(new Vector2(Ressource.screenWidth - 410, 10), Ressource.Items, Item.Type.None, nbBonus);
+                            item.Draw(spriteBatch);
+                            string nomBonus = "";
+                            if (Ressource.parameter[2])
+                            {
+                                nomBonus = BonusNameEn;
+                            }
+                            else
+                            {
+                                nomBonus = BonusNameFr;
+                            }
+                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2(Ressource.screenWidth - 400 - 10 + 65, 15), Color.White);
+                        }
+                    }
+
                 }
                 #endregion
                 #region Bullet
@@ -907,9 +965,72 @@ namespace GravityTutorial
                     }
                     int collumn = Convert.ToInt32(ToNextSlash(a, ref i));
                     Texture2D t = Ressource.Bullet;
-                    spriteBatch.Draw(t, new Rectangle((int)position.X, (int)position.Y, t.Width, t.Height), new Rectangle((collumn - 1) * t.Width, 0, t.Width, t.Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                    spriteBatch.Draw(t, new Rectangle((int)position.X, (int)position.Y, 55, 62), new Rectangle((collumn - 1) * 55, 0, 55, 62), color, 0f, new Vector2(0, 0), effect, 0f);
                 }
                 #endregion
+                //TODO Ennemis
+                #region powerup & coins
+                if (a[0] == 'I')
+                {
+                    int i = 2;
+                    int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                    Items[x].hasBeenTaken = (y == 1);
+                }
+                if (a[0] == 'C')
+                {
+                    int i = 2;
+                    int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                    Bonuses[x].hasBeenTaken = (y == 1);
+                }
+                #endregion
+                #region hud
+                //S/score/timer/vieJ1/vieJ2/youloose/youwin+
+                if (a[0] == 'S')
+                {
+                    int i = 2;
+                    int score = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int timer = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int vieJ1 = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int vieJ2 = Convert.ToInt32(ToNextSlash(a, ref i));
+
+                    string b = ToNextSlash(a, ref i);
+                    bool youlose = false;
+                    if (b[0] == '1')
+                    {
+                        youlose = true;
+                    }
+
+                    b = ToNextSlash(a, ref i);
+                    bool youwon = false;
+                    if (b[0] == '1')
+                    {
+                        youwon = true;
+                    }
+
+                    b = ToNextSlash(a, ref i);
+                    bool inGame = false;
+                    if (b[0] == '1')
+                    {
+                        inGame = true;
+                    }
+
+                    Vector2 position_life = new Vector2(12, 70);
+                    Rectangle rectangle_life = new Rectangle(0, 0, vieJ1, Ressource.healthbar.Height);
+                    Rectangle rectangle_life2 = new Rectangle(0, 0, vieJ2, Ressource.healthbar.Height);
+
+
+                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + score, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Score : " + score).Length() / 2, 40), Color.White);
+                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + timer, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Timer : " + timer).Length() / 2, 5), Color.White);
+                    
+                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
+                    spriteBatch.Draw(Ressource.healthbar, position_life, rectangle_life, Color.White);
+                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(Ressource.screenWidth - 150 - 10 - 2, 70 - 2), Color.White);
+                    spriteBatch.Draw(Ressource.healthbar, new Vector2(Ressource.screenWidth - 150 - 10, 70), rectangle_life2, Color.White);
+                }
+                #endregion
+
             }
         
         }

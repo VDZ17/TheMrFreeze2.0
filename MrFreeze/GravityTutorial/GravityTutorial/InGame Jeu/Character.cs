@@ -60,7 +60,8 @@ namespace GravityTutorial
         public Rectangle rectangle;
 
         //ANIMATION
-        int frameCollumn;
+        public int frameCollumn;
+        public int frameRow;
         public SpriteEffects Effect;
         public Direction Direction;
         int Timer;
@@ -743,6 +744,7 @@ namespace GravityTutorial
         {
             if (spawn)
             {
+                frameRow = 0;
                 spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 0, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
             }
             else if (stop)
@@ -751,12 +753,14 @@ namespace GravityTutorial
                 {
                     player_Height = 43;
                     player_Width = 51;
+                    frameRow = 64 + 41 + 43;
                     spriteBatch.Draw(this.texture, rectangle, new Rectangle(player_Width, 64 + 41 + 43, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
                 else
                 {
                     player_Height = 41;
                     player_Width = 32;
+                    frameRow = 64;
                     spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
             }
@@ -765,10 +769,12 @@ namespace GravityTutorial
 
                 if (attack)
                 {
+                    frameRow = 64 + 41 + 43 + 43 + 55;
                     spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 55, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
                 else
                 {
+                    frameRow = 64 + 41 + 43 + 43 + 1;
                     spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 1, player_Width, player_Height - 1), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
             }
@@ -776,10 +782,12 @@ namespace GravityTutorial
             {
                 if (attack)
                 {
+                    frameRow = 64 + 41 + 43;
                     spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41 + 43, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
                 else
                 {
+                    frameRow = 64 + 41;
                     spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * player_Width, 64 + 41, player_Width, player_Height), color, 0f, new Vector2(0, 0), this.Effect, 0f);
                 }
             }
