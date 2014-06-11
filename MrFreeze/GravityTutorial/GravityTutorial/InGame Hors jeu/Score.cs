@@ -14,7 +14,9 @@ namespace GravityTutorial
         public Texture2D texture_life;
         public Vector2 position_life;
         public Rectangle rectangle_life;
+        public Rectangle rectangle_life2;
         int damage;
+        int damage2;
 
         //OTHER STUFF
         public Vector2 position;
@@ -34,14 +36,22 @@ namespace GravityTutorial
         Tuple<string, string> tuple;
         string nomBonus;
 
+        Item.Type typeBonus2;
+        int nbBonus2;
+        Tuple<string, string> tuple2;
+        string nomBonus2;
+
         public Hud(TimeSpan timespan, Vector2 position_data)
         {
             //health
             youwin = false;
             damage = 0;
+            damage2 = 0;
             texture_life = Ressource.healthbar;
-            position_life = new Vector2(15, 45);
-            rectangle_life = new Rectangle(0, 0, texture_life.Width, texture_life.Height);
+            position_life = new Vector2(12, 70);
+
+            rectangle_life = new Rectangle(0, 0, 150, texture_life.Height);
+            rectangle_life2 = new Rectangle(0, 0, 150, texture_life.Height);
 
             saved = false;
             this.score = 0;
@@ -53,32 +63,88 @@ namespace GravityTutorial
             typeBonus = Item.Type.None;
             tuple = new Tuple<string, string>("", "");
             nomBonus = "";
+
+            typeBonus2 = Item.Type.None;
+            tuple2 = new Tuple<string, string>("", "");
+            nomBonus2 = "";
         }
 
 
 
-        public void Update(Character player)
+        public void Update(Character player, Character player2 = null)
         {
             //health
             damage = player.life_changment;
             if (damage != 0)
             {
-                if (damage < 0)
+                rectangle_life.Width += damage;
+            }
+
+            if (Ressource.parameter[3] && player2 != null)
+            {
+                damage2 = player2.life_changment;
+                if (damage2 != 0)
                 {
-                    rectangle_life.Width += damage;
-                }
-                else
-                {
-                    rectangle_life.Width += damage;
+                    rectangle_life2.Width += damage2;
+
                 }
             }
 
-
-            if (rectangle_life.Width <= 0)
+            if (rectangle_life.Width <= 0 || rectangle_life2.Width <= 0)
                 youlose = true;
 
 
+            if (Ressource.parameter[3] && player2 != null && typeBonus2 != player2.CurrentItem)
+            {
+                typeBonus2 = player2.CurrentItem;
+                switch (typeBonus2)
+                {
+                    case Item.Type.Invincibility:
+                        nbBonus2 = 5;
+                        tuple2 = Ressource.MenuString["Invincibilite"];
+                        break;
+                    case Item.Type.DoubleJump:
+                        nbBonus2 = 0;
+                        tuple2 = Ressource.MenuString["Double-saut"];
+                        break;
+                    case Item.Type.MoonJump:
+                        nbBonus2 = 1;
+                        tuple2 = Ressource.MenuString["Super saut"];
+                        break;
+                    case Item.Type.MultiShot:
+                        nbBonus2 = 2;
+                        tuple2 = Ressource.MenuString["Tir rafalle"];
+                        break;
+                    case Item.Type.SuperSpeed:
+                        nbBonus2 = 3;
+                        tuple2 = Ressource.MenuString["Super vitesse"];
+                        break;
+                    case Item.Type.SlowSpeed:
+                        nbBonus2 = 4;
+                        tuple2 = Ressource.MenuString["Ralentissement"];
+                        break;
+                    case Item.Type.ReverseDirection:
+                        nbBonus2 = 6;
+                        tuple2 = Ressource.MenuString["Direction inversee"];
+                        break;
+                    case Item.Type.None:
+                        break;
+                    default:
+                        break;
 
+
+
+                }
+
+                if (!Ressource.parameter[2])
+                {
+                    nomBonus2 = tuple2.Item1;
+                }
+                else
+                {
+                    nomBonus2 = tuple2.Item2;
+                }
+            }
 
 
             if (youwin)
@@ -160,7 +226,6 @@ namespace GravityTutorial
                     default:
                         break;
                 }
-
                 if (!Ressource.parameter[2])
                 {
                     nomBonus = tuple.Item1;
@@ -169,41 +234,61 @@ namespace GravityTutorial
                 {
                     nomBonus = tuple.Item2;
                 }
+
             }
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            foreach (Character c in Level.Heroes)
+            if (Ressource.parameter[3])
             {
-                if (c.player == 1)
-                {
-                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + this.score, position, Color.White);
-                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + this.timer, position_timer, Color.White);
-                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
-                    spriteBatch.Draw(Ressource.FondBonus, new Rectangle((Ressource.screenWidth / 2) - 200, 10, 400, 50), Color.White);
-                    if (typeBonus != Item.Type.None)
-                    {
-                        Item i = new Item(new Vector2((Ressource.screenWidth / 2) - 200, 10), Ressource.Items, typeBonus, nbBonus);
-                        i.Draw(spriteBatch);
-                        spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2((Ressource.screenWidth / 2) - 125, 15), Color.White);
-                    }
 
-                    spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
-                }
-                else
+                foreach (Character c in Level.Heroes)
                 {
-                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(Ressource.screenWidth - 150 - 15 - 2, 45 - 2), Color.White);
-                    spriteBatch.Draw(Ressource.FondBonus, new Rectangle((Ressource.screenWidth / 2) - 200, 10, 400, 50), Color.White);
-                    if (typeBonus != Item.Type.None)
+                    if (c.player == 1)
                     {
-                        Item i = new Item(new Vector2((Ressource.screenWidth / 2) - 200, 10), Ressource.Items, typeBonus, nbBonus);
-                        i.Draw(spriteBatch);
-                        spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2((Ressource.screenWidth / 2) - 125, 15), Color.White);
-                    }
+                        spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + this.score, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Score : " + this.score).Length() / 2, 40), Color.White);
+                        spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + this.timer, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Timer : " + this.timer).Length() / 2, 5), Color.White);
+                        spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
+                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(10, 10, 400, 50), Color.White);
+                        if (typeBonus != Item.Type.None)
+                        {
+                            Item i = new Item(new Vector2(10, 10), Ressource.Items, typeBonus, nbBonus);
+                            i.Draw(spriteBatch);
+                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2(70, 15), Color.White);
+                        }
 
-                    spriteBatch.Draw(texture_life, new Vector2(Ressource.screenWidth - 150 - 15, 45), rectangle_life, Color.White);
+                        spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(Ressource.screenWidth - 150 - 10 - 2, 70 - 2), Color.White);
+                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(Ressource.screenWidth - 400 -10, 10, 400, 50), Color.White);
+                        if (typeBonus2 != Item.Type.None)
+                        {
+                            Item i = new Item(new Vector2(Ressource.screenWidth - 410, 10), Ressource.Items, typeBonus2, nbBonus2);
+                            i.Draw(spriteBatch);
+                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus2, new Vector2(Ressource.screenWidth -400 -10 + 65, 15), Color.White);
+                        }
+
+                        spriteBatch.Draw(texture_life, new Vector2(Ressource.screenWidth - 150 - 10, 70), rectangle_life2, Color.White);
+                    }
                 }
+            }
+            else
+            {
+                spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + this.score, position, Color.White);
+                spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + this.timer, position_timer, Color.White);
+                spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
+                spriteBatch.Draw(Ressource.FondBonus, new Rectangle((Ressource.screenWidth / 2) - 200, 10, 400, 50), Color.White);
+                if (typeBonus != Item.Type.None)
+                {
+                    Item i = new Item(new Vector2((Ressource.screenWidth / 2) - 200, 10), Ressource.Items, typeBonus, nbBonus);
+                    i.Draw(spriteBatch);
+                    spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2((Ressource.screenWidth / 2) - 125, 15), Color.White);
+                }
+
+                spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
             }
         }
     }

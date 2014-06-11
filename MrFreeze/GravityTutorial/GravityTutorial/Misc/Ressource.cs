@@ -180,7 +180,7 @@ namespace GravityTutorial
             parameter[0] = false; //Musique
             parameter[1] = false; //Bruitages
             parameter[2] = false; //English version
-            parameter[3] = false; //Coop
+            parameter[3] = true; //Coop
 
             //FONT
             Font = Content.Load<SpriteFont>(InGameFile + "Arial");
