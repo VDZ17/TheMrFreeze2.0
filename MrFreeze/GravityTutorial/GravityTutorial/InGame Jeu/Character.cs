@@ -616,6 +616,7 @@ namespace GravityTutorial
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
 
             pull_position_X(obstacle);
+
             if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6" || name == "Tile16")
             {
                 if (rectangle.isOnTopOf(obstacle))
@@ -656,6 +657,8 @@ namespace GravityTutorial
 
                         if (Keyboard.GetState().IsKeyDown(jumpKey))
                         {
+                            if (!jump)
+                                position.Y += -12;
                             jump = true;
                         }
 
@@ -679,27 +682,46 @@ namespace GravityTutorial
                         position.Y = obstacle.Y - rectangle.Height;
                     else
                         rectangle.Y = obstacle.Y - rectangle.Height;
+                    Console.WriteLine("top" + player);
                 }
 
                 //COLISION
 
                 
+                //else if (rectangle.isOnLeftOf(obstacle))
+                //{
+                //    if (!jump)
+                //        position.X = obstacle.X - rectangle.Width;
+                //}
+                //else if (rectangle.isOnRightOf(obstacle))
+                //{
+                //    if (!jump)
+                //        position.X = obstacle.X + obstacle.Width;
+                //}
+                //else if (player_plus_1.isOnBotOf(obstacle))
+                //{
+                //    if (velocity.Y < 0)
+                //    {
+                //        velocity.Y = -velocity.Y;
+                //    }
+                //    position.Y = obstacle.Bottom + velocity.Y;
+                //}
+
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
-                    if (!jump)
-                        position.X = obstacle.X - rectangle.Width;
+                    position.X = obstacle.X - rectangle.Width;
+                    Console.WriteLine("Left" + player);
                 }
                 else if (rectangle.isOnRightOf(obstacle))
                 {
-                    if (!jump)
-                        position.X = obstacle.X + obstacle.Width;
+                    position.X = obstacle.X + obstacle.Width;
+                    Console.WriteLine("Right" + player);
                 }
                 else if (player_plus_1.isOnBotOf(obstacle))
                 {
+                    Console.WriteLine("Bottom" + player);
                     if (velocity.Y < 0)
-                    {
                         velocity.Y = -velocity.Y;
-                    }
                     position.Y = obstacle.Bottom + velocity.Y;
                 }
 
