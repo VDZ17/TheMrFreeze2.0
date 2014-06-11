@@ -51,6 +51,8 @@ namespace GravityTutorial.InGame_Jeu
         int timerAttackFrequency;
         public int timerAttack;
 
+        public bool player1;
+        public bool player2;
 
         public Ennemy2(Texture2D newTexture, Vector2 newPosition)
         {
@@ -70,6 +72,8 @@ namespace GravityTutorial.InGame_Jeu
             this.life = 10;
             this.timerAttackFrequency = 420;
             this.timerAttack = 420;
+            this.player1 = false;
+            this.player2 = false;
         }
 
 
@@ -81,8 +85,6 @@ namespace GravityTutorial.InGame_Jeu
 
             rectangle = new Rectangle((int)position.X, (int)position.Y, width, height);
             Animate();
-
-            updateDirection(this.direction, Level.Heroes.ElementAt(0));
         }
 
 
@@ -139,7 +141,7 @@ namespace GravityTutorial.InGame_Jeu
             }
         }
 
-        void updateDirection(Direction2 direction, Character megaman)
+        public void updateDirection(Direction2 direction, Character megaman)
         {
             if (megaman.position.X > this.position.X)
                 this.direction = Direction2.Right;
@@ -199,8 +201,13 @@ namespace GravityTutorial.InGame_Jeu
             if (this.direction == Direction2.Right)
             {
                 if (player.position.X < this.position.X + 50 && player.position.Y + player.player_Height >= this.position.Y &&
-                    player.position.Y + player.player_Height <= this.position.Y + this.height + 2 && finalHit == false && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
+                    player.position.Y + player.player_Height <= this.position.Y + this.height + 2 && finalHit == false && player.CurrentItem != Item.Type.Invincibility)
                 {
+                    if (player.player == 1)
+                        player1 = true;
+                    else if (player.player == 2)
+                        player2 = true;
+
                     this.state = State2.hitting;
                     updateHitbox(state);
                     this.firstHit = true;
@@ -211,8 +218,13 @@ namespace GravityTutorial.InGame_Jeu
             else if (this.direction == Direction2.Left)
             {
                 if (player.position.X > this.position.X - 50 && player.position.Y + player.player_Height >= this.position.Y &&
-                     player.position.Y + player.player_Height <= this.position.Y + this.height && finalHit == false && Level.Heroes[0].CurrentItem != Item.Type.Invincibility)
+                     player.position.Y + player.player_Height <= this.position.Y + this.height && finalHit == false && player.CurrentItem != Item.Type.Invincibility)
                 {
+                    if (player.player == 1)
+                        player1 = true;
+                    else if (player.player == 2)
+                        player2 = true;
+
                     this.state = State2.hitting;
                     updateHitbox(state);
                     this.firstHit = true;
@@ -229,6 +241,8 @@ namespace GravityTutorial.InGame_Jeu
                     this.position.X += 14;
                     firstHit = false;
                     this.state = State2.Waiting;
+                    player1 = false;
+                    player2 = false;
                     updateHitbox(state);
                 }
 

@@ -275,8 +275,6 @@ namespace GravityTutorial.InGame_Jeu
         {
             if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6" || name == "Tile16")
             {
-                Rectangle jumpRectangle = new Rectangle((int)position.X, (int)position.Y, height, width);
-
                 if (rectangle.isOnTopOf(newRectangle))
                 {
                     if (this.state != State1.Jumping)

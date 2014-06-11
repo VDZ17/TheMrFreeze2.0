@@ -36,6 +36,7 @@ namespace GravityTutorial
         public Map map;
         public int lvl;
         public static bool updateHero;
+        public static bool updateHero2;
         int timerspeedAttack3 = 30;
         int timerEnd3 = 0;
 
@@ -49,6 +50,7 @@ namespace GravityTutorial
             map = new Map();
 
             updateHero = true;
+            updateHero2 = true;
             moving_platform = new List<GravityTutorial.moving_platform>();
 
             Heroes = new List<Character>();
@@ -80,12 +82,12 @@ namespace GravityTutorial
 
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
-                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0), 
-                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right], 
-                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot],2));
+                            Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
+                                Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
+                                Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
                         break;
                     }
                 case 2:
@@ -94,7 +96,7 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl2.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
@@ -109,7 +111,7 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl3.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
 
                         if (Ressource.parameter[3])
@@ -125,7 +127,7 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl4.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
@@ -139,7 +141,7 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl5.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
@@ -154,7 +156,7 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl6.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(1500, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
@@ -169,7 +171,7 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl7.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
@@ -184,7 +186,7 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl8.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
@@ -199,13 +201,13 @@ namespace GravityTutorial
                         map.Generate(loadfile.read(dir + "lvl9.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
                             Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
                                 Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
                                 Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
-                        
+
                         break;
                     }
                 case 10:
@@ -213,8 +215,8 @@ namespace GravityTutorial
                         int block_size = 50;
                         map.Generate(loadfile.read(dir + "lvl10.txt"), block_size, this);
                         Heroes.Add(new Character(Ressource.Player_animation, new Vector2(0, 0),
-                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right], 
-                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot],1));
+                            Ressource.KeyJ1[Ressource.inGameAction.Left], Ressource.KeyJ1[Ressource.inGameAction.Right],
+                            Ressource.KeyJ1[Ressource.inGameAction.Jump], Ressource.KeyJ1[Ressource.inGameAction.Shoot], 1));
 
                         if (Ressource.parameter[3])
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
@@ -242,16 +244,19 @@ namespace GravityTutorial
 
             particule.particleEffects["Snow"].Trigger(Vector2.Zero);
 
-            if (updateHero)
-                foreach (Character c in Heroes)
-                {
+
+            foreach (Character c in Heroes)
+            {
+                if (c.player == 1 && updateHero)
                     c.Update(gameTime, effect);
-                }
+                else if (c.player == 2 && updateHero2)
+                    c.Update(gameTime, effect);
+
+
+            }
 
             foreach (CollisionTiles tile in map.CollisionTiles)
             {
-                //Heroes.ElementAt(0).Collision(tile.Rectangle, map.Width, map.Height, Ressource.effect2, tile.Tile_name);
-
                 foreach (Character c in Heroes)
                 {
                     c.Collision(tile.Rectangle, map.Width, map.Height, Ressource.effect2, tile.Tile_name);
@@ -268,8 +273,10 @@ namespace GravityTutorial
                 {
                     e.Patrol(tile.Rectangle, tile.Tile_name);
                     e.Collision(tile.Rectangle, tile.Tile_name);
-
-                    e.hit(Heroes.ElementAt(0));
+                    foreach (Character player in Heroes)
+                    {
+                        e.hit(player);
+                    }
                 }
                 foreach (Ennemy2 e in Ennemies2)
                 {
@@ -308,7 +315,6 @@ namespace GravityTutorial
                 {
                     c.Collision(item.hitbox, map.Width, map.Height, Ressource.effect2, "Tile6");
                 }
-
 
                 foreach (Character c in Heroes)
                 {
@@ -367,25 +373,35 @@ namespace GravityTutorial
             //Updates Ennemies
             foreach (Ennemy2 e in Ennemies2)
             {
+                Character Nearest = Interaction.NearCharacter(e, Heroes);
+
                 e.Update(gameTime);
-                foreach (Character c in Heroes)
-                {
-                    e.hit(c);
-                }
-                //e.hit(Heroes.ElementAt(0));
+
+                e.updateDirection(e.direction, Nearest);
+                e.hit(Nearest);
 
                 if (e.firstHit)
                 {
-                    Heroes.ElementAt(0).velocity.X = 0;
+                    if (e.player1)
+                        Heroes.ElementAt(0).velocity.X = 0;
+                    else if (e.player2)
+                        Heroes.ElementAt(1).velocity.X = 0;
+
                     e.timerAttack = 0;
 
                     if (e.direction == Direction2.Right)
                     {
-                        Heroes.ElementAt(0).velocity.X = 5f;
+                        if (e.player1)
+                            Heroes.ElementAt(0).velocity.X = 5f;
+                        else if (e.player2)
+                            Heroes.ElementAt(1).velocity.X = 5f;
                     }
                     else if (e.direction == Direction2.Left)
                     {
-                        Heroes.ElementAt(0).velocity.X = -5f;
+                        if (e.player1)
+                            Heroes.ElementAt(0).velocity.X = -5f;
+                        else if (e.player2)
+                            Heroes.ElementAt(1).velocity.X = -5f;
                     }
                 }
 
@@ -399,17 +415,16 @@ namespace GravityTutorial
 
                         }
                     }
-
                 }
             }
-
-
 
             foreach (Ennemy3 e in Ennemies3)
             {
 
                 if (e.hasHit)
                     updateHero = false;
+                if (e.hasHit2)
+                    updateHero2 = false;
 
 
                 e.Update(gameTime);
@@ -432,6 +447,15 @@ namespace GravityTutorial
                     else
                         timerEnd3++;
                 }
+
+                if (!updateHero2)
+                {
+                    if (timerEnd3 == timerspeedAttack3)
+                        Heroes[1].life_changment = -1;
+
+                    else
+                        timerEnd3++;
+                }
             }
 
 
@@ -440,7 +464,6 @@ namespace GravityTutorial
             foreach (Ennemy1 e in Ennemies1)
             {
                 Character Nearest = Interaction.NearCharacter(e, Heroes);
-
                 e.Update(gameTime, Nearest);
                 foreach (Character c in Heroes)
                 {
@@ -521,8 +544,11 @@ namespace GravityTutorial
 
             foreach (Character c in Heroes)
             {
-                if (updateHero)
+                if (c.player == 1 && updateHero)
                     c.Draw(spriteBatch);
+                else if (c.player == 2 && updateHero2)
+                    c.Draw(spriteBatch);
+
             }
 
             foreach (Bonus b in Bonuses)

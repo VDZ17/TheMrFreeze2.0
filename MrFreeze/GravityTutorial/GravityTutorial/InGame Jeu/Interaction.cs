@@ -25,7 +25,7 @@ namespace GravityTutorial.InGame_Jeu
             foreach (float f in distance)
             {
                 j++;
-                if (max < f)
+                if (max > f)
                 {
                     max = f;
                     i = j;
@@ -49,7 +49,7 @@ namespace GravityTutorial.InGame_Jeu
             foreach (float f in distance)
             {
                 j++;
-                if (max < f)
+                if (max > f)
                 {
                     max = f;
                     i = j;

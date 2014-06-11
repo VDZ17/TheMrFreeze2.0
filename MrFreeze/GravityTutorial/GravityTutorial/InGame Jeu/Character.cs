@@ -193,6 +193,37 @@ namespace GravityTutorial
             }
         }
 
+        void pull_position_X(Rectangle obstacle)
+        {
+            if (player == 2)
+            {
+                //Left + telep
+                if (position.X <= Camera.center.X - Camera.viewport.Width / 2 && rectangle.isOnLeftOf(obstacle))
+                {
+                    position.X = Level.Heroes[0].position.X;
+                    position.Y = Level.Heroes[0].position.Y;
+                    rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
+                    spawn = true;
+                }
+                //Left
+                else if (position.X < Camera.center.X - Camera.viewport.Width / 2 && !rectangle.isOnLeftOf(obstacle))
+                    position.X = Camera.center.X - Camera.viewport.Width / 2;
+
+                //Right+ telep
+                 if (position.X + player_Width >= Camera.center.X + Camera.viewport.Width / 2 && rectangle.isOnRightOf(obstacle))
+                 {
+                     position.X = Level.Heroes[0].position.X;
+                     position.Y = Level.Heroes[0].position.Y;
+                     rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
+                     spawn = true;
+                 }
+                //Right
+                 else if (position.X + player_Width > Camera.center.X + Camera.viewport.Width / 2)
+                    position.X = Camera.center.X + Camera.viewport.Width / 2 - player_Width;
+
+            }
+        }
+
         public void Animate()
         {
             this.Timer++;
@@ -439,28 +470,23 @@ namespace GravityTutorial
                 Right = defaultRight;
             }
 
-            Console.WriteLine((Camera.center.X  - Camera.viewport.Width / 2) + Camera.viewport.Width);
-            
             // SET UP
-            if (Keyboard.GetState().IsKeyDown(Right))
+            if (Keyboard.GetState().IsKeyDown(Right) && !spawn)
             {
                 stop = false;
 
-                if (player == 1 || (player == 2 && this.position.X + this.player_Width < (Camera.center.X  - Camera.viewport.Width / 2) + Camera.viewport.Width))
+                if (player == 1 || (player == 2 && this.position.X + this.player_Width < (Camera.center.X - Camera.viewport.Width / 2) + Camera.viewport.Width))
                     velocity.X = speed;
                 else
                     velocity.X = 0;
-
-                
-
-
                 this.Direction = Direction.Right;
                 this.Animate();
             }
-            else if (Keyboard.GetState().IsKeyDown(Left))
+
+            else if (Keyboard.GetState().IsKeyDown(Left) && !spawn)
             {
                 stop = false;
-                if (player == 1 || (player == 2 && this.position.X  > (Camera.center.X - Camera.viewport.Width / 2)))
+                if (player == 1 || (player == 2 && this.position.X > (Camera.center.X - Camera.viewport.Width / 2)))
                     velocity.X = -speed;
                 else
                     velocity.X = 0;
@@ -482,7 +508,7 @@ namespace GravityTutorial
             }
 
             //TIR
-            if (Keyboard.GetState().IsKeyDown(shootKey))
+            if (Keyboard.GetState().IsKeyDown(shootKey) && !spawn)
             {
                 Shoot();
                 if (hasJumped)
@@ -511,7 +537,7 @@ namespace GravityTutorial
             }
 
             //SAUT
-            if (Keyboard.GetState().IsKeyDown(jumpKey) && !hasJumped)
+            if (Keyboard.GetState().IsKeyDown(jumpKey) && !hasJumped && !spawn)
             {
                 jump = true;
                 position.Y -= 5f;
@@ -589,7 +615,7 @@ namespace GravityTutorial
         {
             Rectangle player_plus_1 = new Rectangle((int)position.X + (int)velocity.X, (int)position.Y + saut, player_Height, player_Width);
 
-
+            pull_position_X(obstacle);
             if (name == "Tile1" || name == "Tile2" || name == "Tile5" || name == "Tile6" || name == "Tile16")
             {
                 if (rectangle.isOnTopOf(obstacle))
@@ -657,6 +683,7 @@ namespace GravityTutorial
 
                 //COLISION
 
+                
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
                     if (!jump)

@@ -43,6 +43,7 @@ namespace GravityTutorial.InGame_Jeu
         public Rectangle rectangle;
         State3 state;
         public bool hasHit;
+        public bool hasHit2;
 
         //ATTRIBUTS
         public int life;
@@ -210,7 +211,10 @@ namespace GravityTutorial.InGame_Jeu
             {
                 state = State3.Taking;
                 updateHitbox(state);
-                hasHit = true;
+                if (player.player == 1)
+                    hasHit = true;
+                else if (player.player == 2)
+                    hasHit2 = true;
                 player.position.X = position.X;
                 this.frameCollumn = 1;
             }
