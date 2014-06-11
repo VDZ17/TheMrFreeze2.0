@@ -118,6 +118,7 @@
     <Compile Include="Bonus_fin\igloo.cs" />
     <Compile Include="Bonus_fin\Items.cs" />
     <Compile Include="InGame Hors jeu\Camera.cs" />
+    <Compile Include="InGame Hors jeu\Multi.cs" />
     <Compile Include="InGame Hors jeu\web.cs" />
     <Compile Include="InGame Jeu\Bullet.cs" />
     <Compile Include="InGame Jeu\Character.cs" />

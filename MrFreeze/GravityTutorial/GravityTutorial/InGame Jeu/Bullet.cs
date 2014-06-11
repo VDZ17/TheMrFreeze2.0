@@ -22,11 +22,11 @@ namespace GravityTutorial
         int Timer;
         int AnimationSpeed;
         int frameLine;
-        int frameCollumn;
+        public int frameCollumn;
         int nbr_sprite;
         int height = 55;
         int width = 62;
-        SpriteEffects effect_stable;
+        public SpriteEffects effect_stable;
 
         public Bullet(Texture2D newTexture, Vector2 newVelocity, SpriteEffects effect)
         {

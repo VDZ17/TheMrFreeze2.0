@@ -68,7 +68,7 @@ namespace GravityTutorial
                 Ennemies2.RemoveAt(i);
             for (int i = 0; i < Ennemies3.Count; i++)
                 Ennemies3.RemoveAt(i);
-
+            #region switch lvl
             switch (lvl)
             {
                 case 0:
@@ -227,11 +227,258 @@ namespace GravityTutorial
                 default:
                     break;
             }
+            #endregion
             //TODO
         }
 
+        //METHODS
+        public string LvlToStr(bool youlose, bool youwin)
+        {
+            string s = "";
+            #region character
+            foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/nbBonus/bonusvo/bonusvf+
+            {
+                
+                s += "H/";
+                s += h.player + "/";
+                s += (int)h.position.X + "/";
+                s += (int)h.position.Y + "/";
+
+                Color c = h.color;
+
+                if (c == Color.White)
+                {
+                    s += "w/";
+                }
+                else if (c == Color.Red)
+                {
+                    s += "r/";
+                }
+                else if (c == Color.Orange)
+                {
+                    s += "o/";
+                }
+                else if (c == Color.Yellow)
+                {
+                    s += "y/";
+                }
+                else if (c == Color.LimeGreen)
+                {
+                    s += "g/";
+                }
+                else if (c == Color.LightBlue)
+                {
+                    s += "b/";
+                }
+                else if (c == Color.Pink)
+                {
+                    s += "p/";
+                }
+                else
+                {
+                    s += "w/";
+                }
 
 
+                if (h.Direction == Direction.Left)
+                {
+                    s += "l/";
+                }
+                else
+                {
+                    s += "r/";
+                }
+
+
+                //TODO colonne/ligne
+
+                int nbBonus = 0;
+                Tuple<string, string> tuple = new Tuple<string, string>("", "");
+                switch (h.CurrentItem)
+                {
+                    case Item.Type.Invincibility:
+                        nbBonus = 5;
+                        tuple = Ressource.MenuString["Invincibilite"];
+                        break;
+                    case Item.Type.DoubleJump:
+                        nbBonus = 0;
+                        tuple = Ressource.MenuString["Double-saut"];
+                        break;
+                    case Item.Type.MoonJump:
+                        nbBonus = 1;
+                        tuple = Ressource.MenuString["Super saut"];
+                        break;
+                    case Item.Type.MultiShot:
+                        nbBonus = 2;
+                        tuple = Ressource.MenuString["Tir rafalle"];
+                        break;
+                    case Item.Type.SuperSpeed:
+                        nbBonus = 3;
+                        tuple = Ressource.MenuString["Super vitesse"];
+                        break;
+                    case Item.Type.SlowSpeed:
+                        nbBonus = 4;
+                        tuple = Ressource.MenuString["Ralentissement"];
+                        break;
+                    case Item.Type.ReverseDirection:
+                        nbBonus = 6;
+                        tuple = Ressource.MenuString["Direction inversee"];
+                        break;
+                    default:
+                        break;
+                }
+
+                s += nbBonus + "/" + tuple.Item1 + "/" + tuple.Item2 + "+";
+              
+
+                #region bullet
+                foreach (Bullet b in h.Bullets) //B/x/y/couleur/sens/colonne+
+                {
+                    s += "B/";
+
+                    s += (int)b.position.X + "/";
+                    s += (int)b.position.Y + "/";
+
+                    if (h.bulletColor == Color.White)
+                    {
+                        s += "w/";
+                    }
+                    else
+                    {
+                        s += "g/";
+                    }
+
+
+                    if (b.effect_stable == SpriteEffects.None)
+                    {
+                        s += "r/";
+                    }
+                    else
+                    {
+                        s += "l/";
+                    }
+
+                    s += b.frameCollumn + "+";
+                }
+                #endregion
+            }
+  #endregion
+
+            #region ennemi1
+            foreach (Ennemy1 e in Ennemies1) //E1/x/y/sens/colonne/ligne
+            {
+                s += "E1/";
+            }
+            #endregion
+            #region ennemi2
+            foreach (Ennemy2 e in Ennemies2) //E2/x/y/sens/colonne/ligne
+            {
+                s += "E2/";
+            }
+            #endregion
+            #region ennemi3
+            foreach (Ennemy1 e in Ennemies1) //E1/x/y/sens/colonne/ligne
+            {
+                s += "E1/";
+            }
+            #endregion
+
+            #region powerup
+            int j = 0;
+            foreach (Item i in Items) //I/i/hasbeentaken+
+            {
+                s += "I/" + j + "/";
+                j++;
+                if (i.hasBeenTaken)
+                {
+                    s += "0+";
+                }
+                else
+                {
+                    s += "1+";
+                }
+            }
+            #endregion
+            #region coins
+            j = 0;
+            foreach (Bonus b in Bonuses) //C/i/hasbeentaken+
+            {
+                s += "C/" + j + "/";
+               j++;
+                if (b.hasBeenTaken)
+                {
+                    s += "0+";
+                }
+                else
+                {
+                    s += "1+";
+                }
+            }
+            #endregion
+
+            #region hud 
+            //S/score/timer/vieJ1/vieJ2/youloose/youwin+
+            s += "S/" + Game1.score.score + "/" + Game1.score.timer+ "/" + Game1.score.rectangle_life.Width + "/" + Game1.score.rectangle_life2.Width + "/";
+            if (youlose)
+            {
+                s += "1/";
+            }
+            else
+            {
+                s += "0/";
+            }
+
+            if (youwin)
+            {
+                s += "1+";
+            }
+            else
+            {
+                s += "0+";
+            }
+            #endregion
+
+            //TODO plateforme mouvante/destructible
+            return s;
+        }
+        #region StrToLvl Helper
+        public List<string> Split(string s)
+        {
+            List<string> splitted = new List<string>();
+            string s2 = "";
+            for (int i = 0; i < s.Length; i++)
+            {
+                if (s[i] == '+')
+                {
+                    splitted.Add(s2);
+                    s2 = "";
+                }
+                else
+                {
+                    s2 += s[i];
+                }
+            }
+            return splitted;
+        }
+
+        public string ToNextSlash(string s, ref int i)
+        {
+            string s2 = "";
+            for (int j = i; j < s.Length; j++)
+            {
+                if (s[j] != '/')
+                {
+                    s2 += s[j];
+                }
+                else
+                {
+                    i = j;
+                    return s2;
+                }
+            }
+            return s2;
+        }
+        #endregion
 
         //UPDATE & DRAW
         public void Update(GameTime gameTime, SoundEffectInstance effect, Hud score)
@@ -570,7 +817,102 @@ namespace GravityTutorial
 
         }
 
+        public void Draw(SpriteBatch spriteBatch, string s)
+        {
+            #region base
+            map.Draw(spriteBatch);
 
+            foreach (Destroying_platform item in destroy_platform)
+            {
+                item.Draw(spriteBatch);
+            }
+
+            foreach (moving_platform item in moving_platform)
+            {
+                item.Draw(spriteBatch);
+            }
+            #endregion
+
+            List<string> splitted = Split(s);
+
+            foreach (string a in splitted)
+            {
+                #region Character
+                if (a[0] == 'H') //H/nbjoueur/x/y/couleur/sens/colonne/ligne/nbBonus/bonusvo/bonusvf+
+                {
+                    int i = 2;
+                    string b = ToNextSlash(a, ref i);
+                    int nbPlayer = Convert.ToInt32(b);
+                    int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                    b = ToNextSlash(a, ref i);
+
+                    Color color = Color.White;
+                    switch (b[0])
+                    {
+                        case 'r':
+                            color = Color.Red;
+                            break;
+                        case 'o':
+                            color = Color.Orange;
+                            break;
+                        case 'y':
+                            color = Color.Yellow;
+                            break;
+                        case 'g':
+                            color = Color.LimeGreen;
+                            break;
+                        case 'b':
+                            color = Color.LightBlue;
+                            break;
+                        case 'p':
+                            color = Color.Pink;
+                            break;
+                        default:
+                            break;
+                    }
+                    b = ToNextSlash(a, ref i);
+                    SpriteEffects effect = SpriteEffects.None;
+                    if (b[0] == 'l')
+                    {
+                        effect = SpriteEffects.FlipHorizontally;
+                    }
+
+                    //TODO Collumn/row
+
+                    int nbBonus = Convert.ToInt32(ToNextSlash(a, ref i));
+                    string BonusNameEn = ToNextSlash(a, ref i);
+                    string BonusNameFr = ToNextSlash(a, ref i);
+                }
+                #endregion
+                #region Bullet
+                //B/x/y/couleur/sens/colonne+
+                if (a[0] == 'B')
+                {
+                    int i = 2;
+                    int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                    Vector2 position = new Vector2(x, y);
+                    string b = ToNextSlash(a, ref i);
+                    Color color = Color.White;
+                    if (b[0] == 'g')
+                    {
+                        color = Color.Yellow;
+                    }
+                    b = ToNextSlash(a, ref i);
+                    SpriteEffects effect = SpriteEffects.None;
+                    if (b[0] == 'l')
+                    {
+                        effect = SpriteEffects.FlipHorizontally;
+                    }
+                    int collumn = Convert.ToInt32(ToNextSlash(a, ref i));
+                    Texture2D t = Ressource.Bullet;
+                    spriteBatch.Draw(t, new Rectangle((int)position.X, (int)position.Y, t.Width, t.Height), new Rectangle((collumn - 1) * t.Width, 0, t.Width, t.Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                }
+                #endregion
+            }
+        
+        }
     }
 
 }

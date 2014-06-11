@@ -33,7 +33,7 @@ namespace GravityTutorial
         int defaultNbBullet;
         int nbBullet;
         int timerBullet;
-        Color bulletColor;
+        public Color bulletColor;
 
 
         //HEALTH
@@ -61,11 +61,11 @@ namespace GravityTutorial
 
         //ANIMATION
         int frameCollumn;
-        SpriteEffects Effect;
-        Direction Direction;
+        public SpriteEffects Effect;
+        public Direction Direction;
         int Timer;
         int AnimationSpeed;
-        Color color;
+        public Color color;
 
         //BONUS
         public Item.Type CurrentItem;
