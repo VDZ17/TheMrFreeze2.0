@@ -38,7 +38,7 @@ namespace GravityTutorial
 
         public static Video vid;
 
-        public static bool[] parameter = new bool[4];
+        public static bool[] parameter = new bool[6];
 
         public enum inGameAction
         {
@@ -154,6 +154,7 @@ namespace GravityTutorial
             MenuString.Add("Musique", new Tuple<string, string>("Musique", "Music"));
             MenuString.Add("Par defaut", new Tuple<string, string>("Par defaut", "Default"));
             MenuString.Add("Coop", new Tuple<string, string>("Coop", "Coop"));
+            MenuString.Add("Changer niv.", new Tuple<string, string>("Changer niv.", "Lvl select"));
 
             MenuString.Add("Envoiscore", new Tuple<string, string>("Envoi score", "Send score"));
             MenuString.Add("Envoye", new Tuple<string, string>("Envoye !", "Sent !"));
@@ -186,6 +187,8 @@ namespace GravityTutorial
             parameter[1] = false; //Bruitages
             parameter[2] = false; //English version
             parameter[3] = true; //Coop
+            parameter[4] = false; //Serveur
+            parameter[5] = false; //Client
 
             //FONT
             Font = Content.Load<SpriteFont>(InGameFile + "Arial");

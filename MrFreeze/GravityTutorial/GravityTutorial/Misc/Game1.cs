@@ -137,9 +137,8 @@ namespace GravityTutorial
                 camera = new Camera(GraphicsDevice.Viewport);
                 vidRectangle = new Rectangle(GraphicsDevice.Viewport.X, GraphicsDevice.Viewport.Y,
                 GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
-                
             }
-            //if (Keyboard.GetState().IsKeyDown(Keys.Enter)) Exit();
+            
             if (exitgame)
                 this.Exit();
 
@@ -148,7 +147,7 @@ namespace GravityTutorial
                 reload = false;
                 if (Level != null)
                 {
-                    Level = new Level(Level.lvl);  
+                    Level = new Level(Level.lvl);
                 }
                 Hud.youlose = false;
                 Hud.youwin = false;

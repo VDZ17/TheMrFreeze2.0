@@ -18,6 +18,7 @@ namespace GravityTutorial
 
     public class Character
     {
+        #region Fields
         //VAR
         int nbr_sprite;
         public int player_Height;
@@ -81,13 +82,20 @@ namespace GravityTutorial
         Keys shootKey;
         Keys jumpKey;
 
+        //Key Multi
+        bool Kjump;
+        bool Kright;
+        bool Kleft;
+        bool Kshoot;
+
 
         public int player;
-
+        #endregion
 
 
         public Character(Texture2D newTexture, Vector2 newPosition, Keys left, Keys right, Keys jump, Keys shoot, int player)
         {
+            
             texture = newTexture;
 
             life_changment = 0;
@@ -132,6 +140,11 @@ namespace GravityTutorial
             this.jumpKey = jump;
 
             this.player = player;
+            Kjump = false;
+            Kright = false;
+            Kleft = false;
+            Kshoot = false;
+            
         }
 
         public void UpdateBullet()
@@ -329,21 +342,35 @@ namespace GravityTutorial
             rectangle.Height = player_Height;
         }
 
-        public void Update(GameTime gameTime, SoundEffectInstance effect)
+        public void Update(GameTime gameTime, SoundEffectInstance effect, string s = "")
         {
+            #region bool keyboard
+            Kjump = false;
+            Kright = false;
+            Kleft = false;
+            Kshoot = false;
+
+            if (Ressource.parameter[4] && s != "")
+            {
+                Level l = new Level(0);
+                bool[] k = l.StrToKeyboard(s);
+                //K/left/right/jump/shoot
+                if (k[0])
+                {
+                    Kleft = k[1];
+                    Kright = k[2];
+                    Kjump = k[3];
+                    Kshoot = k[4];
+                }
+
+            }
+            #endregion
+            #region definition
             particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
-            //DEFINITION
+            
             rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
-
-            //RESPAWN
-            if (Keyboard.GetState().IsKeyDown(Keys.R))
-            {
-                position = Vector2.One;
-                velocity.Y = 0;
-                spawn = true;
-            }
 
             position += velocity;
 
@@ -355,15 +382,15 @@ namespace GravityTutorial
             {
                 Animate();
             }
-            if (Keyboard.GetState().IsKeyUp(Right) && (Keyboard.GetState().IsKeyUp(Left)))
+            if ((Keyboard.GetState().IsKeyUp(Right) || (!Kright && Ressource.parameter[4])) && (Keyboard.GetState().IsKeyUp(Left) || (!Kleft && Ressource.parameter[4])))
             {
                 if (!spawn)
                     frameCollumn = 1;
                 stop = true;
                 Animate();
             }
-
-            //BONUS
+            #endregion
+            #region bonus
             if (CurrentItem != PreviousItem && CurrentItem != Item.Type.None)
             {
                 //Musiques invincible
@@ -476,9 +503,10 @@ namespace GravityTutorial
                 Left = defaultLeft;
                 Right = defaultRight;
             }
+            #endregion
 
-            // SET UP
-            if (Keyboard.GetState().IsKeyDown(Right) && !spawn)
+            #region set up
+            if ((Keyboard.GetState().IsKeyDown(Right) || Kright) && !spawn)
             {
                 stop = false;
 
@@ -490,7 +518,7 @@ namespace GravityTutorial
                 this.Animate();
             }
 
-            else if (Keyboard.GetState().IsKeyDown(Left) && !spawn)
+            else if ((Keyboard.GetState().IsKeyDown(Left) || Kleft) && !spawn)
             {
                 stop = false;
                 if (player == 1 || (player == 2 && this.position.X > (Camera.center.X - Camera.viewport.Width / 2)))
@@ -506,16 +534,17 @@ namespace GravityTutorial
                 stop = true;
                 velocity.X = 0f;
             }
+            #endregion
 
-            //PAUSE
+            #region pause
             if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Pause]))
             {
                 stop = true;
                 Game1.inGame = false;
             }
-
-            //TIR
-            if (Keyboard.GetState().IsKeyDown(shootKey) && !spawn)
+            #endregion
+            #region tir
+            if ((Keyboard.GetState().IsKeyDown(shootKey) || Kshoot) && !spawn)
             {
                 Shoot();
                 if (hasJumped)
@@ -542,9 +571,9 @@ namespace GravityTutorial
                     jump = false;
                 }
             }
-
-            //SAUT
-            if (Keyboard.GetState().IsKeyDown(jumpKey) && !hasJumped && !spawn)
+            #endregion
+            #region saut
+            if ((Keyboard.GetState().IsKeyDown(jumpKey) || Kjump) && !hasJumped && !spawn)
             {
                 //va sauter
                 if (!jump)
@@ -556,12 +585,12 @@ namespace GravityTutorial
                 hasJumped = true;
                 cooldownDoubleJump = true;
             }
-            if (Keyboard.GetState().IsKeyUp(jumpKey) && cooldownDoubleJump)
+            if ((Keyboard.GetState().IsKeyUp(jumpKey) || (!Kjump && Ressource.parameter[4])) && cooldownDoubleJump)
             {
                 cooldownDoubleJump = false;
             }
 
-            if (Keyboard.GetState().IsKeyDown(jumpKey) && hasJumped && !hasJumped2 && CurrentItem == Item.Type.DoubleJump && !cooldownDoubleJump)
+            if ((Keyboard.GetState().IsKeyDown(jumpKey) || Kjump) && hasJumped && !hasJumped2 && CurrentItem == Item.Type.DoubleJump && !cooldownDoubleJump)
             {
                 velocity.Y = -saut;
                 hasJumped2 = true;
@@ -569,9 +598,9 @@ namespace GravityTutorial
             float i = 1;
 
             velocity.Y += 0.15f * i;
+#endregion
 
-
-            //SWITCH POUR GERER EFFECT SUR LE SPRITE
+            #region effet sprite
             switch (this.Direction)
             {
                 case Direction.Right:
@@ -581,30 +610,21 @@ namespace GravityTutorial
                     this.Effect = SpriteEffects.FlipHorizontally;
                     break;
             }
-
-
-            //MUSIQUE
+            #endregion
+            #region musique
             if (Ressource.parameter[0] && MediaPlayer.State != MediaState.Playing)
             {
                 MediaPlayer.Play(Ressource.song);
                 MediaPlayer.Volume = 1;
             }
-
+            
 
             else if (Ressource.parameter[0] == false)
             {
                 MediaPlayer.Stop();
             }
-            if (Keyboard.GetState().IsKeyDown(Keys.Subtract))
-            {
-                life_changment += -1;
-            }
-            if (Keyboard.GetState().IsKeyDown(Keys.Add))
-            {
-                life_changment += 1;
-            }
-
-            //SORTIE ECRAN
+            #endregion
+            #region sortie écran
             if (position.Y > 1500)
             {
                 life_changment = -life;
@@ -619,6 +639,7 @@ namespace GravityTutorial
 
             sprite_update(spawn, attack, stop, jump);
             UpdateBullet();
+            #endregion
         }
 
         //COLLISION
@@ -641,7 +662,7 @@ namespace GravityTutorial
                     }
                     if (Ressource.parameter[1] && this.hasJumped == false)
                     {
-                        if (Keyboard.GetState().IsKeyDown(Left) || Keyboard.GetState().IsKeyDown(Right))
+                        if ((Keyboard.GetState().IsKeyDown(Left) || Kleft) || (Keyboard.GetState().IsKeyDown(Right) || Kright))
                         {
                             if (effect.State != SoundState.Playing)
                                 effect.Play();
@@ -661,12 +682,12 @@ namespace GravityTutorial
                         effect.Pause();
                     }
 
-                    if (Keyboard.GetState().IsKeyDown(Left) || Keyboard.GetState().IsKeyDown(Right))
+                    if ((Keyboard.GetState().IsKeyDown(Left) || Kleft) || (Keyboard.GetState().IsKeyDown(Right) || Kright))
                     {
                         if (jump)
                             jump = false;
 
-                        if (Keyboard.GetState().IsKeyDown(jumpKey))
+                        if ((Keyboard.GetState().IsKeyDown(jumpKey) || Kjump))
                         {
                             if (!jump)
                                 position.Y += -12;
@@ -683,7 +704,7 @@ namespace GravityTutorial
                     velocity.Y = 0;
                     hasDoubleJumped = false;
 
-                    if (Keyboard.GetState().IsKeyDown(jumpKey))
+                    if ((Keyboard.GetState().IsKeyDown(jumpKey) || Kjump))
                     {
                         effect.Pause();
                     }

@@ -481,13 +481,82 @@ namespace GravityTutorial
                 }
                 else
                 {
-                    i = j;
+                    i = j + 1;
                     return s2;
                 }
             }
             return s2;
         }
         #endregion
+
+        public string KeyboardToStr()
+        {
+            KeyboardState k = Keyboard.GetState();
+            string s = "";
+            //K/left/right/jump/shoot
+            s += "K/";
+
+            if (k.IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Left]))
+            {
+                s += "1/";
+            }
+            else
+            {
+                s += "0/";
+            }
+
+            if (k.IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Right]))
+            {
+                s += "1/";
+            }
+            else
+            {
+                s += "0/";
+            }
+
+            if (k.IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Jump]))
+            {
+                s += "1/";
+            }
+            else
+            {
+                s += "0/";
+            }
+
+            if (k.IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Shoot]))
+            {
+                s += "1+";
+            }
+            else
+            {
+                s += "0+";
+            }
+            return s;
+        }
+        public bool[] StrToKeyboard(string s)
+        {
+            bool[] k = new bool[5];
+
+            if (s[0] == 'K')
+            {
+                int i = 2;
+                int x = Convert.ToInt32(ToNextSlash(s, ref i));
+                int y = Convert.ToInt32(ToNextSlash(s, ref i));
+                int z = Convert.ToInt32(ToNextSlash(s, ref i));
+                int a = Convert.ToInt32(ToNextSlash(s, ref i));
+                k[0] = true;
+                k[1] = x == '1';
+                k[2] = y == '1';
+                k[3] = z == '1';
+                k[4] = a == '1';
+            }
+            else
+            {
+                k[0] = false;
+            }
+            return k;
+        
+        }
 
         //UPDATE & DRAW
         public void Update(GameTime gameTime, SoundEffectInstance effect, Hud score)
@@ -900,7 +969,7 @@ namespace GravityTutorial
 
                     spriteBatch.Draw(Ressource.Player_animation, new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height), 
                         new Rectangle((frameCollumn - 1) * player_Width, frameRow, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
-
+                    particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
 
                     if (nbPlayer == 1)
                     {
@@ -984,9 +1053,10 @@ namespace GravityTutorial
                     int y = Convert.ToInt32(ToNextSlash(a, ref i));
                     Bonuses[x].hasBeenTaken = (y == 1);
                 }
+
                 #endregion
                 #region hud
-                //S/score/timer/vieJ1/vieJ2/youloose/youwin+
+                //S/score/timer/vieJ1/vieJ2/youloose/youwin/ingame+
                 if (a[0] == 'S')
                 {
                     int i = 2;
@@ -996,24 +1066,23 @@ namespace GravityTutorial
                     int vieJ2 = Convert.ToInt32(ToNextSlash(a, ref i));
 
                     string b = ToNextSlash(a, ref i);
-                    bool youlose = false;
                     if (b[0] == '1')
                     {
-                        youlose = true;
+                        Game1.inGame = false;
+                        Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
                     }
 
                     b = ToNextSlash(a, ref i);
-                    bool youwon = false;
                     if (b[0] == '1')
                     {
-                        youwon = true;
+                        Game1.inGame = false;
+                        Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.win);
                     }
 
                     b = ToNextSlash(a, ref i);
-                    bool inGame = false;
-                    if (b[0] == '1')
+                    if (b[0] == '0')
                     {
-                        inGame = true;
+                        Game1.inGame = false;
                     }
 
                     Vector2 position_life = new Vector2(12, 70);
@@ -1030,9 +1099,22 @@ namespace GravityTutorial
                     spriteBatch.Draw(Ressource.healthbar, new Vector2(Ressource.screenWidth - 150 - 10, 70), rectangle_life2, Color.White);
                 }
                 #endregion
-
             }
-        
+
+            #region base2
+            foreach (Bonus gold in Bonuses)
+            {
+                gold.Draw(spriteBatch);
+            }
+
+            foreach (Item i in Items)
+            {
+                i.Draw(spriteBatch);
+            }
+            #endregion
+
+
+
         }
     }
 

@@ -143,7 +143,7 @@ namespace GravityTutorial
                         actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Quitter"], MenuType.close);
                         break;
                     }
-                case MenuType.play:
+                case MenuType.play: //useless
                     {
                         actualMenu = new Menu(type, 3, Ressource.BackgroundMenuMain);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), nbPlay);
@@ -199,7 +199,7 @@ namespace GravityTutorial
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Reprendre"], MenuType.unpause);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Changer niv."], MenuType.freeplay);
                         break;
                     }
                 case MenuType.freeplay:
@@ -237,7 +237,7 @@ namespace GravityTutorial
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Reprendre"], MenuType.unpause);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Changer niv."], MenuType.freeplay);
                         break;
                     }
                 case MenuType.unpause:
@@ -255,7 +255,7 @@ namespace GravityTutorial
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Reprendre"], MenuType.unpause);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Changer niv."], MenuType.freeplay);
                         break;
                     }
                 case MenuType.loose:
@@ -263,7 +263,7 @@ namespace GravityTutorial
                         actualMenu = new Menu(MenuType.loose, 2, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 5);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Accueil"], MenuType.welcome);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Changer niv."], MenuType.freeplay);
                         break;
                     }
                 case MenuType.win:
@@ -272,7 +272,7 @@ namespace GravityTutorial
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 4);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Recommencer"], MenuType.reloadlevel);
                         actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Envoiscore"], MenuType.sendhighscore);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Accueil"], MenuType.welcome);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Changer niv."], MenuType.freeplay);
                         break;
                     }
                 case MenuType.defaultcommandJ1:
