@@ -45,7 +45,7 @@ namespace GravityTutorial
         public Level(int lvl)
         {
             Web = new web();
-            string dir = (Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\level\\");
+            string dir = (Directory.GetCurrentDirectory() +"\\Content\\Levels\\");
             this.lvl = lvl;
             map = new Map();
 
