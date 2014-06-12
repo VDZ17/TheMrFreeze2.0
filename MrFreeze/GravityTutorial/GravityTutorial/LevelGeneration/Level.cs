@@ -88,6 +88,8 @@ namespace GravityTutorial
                             Heroes.Add(new Character(Ressource.Player_animation, new Vector2(130, 0),
                                 Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
                                 Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
+
+                        Console.WriteLine("count" + Heroes.Count);
                         break;
                     }
                 case 2:
@@ -236,7 +238,7 @@ namespace GravityTutorial
         {
             string s = "";
             #region character
-            foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/nbBonus/bonusvo/bonusvf+
+            foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/rectangle_width/rectangle_height/nbBonus/bonusvo/bonusvf+
             {
                 
                 s += "H/";
@@ -290,7 +292,8 @@ namespace GravityTutorial
                 }
 
 
-                s += h.frameCollumn + "/" + h.frameRow + "/" + h.player_Height + "/" + h.player_Width + "/";
+                s += h.frameCollumn + "/" + h.frameRow + "/" + h.player_Height + "/" + h.player_Width + "/" + h.rectangle.Width + "/" + h.rectangle.Height + "/";
+
 
                 int nbBonus = 0;
                 Tuple<string, string> tuple = new Tuple<string, string>("", "");
@@ -379,7 +382,7 @@ namespace GravityTutorial
             }
             #endregion
             #region ennemi2
-            foreach (Ennemy2 e in Ennemies2) //E1/x/y/height/width/colonne/ligne/sens
+            foreach (Ennemy2 e in Ennemies2) //E2/x/y/height/width/colonne/ligne/sens
             {
                 s += "E2/" + (int)e.position.X + "/" + (int)e.position.Y + "/" + e.height + "/" + e.width + "/" + e.frameCollumn + "/" + e.frameRow + "/" + e.fixYwidth + "/";
                 if (e.Effect == SpriteEffects.None)
@@ -393,7 +396,7 @@ namespace GravityTutorial
             }
             #endregion
             #region ennemi3
-            foreach (Ennemy1 e in Ennemies1) //E1/x/y/sens/colonne/ligne
+            foreach (Ennemy1 e in Ennemies1) //E3/x/y/sens/colonne/ligne
             {
                 s += "E3/" + (int)e.position.X + "/" + (int)e.position.Y + "/" + e.height + "/" + e.width + "/" + e.frameCollumn + "/" + e.frameRow + "/";
                 if (e.Effect == SpriteEffects.None)
@@ -499,13 +502,13 @@ namespace GravityTutorial
             string s2 = "";
             for (int j = i; j < s.Length; j++)
             {
-                if (s[j] != '/')
+                if (s[j] != '/' && s[j] != '+')
                 {
                     s2 += s[j];
                 }
                 else
                 {
-                    i = j + 1;
+                    i = j+1;
                     return s2;
                 }
             }
@@ -569,10 +572,10 @@ namespace GravityTutorial
                 int z = Convert.ToInt32(ToNextSlash(s, ref i));
                 int a = Convert.ToInt32(ToNextSlash(s, ref i));
                 k[0] = true;
-                k[1] = x == '1';
-                k[2] = y == '1';
-                k[3] = z == '1';
-                k[4] = a == '1';
+                k[1] = x == 1;
+                k[2] = y == 1;
+                k[3] = z == 1;
+                k[4] = a == 1;
             }
             else
             {
@@ -599,7 +602,7 @@ namespace GravityTutorial
                 if (c.player == 1 && updateHero)
                     c.Update(gameTime, effect);
                 else if (c.player == 2 && updateHero2)
-                    c.Update(gameTime, effect);
+                    c.Update(gameTime, effect, Ressource.keybord_multi_j2);
 
 
             }
@@ -940,7 +943,7 @@ namespace GravityTutorial
             foreach (string a in splitted)
             {
                 #region Character
-                if (a[0] == 'H') //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/nbBonus/bonusvo/bonusvf+
+                if (a[0] == 'H') //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/rectangle_width/rectangle_height/nbBonus/bonusvo/bonusvf+
                 {
                     int i = 2;
                     string b = ToNextSlash(a, ref i);
@@ -985,14 +988,19 @@ namespace GravityTutorial
                     int player_Height = Convert.ToInt32(ToNextSlash(a, ref i));
                     int player_Width = Convert.ToInt32(ToNextSlash(a, ref i));
 
+                    int rectangle_width = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int rectangle_height = Convert.ToInt32(ToNextSlash(a, ref i));
+
                     Vector2 position = new Vector2(x,y);
+                    Ressource.position_j2_multi = position;
 
                     int nbBonus = Convert.ToInt32(ToNextSlash(a, ref i));
                     string BonusNameEn = ToNextSlash(a, ref i);
                     string BonusNameFr = ToNextSlash(a, ref i);
 
-                    spriteBatch.Draw(Ressource.Player_animation, new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height), 
+                    spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), 
                         new Rectangle((frameCollumn - 1) * player_Width, frameRow, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+
                     particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
 
                     if (nbPlayer == 1)
@@ -1061,21 +1069,84 @@ namespace GravityTutorial
                     spriteBatch.Draw(t, new Rectangle((int)position.X, (int)position.Y, 55, 62), new Rectangle((collumn - 1) * 55, 0, 55, 62), color, 0f, new Vector2(0, 0), effect, 0f);
                 }
                 #endregion
-                //TODO Ennemis
+                #region Ennemis 
+                if (a[0] == 'E')
+                {
+                    if (a[1] == '1') //E1/x/y/height/width/colonne/ligne/sens
+                    {
+                        int i = 3;
+                        int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int height = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int width = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
+                        string b  = ToNextSlash(a, ref i);
+                        SpriteEffects effect = SpriteEffects.None;
+                        if (b[0] == 'l')
+                        {
+                            effect = SpriteEffects.FlipHorizontally;
+                        }
+                        spriteBatch.Draw(Ressource.Ennemy1, new Rectangle(x,y,width,height), new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
+                        
+                    }
+                    if (a[1] == '2') //E2/x/y/height/width/colonne/ligne/fixwidth/sens
+                    {
+                        int i = 3;
+                        int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int height = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int width = Convert.ToInt32(ToNextSlash(a, ref i));
+
+              
+
+                        int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int fixwidth = Convert.ToInt32(ToNextSlash(a, ref i));
+                        string b = ToNextSlash(a, ref i);
+                        SpriteEffects effect = SpriteEffects.None;
+                        if (b[0] == 'l')
+                        {
+                            effect = SpriteEffects.FlipHorizontally;
+                        }
+                        Rectangle r = new Rectangle(x,y+fixwidth,width,height);
+                        spriteBatch.Draw(Ressource.Ennemy2, r, new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0),effect, 0f);
+
+                    }
+                    if (a[1] == '3') //E3/x/y/height/width/colonne/ligne/sens
+                    {
+                        int i = 3;
+                        int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int height = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int width = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
+                        int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
+                        string b = ToNextSlash(a, ref i);
+                        SpriteEffects effect = SpriteEffects.None;
+                        if (b[0] == 'l')
+                        {
+                            effect = SpriteEffects.FlipHorizontally;
+                        }
+                        spriteBatch.Draw(Ressource.Ennemy3, new Rectangle(x, y+5, width, height), new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
+
+                    }
+                }
+                #endregion
                 #region powerup & coins
                 if (a[0] == 'I')
                 {
                     int i = 2;
                     int x = Convert.ToInt32(ToNextSlash(a, ref i));
                     int y = Convert.ToInt32(ToNextSlash(a, ref i));
-                    Items[x].hasBeenTaken = (y == 1);
+                    Items[x].hasBeenTaken = (y != 1);
                 }
                 if (a[0] == 'C')
                 {
                     int i = 2;
                     int x = Convert.ToInt32(ToNextSlash(a, ref i));
                     int y = Convert.ToInt32(ToNextSlash(a, ref i));
-                    Bonuses[x].hasBeenTaken = (y == 1);
+                    Bonuses[x].hasBeenTaken = (y != 1);
                 }
 
                 #endregion

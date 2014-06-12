@@ -208,7 +208,7 @@ namespace GravityTutorial
 
         void pull_position_X(Rectangle obstacle)
         {
-            if (player == 2)
+            if (player == 2 && !Ressource.parameter[4])
             {
                 //Left + telep
                 if (position.X <= Camera.center.X - Camera.viewport.Width / 2 && rectangle.isOnLeftOf(obstacle))
@@ -352,8 +352,8 @@ namespace GravityTutorial
 
             if (Ressource.parameter[4] && s != "")
             {
-                Level l = new Level(0);
-                bool[] k = l.StrToKeyboard(s);
+                
+                bool[] k = Game1.Level.StrToKeyboard(s);
                 //K/left/right/jump/shoot
                 if (k[0])
                 {
@@ -621,7 +621,7 @@ namespace GravityTutorial
                 MediaPlayer.Stop();
             }
             #endregion
-            #region sortie écran
+            #region tomber
             if (position.Y > 1500)
             {
                 life_changment = -life;
@@ -711,23 +711,19 @@ namespace GravityTutorial
                         position.Y = obstacle.Y - rectangle.Height;
                     else
                         rectangle.Y = obstacle.Y - rectangle.Height;
-                    Console.WriteLine("top" + player);
                 }
 
                 //COLISION
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
                     position.X = obstacle.X - rectangle.Width;
-                    Console.WriteLine("Left" + player);
                 }
                 else if (rectangle.isOnRightOf(obstacle))
                 {
                     position.X = obstacle.X + obstacle.Width;
-                    Console.WriteLine("Right" + player);
                 }
                 else if (player_plus_1.isOnBotOf(obstacle))
                 {
-                    Console.WriteLine("Bottom" + player);
                     if (velocity.Y < 0)
                         velocity.Y = -velocity.Y;
                     position.Y = obstacle.Bottom + velocity.Y;

@@ -11,7 +11,8 @@ using Microsoft.Xna.Framework.Media;
 using ProjectMercury;
 using ProjectMercury.Emitters;
 using ProjectMercury.Modifiers;
-using ProjectMercury.Renderers; 
+using ProjectMercury.Renderers;
+using Microsoft.Xna.Framework; 
 
 
 namespace GravityTutorial
@@ -38,6 +39,9 @@ namespace GravityTutorial
 
         public static Video vid;
 
+        public static string keybord_multi_j2;
+        public static string level_multi_j1;
+
         public static bool[] parameter = new bool[6];
 
         public enum inGameAction
@@ -59,10 +63,13 @@ namespace GravityTutorial
         public static int screenHeight, screenWidth;
 
         public static string pseudo;
-
+        public static Vector2 position_j2_multi;
 
         public static void LoadContent(ContentManager Content)
         {
+            keybord_multi_j2 = "";
+            level_multi_j1 = "";
+            position_j2_multi = Vector2.Zero;
             //FILES
             string MenuFile = "MenuRessources\\";
             //string TileFile = "TileRessources\\";

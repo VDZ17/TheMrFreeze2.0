@@ -24,7 +24,8 @@ namespace GravityTutorial
         public static GraphicsDeviceManager graphics_particle;
         public SpriteBatch spriteBatch;
         public GraphicsDeviceManager graphics;
-
+        public Server server;
+        public Client client;
 
         public int height_size;
         public int width_size;
@@ -50,6 +51,9 @@ namespace GravityTutorial
         public static Menu menu;
         public static bool inGame;
         public static bool reload;
+        public static bool reseau;
+        public bool cooldown_reseau;
+        int compteur;
 
         //CONSTRUCTOR
         public Game1()
@@ -73,7 +77,10 @@ namespace GravityTutorial
             menu = new Menu(Menu.MenuType.none, 0, Ressource.BackgroundMenuMain);
             inGame = false;
             reload = false;
-            
+
+            cooldown_reseau = false;
+            compteur = 0;
+            reseau = false;
             base.Initialize();
         }
 
@@ -83,6 +90,7 @@ namespace GravityTutorial
             spriteBatch = new SpriteBatch(GraphicsDevice);
             Ressource.LoadContent(Content);
 
+            
             particule.LoadContent(Content);
             score = new Hud(new TimeSpan(0, 0, 50), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
 
@@ -125,6 +133,18 @@ namespace GravityTutorial
 
         protected override void Update(GameTime gameTime)
         {
+            if (Ressource.parameter[5] && !reseau)
+            {
+                reseau = true;
+                client = new Client();
+                client.Connect("localhost", 4242, Ressource.pseudo);
+            }
+            if (Ressource.parameter[4] && !reseau)
+            {
+                server = new Server(4242);
+                reseau = true;
+                server.Run();
+            }
             bool sizeChanged = false;
             if (Ressource.screenWidth != GraphicsDevice.Viewport.Width || Ressource.screenHeight != GraphicsDevice.Viewport.Height)
             {
@@ -157,7 +177,23 @@ namespace GravityTutorial
 
             if (inGame)
             {
-                Level.Update(gameTime, Ressource.effect2, score);
+                
+                if (Ressource.parameter[5])
+                {
+                        compteur = 0;
+                        client.Write();
+                        client.Read();
+                }
+                if (Ressource.parameter[4])
+                {
+                    server.Chat();
+                }
+                
+                if (!Ressource.parameter[5])
+                {
+                    Level.Update(gameTime, Ressource.effect2, score);
+                }
+
                 if (Ressource.parameter[3])
                 {
                     score.Update(Level.Heroes[0], Level.Heroes[1]);
@@ -166,8 +202,15 @@ namespace GravityTutorial
                 {
                     score.Update(Level.Heroes[0]);
                 }
-                camera.update(Level.Heroes.ElementAt(0).position, Level.map.Width, Level.map.Height);
 
+                if (!Ressource.parameter[5])
+                {
+                    camera.update(Level.Heroes.ElementAt(0).position, Level.map.Width, Level.map.Height);
+                }
+                else
+                {
+                    camera.update(Ressource.position_j2_multi, Level.map.Width, Level.map.Height);
+                }
                 particule.Update(gameTime);
             }
             else
@@ -205,14 +248,24 @@ namespace GravityTutorial
                             BlendState.AlphaBlend,
                             null, null, null, null,
                             Camera.Transform);
-                    Level.Draw(spriteBatch);
+                    if (!Ressource.parameter[5])
+                    {
+                        Level.Draw(spriteBatch);
+                    }
+                    else
+                    {
+                        Level.Draw(spriteBatch, Ressource.level_multi_j1);
+                    }
                     spriteBatch.End();
 
                     particule.Draw();
 
                     // HUD
                     spriteBatch.Begin();
-                    score.Draw(spriteBatch);
+                    if (!Ressource.parameter[5])
+                    {
+                        score.Draw(spriteBatch);
+                    }
                     spriteBatch.End();
 
                 }

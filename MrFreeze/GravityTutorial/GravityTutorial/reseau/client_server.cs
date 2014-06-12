@@ -5,9 +5,9 @@ using System.Text;
 using System.IO;
 using System.Net.Sockets;
 
-namespace WindowsGame1
+namespace GravityTutorial
 {
-    class Client_server
+    public class Client_server
     {
         public String name { get; private set; }
         String host;

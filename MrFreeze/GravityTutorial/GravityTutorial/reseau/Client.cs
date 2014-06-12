@@ -6,12 +6,12 @@ using System.Net.Sockets;
 using System.IO;
 using System.Threading;
 
-namespace WindowsGame1
+namespace GravityTutorial
 {
-    class Client
+    public class Client
     {
         Socket server_socket;
-
+        
         StreamWriter servWriter;
         StreamReader servReader;
 
@@ -31,7 +31,7 @@ namespace WindowsGame1
             }
             catch (SocketException)
             {
-                Console.WriteLine("Connexion to server failed");
+                //Console.WriteLine("Connexion to server failed");
                 return;
             }
 
@@ -66,21 +66,21 @@ namespace WindowsGame1
             Close();
         }*/
 
-        private void Read()
+        public void Read()
         {
-            while (true)
-            {
-                if (server_socket.Poll(10, SelectMode.SelectRead))
-                    Console.WriteLine(servReader.ReadLine());
-            }
+            //while (true)
+            //{
+                if (server_socket.Poll(1, SelectMode.SelectRead))
+                    Ressource.level_multi_j1 = (servReader.ReadLine());
+            //}
         }
 
         public void Write()
         {
             //while (true)
             //{
-                Console.WriteLine("message");
-                servWriter.WriteLine();//TODO
+                //Console.WriteLine(Game1.Level.KeyboardToStr());
+                servWriter.WriteLine(Game1.Level.KeyboardToStr());
                 servWriter.Flush();
             //}
         }

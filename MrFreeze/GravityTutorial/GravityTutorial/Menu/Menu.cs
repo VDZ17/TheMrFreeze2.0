@@ -364,6 +364,18 @@ namespace GravityTutorial
                         actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Retour"], MenuType.welcome);
                         break;
                     }
+                case MenuType.host:
+                    {
+                        Ressource.parameter[4] = true;
+                        Ressource.parameter[5] = false;
+                        break;
+                    }
+                case MenuType.join:
+                    {
+                        Ressource.parameter[4] = false;
+                        Ressource.parameter[5] = true;
+                        break;
+                    }
                 default:
                     {
                         break;

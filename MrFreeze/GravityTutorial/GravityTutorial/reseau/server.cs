@@ -6,9 +6,9 @@ using System.Net.Sockets;
 using System.Net;
 using System.Threading;
 
-namespace WindowsGame1
+namespace GravityTutorial
 {
-    class Server
+    public class Server
     {
         public LinkedList<Client_server> clients;
         public Socket socket;
@@ -64,7 +64,7 @@ namespace WindowsGame1
                         if (client.sock.Poll(1000, SelectMode.SelectRead))
                         {
                             message = client.Receive();
-                            Console.WriteLine("Client receive :" + message);
+                            Ressource.keybord_multi_j2 = message;
                             if (message == null)
                             {
                                 Console.WriteLine("Client " + client.name + " disconnected");
@@ -72,10 +72,10 @@ namespace WindowsGame1
                                 //continue;
                             }
 
-                            Console.WriteLine(client.name + " : " + message);
+                            //Console.WriteLine(client.name + " : " + message);
 
                             foreach (Client_server sclient in clients)
-                                sclient.Send(client.name + ": " + message);
+                                sclient.Send(Game1.Level.LvlToStr(Hud.youlose, Hud.youwin));
                         }
                    // }
               }
