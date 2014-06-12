@@ -29,12 +29,13 @@ namespace GravityTutorial.InGame_Jeu
 
         //GRAPHICS
         int nbSprites;
-        int height;
-        int width;
+        public int height;
+        public int width;
 
 
         //ANIMATION
-        int frameCollumn;
+        public int frameRow;
+        public int frameCollumn;
         int Timer;
         int animationSpeed;
         SpriteEffects Effect;
@@ -229,11 +230,15 @@ namespace GravityTutorial.InGame_Jeu
             fixY.Y = this.rectangle.Y + 5;
 
             if (state == State3.Walking)
+            {
+                frameRow = 0;
                 spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-
+            }
             else if (state == State3.Taking)
+            {
+                frameRow = 77 + 1;
                 spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 77 + 1, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-
+            }
 
         }
 

@@ -29,15 +29,17 @@ namespace GravityTutorial.InGame_Jeu
 
         //GRAPHICS
         int nbSprites;
-        int height;
-        int width;
+        public int height;
+        public int width;
 
 
         //ANIMATION
-        int frameCollumn;
+        public int frameCollumn;
+        public int frameRow;
+        public int fixYwidth;
         int Timer;
         int animationSpeed;
-        SpriteEffects Effect;
+        public SpriteEffects Effect;
 
         //HITBOX
         public Rectangle rectangle;
@@ -261,10 +263,17 @@ namespace GravityTutorial.InGame_Jeu
             fixY.Y = this.rectangle.Y + 2;
 
             if (this.state == State2.Waiting)
+            {
+                frameRow = 0;
+                fixYwidth = 2;
                 spriteBatch.Draw(this.texture, fixY, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
             else if (this.state == State2.hitting)
+            {
+                frameRow = 45 + 79 - 3;
+                fixYwidth = 0;
                 spriteBatch.Draw(this.texture, this.rectangle, new Rectangle((this.frameCollumn - 1) * width, 45 + 79 - 3, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-
+            }
         }
 
     }

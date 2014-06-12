@@ -365,21 +365,45 @@ namespace GravityTutorial
   #endregion
 
             #region ennemi1
-            foreach (Ennemy1 e in Ennemies1) //E1/x/y/sens/colonne/ligne
+            foreach (Ennemy1 e in Ennemies1) //E1/x/y/height/width/colonne/ligne/sens
             {
-                s += "E1/";
+                s += "E1/" + (int)e.position.X + "/" + (int)e.position.Y + "/" + e.height + "/" + e.width + "/" + e.frameCollumn + "/" + e.frameRow + "/";
+                if (e.Effect == SpriteEffects.None)
+                {
+                    s += "r+";
+                }
+                else
+                {
+                    s += "l+";
+                }
             }
             #endregion
             #region ennemi2
-            foreach (Ennemy2 e in Ennemies2) //E2/x/y/sens/colonne/ligne
+            foreach (Ennemy2 e in Ennemies2) //E1/x/y/height/width/colonne/ligne/sens
             {
-                s += "E2/";
+                s += "E2/" + (int)e.position.X + "/" + (int)e.position.Y + "/" + e.height + "/" + e.width + "/" + e.frameCollumn + "/" + e.frameRow + "/" + e.fixYwidth + "/";
+                if (e.Effect == SpriteEffects.None)
+                {
+                    s += "r+";
+                }
+                else
+                {
+                    s += "l+";
+                }
             }
             #endregion
             #region ennemi3
             foreach (Ennemy1 e in Ennemies1) //E1/x/y/sens/colonne/ligne
             {
-                s += "E1/";
+                s += "E3/" + (int)e.position.X + "/" + (int)e.position.Y + "/" + e.height + "/" + e.width + "/" + e.frameCollumn + "/" + e.frameRow + "/";
+                if (e.Effect == SpriteEffects.None)
+                {
+                    s += "r+";
+                }
+                else
+                {
+                    s += "l+";
+                }
             }
             #endregion
 

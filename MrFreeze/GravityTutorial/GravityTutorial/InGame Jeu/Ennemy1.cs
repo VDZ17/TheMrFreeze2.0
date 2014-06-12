@@ -29,15 +29,16 @@ namespace GravityTutorial.InGame_Jeu
 
         //GRAPHICS
         int nbSprites;
-        int height;
+        public int height;
         int Timer;
-        int width;
+        public int width;
+        public int frameRow;
 
 
         //ANIMATION
-        int frameCollumn;
+        public int frameCollumn;
         int animationSpeed;
-        SpriteEffects Effect;
+        public SpriteEffects Effect;
 
         //HITBOX
         public Rectangle rectangle;
@@ -461,22 +462,46 @@ namespace GravityTutorial.InGame_Jeu
         public void Draw(SpriteBatch spriteBatch)
         {
             if (this.state == State1.Spawning)
+            {
+                frameRow = 0;
                 spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            else if (this.state == State1.Stop)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            else if (this.state == State1.Running)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            else if (this.state == State1.Bonus)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57 + 57 + 85 + 93, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            else if (this.state == State1.Rolling)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 489 - 53, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            else if (this.state == State1.Hitting)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57 + 57, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            else if (this.state == State1.Jumping)
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 489 - 53 - 76 - 93 - 3, width, height - 1), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
-            else
-                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
 
+            else if (this.state == State1.Stop)
+            {
+                frameRow = 64;
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (this.state == State1.Running)
+            {
+                frameRow = 64 + 57;
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (this.state == State1.Bonus)
+            {
+                frameRow = 64 + 57 + 57 + 85 + 93;
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57 + 57 + 85 + 93, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (this.state == State1.Rolling)
+            {
+                frameRow = 489 - 53;
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 489 - 53, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (this.state == State1.Hitting)
+            {
+                frameRow = 64 + 57 + 57;
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 64 + 57 + 57, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else if (this.state == State1.Jumping)
+            {
+                frameRow = 489 - 53 - 76 - 93 - 3;
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 489 - 53 - 76 - 93 - 3, width, height - 1), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
+            else
+            {
+                frameRow = 0;
+                spriteBatch.Draw(this.texture, rectangle, new Rectangle((this.frameCollumn - 1) * width, 0, width, height), Color.White, 0f, new Vector2(0, 0), this.Effect, 0f);
+            }
         }
     }
 

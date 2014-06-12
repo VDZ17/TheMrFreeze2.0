@@ -504,7 +504,6 @@ namespace GravityTutorial
                 Right = defaultRight;
             }
             #endregion
-
             #region set up
             if ((Keyboard.GetState().IsKeyDown(Right) || Kright) && !spawn)
             {
@@ -535,7 +534,6 @@ namespace GravityTutorial
                 velocity.X = 0f;
             }
             #endregion
-
             #region pause
             if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Pause]))
             {
@@ -599,7 +597,6 @@ namespace GravityTutorial
 
             velocity.Y += 0.15f * i;
 #endregion
-
             #region effet sprite
             switch (this.Direction)
             {
