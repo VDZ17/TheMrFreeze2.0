@@ -151,6 +151,9 @@
     <Compile Include="Misc\Ressource.cs" />
     <Compile Include="InGame Hors jeu\Score.cs" />
     <Compile Include="LevelGeneration\Tile.cs" />
+    <Compile Include="reseau\Client.cs" />
+    <Compile Include="reseau\client_server.cs" />
+    <Compile Include="reseau\server.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Misc\Game.ico" />
