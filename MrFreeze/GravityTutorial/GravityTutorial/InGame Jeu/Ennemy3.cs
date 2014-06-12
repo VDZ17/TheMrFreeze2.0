@@ -63,7 +63,10 @@ namespace GravityTutorial.InGame_Jeu
             this.Timer = 0;
             this.animationSpeed = 5;
             this.hasHit = false;
-            this.life = 30;
+            if (Ressource.parameter[3])
+                this.life = 60;
+            else
+                this.life = 30;
         }
 
 

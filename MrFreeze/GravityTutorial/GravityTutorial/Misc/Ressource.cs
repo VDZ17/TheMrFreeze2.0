@@ -24,6 +24,7 @@ namespace GravityTutorial
             Gold, Items, Loser, igloo, healthbar, fondHealthbar, Bullet, moving_plateform, fissure, complet;
 
         public static Texture2D Ennemy3, Ennemy2, Ennemy1;
+        public static Texture2D Cursor1, Cursor2;
 
         public static ParticleEffect
             BasicExplosion, Basicfireball, BasicSmokePlume, BeamMeUp, CampFire, FlowerBloom, MagicTrail, Paparazzi, SimpleRain, StarTrail, WaterJet, snow, Goldparticle;
@@ -90,6 +91,10 @@ namespace GravityTutorial
             Ennemy3 = Content.Load<Texture2D>(EnnemiesFile + "Ennemy3");
             Ennemy2 = Content.Load<Texture2D>(EnnemiesFile + "Ennemy2-2");
             Ennemy1 = Content.Load<Texture2D>(EnnemiesFile + "Ennemy1");
+
+            // CURSORS
+            Cursor1 = Content.Load<Texture2D>(CharacterFile + "curseur1-2");
+            Cursor2 = Content.Load<Texture2D>(CharacterFile + "curseur2-2");
 
 
             //GAME

@@ -21,10 +21,10 @@ namespace GravityTutorial
         }
         public static bool isOnBotOf(this Rectangle r1, Rectangle r2)
         {
-            return (r1.Top <= r2.Bottom + (r2.Height / 5) &&
-                r1.Bottom > r2.Bottom &&
-                r1.Right >= r2.Left + (r2.Width / 10) &&
-                r1.Left <= r2.Right - (r2.Width / 10));
+            return (r1.Top <= r2.Bottom &&
+                r1.Bottom > r2.Bottom + 5 &&
+                r1.Right > r2.Left + 5 &&
+                r1.Left < r2.Right);
         }
         public static bool isOnLeftOf(this Rectangle r1, Rectangle r2)
         {
@@ -32,8 +32,6 @@ namespace GravityTutorial
                 r1.Right >= r2.Left &&
                 r1.Top < r2.Bottom - (r2.Width / 4) &&
                 r1.Bottom > r2.Top + (r2.Height / 4));
-                //r1.Top >= r2.Top &&
-                //r1.Bottom <= r2.Bottom);
         }
         public static bool isOnRightOf(this Rectangle r1, Rectangle r2)
         {
@@ -41,8 +39,6 @@ namespace GravityTutorial
                 r1.Left <= r2.Right &&
                 r1.Top < r2.Bottom - (r2.Width / 4) &&
                 r1.Bottom > r2.Top + (r2.Height / 4));
-                //r1.Top >= r2.Top &&
-                //r1.Bottom <= r2.Bottom);
         }
     }
 }

@@ -259,19 +259,21 @@ namespace GravityTutorial
                         }
 
                         spriteBatch.Draw(texture_life, position_life, rectangle_life, Color.White);
+                        spriteBatch.Draw(Ressource.Cursor1, new Rectangle(12 + 150 + 30, 70 - 5, 25, 43), Color.White);
                     }
                     else
                     {
                         spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(Ressource.screenWidth - 150 - 10 - 2, 70 - 2), Color.White);
-                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(Ressource.screenWidth - 400 -10, 10, 400, 50), Color.White);
+                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(Ressource.screenWidth - 400 - 10, 10, 400, 50), Color.White);
                         if (typeBonus2 != Item.Type.None)
                         {
                             Item i = new Item(new Vector2(Ressource.screenWidth - 410, 10), Ressource.Items, typeBonus2, nbBonus2);
                             i.Draw(spriteBatch);
-                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus2, new Vector2(Ressource.screenWidth -400 -10 + 65, 15), Color.White);
+                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus2, new Vector2(Ressource.screenWidth - 400 - 10 + 65, 15), Color.White);
                         }
 
                         spriteBatch.Draw(texture_life, new Vector2(Ressource.screenWidth - 150 - 10, 70), rectangle_life2, Color.White);
+                        spriteBatch.Draw(Ressource.Cursor2, new Rectangle(Ressource.screenWidth - 150 - 10 - 30 - 25, 70 - 5, 25, 43), Color.White);
                     }
                 }
             }

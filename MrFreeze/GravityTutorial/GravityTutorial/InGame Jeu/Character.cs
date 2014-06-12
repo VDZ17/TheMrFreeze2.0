@@ -37,7 +37,6 @@ namespace GravityTutorial
 
 
         //HEALTH
-        health health;
         public int life_changment;
         public bool isDead;
 
@@ -211,15 +210,15 @@ namespace GravityTutorial
                     position.X = Camera.center.X - Camera.viewport.Width / 2;
 
                 //Right+ telep
-                 if (position.X + player_Width >= Camera.center.X + Camera.viewport.Width / 2 && rectangle.isOnRightOf(obstacle))
-                 {
-                     position.X = Level.Heroes[0].position.X;
-                     position.Y = Level.Heroes[0].position.Y;
-                     rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
-                     spawn = true;
-                 }
+                if (position.X + player_Width >= Camera.center.X + Camera.viewport.Width / 2 && rectangle.isOnRightOf(obstacle))
+                {
+                    position.X = Level.Heroes[0].position.X;
+                    position.Y = Level.Heroes[0].position.Y;
+                    rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
+                    spawn = true;
+                }
                 //Right
-                 else if (position.X + player_Width > Camera.center.X + Camera.viewport.Width / 2)
+                else if (position.X + player_Width > Camera.center.X + Camera.viewport.Width / 2)
                     position.X = Camera.center.X + Camera.viewport.Width / 2 - player_Width;
 
             }
@@ -228,7 +227,7 @@ namespace GravityTutorial
         public void Animate()
         {
             this.Timer++;
-            if (this.Timer == this.AnimationSpeed)
+            if (this.Timer >= this.AnimationSpeed)
             {
                 this.Timer = 0;
                 #region spawning
@@ -244,6 +243,11 @@ namespace GravityTutorial
                     }
                 }
                 #endregion
+                else if (jump)
+                {
+                    if (frameCollumn < 10)
+                        frameCollumn++;
+                }
                 else
                 {
                     this.frameCollumn++;
@@ -292,14 +296,14 @@ namespace GravityTutorial
                         nbr_sprite = 19;
                         player_Height = 55;
                         player_Width = 33;
-                        AnimationSpeed = 3;
+                        AnimationSpeed = 4;
 
                         if (attack)
                         {
                             nbr_sprite = 19;
                             player_Height = 55;
                             player_Width = 42;
-                            AnimationSpeed = 3;
+                            AnimationSpeed = 4;
                         }
                     }
                     else
@@ -353,6 +357,8 @@ namespace GravityTutorial
             }
             if (Keyboard.GetState().IsKeyUp(Right) && (Keyboard.GetState().IsKeyUp(Left)))
             {
+                if (!spawn)
+                    frameCollumn = 1;
                 stop = true;
                 Animate();
             }
@@ -540,6 +546,10 @@ namespace GravityTutorial
             //SAUT
             if (Keyboard.GetState().IsKeyDown(jumpKey) && !hasJumped && !spawn)
             {
+                //va sauter
+                if (!jump)
+                    frameCollumn = 1;
+
                 jump = true;
                 position.Y -= 5f;
                 velocity.Y = -saut;
@@ -687,27 +697,6 @@ namespace GravityTutorial
                 }
 
                 //COLISION
-
-                
-                //else if (rectangle.isOnLeftOf(obstacle))
-                //{
-                //    if (!jump)
-                //        position.X = obstacle.X - rectangle.Width;
-                //}
-                //else if (rectangle.isOnRightOf(obstacle))
-                //{
-                //    if (!jump)
-                //        position.X = obstacle.X + obstacle.Width;
-                //}
-                //else if (player_plus_1.isOnBotOf(obstacle))
-                //{
-                //    if (velocity.Y < 0)
-                //    {
-                //        velocity.Y = -velocity.Y;
-                //    }
-                //    position.Y = obstacle.Bottom + velocity.Y;
-                //}
-
                 else if (rectangle.isOnLeftOf(obstacle))
                 {
                     position.X = obstacle.X - rectangle.Width;
@@ -794,6 +783,16 @@ namespace GravityTutorial
             foreach (Bullet bullet in Bullets)
             {
                 bullet.Draw(spriteBatch, bulletColor);
+            }
+
+            if (Ressource.parameter[3])
+            {
+                if (player == 1)
+                    spriteBatch.Draw(Ressource.Cursor1, new Rectangle((int)position.X + player_Width / 4,
+                        (int)position.Y - 43 - 15, 25, 43), Color.White);
+                else if (player == 2)
+                    spriteBatch.Draw(Ressource.Cursor2, new Rectangle((int)position.X + player_Width / 4,
+                        (int)position.Y - 43 - 15, 25, 43), Color.White);
             }
 
         }
