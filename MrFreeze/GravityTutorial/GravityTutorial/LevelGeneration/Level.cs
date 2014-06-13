@@ -89,7 +89,7 @@ namespace GravityTutorial
                                 Ressource.KeyJ2[Ressource.inGameAction.Left], Ressource.KeyJ2[Ressource.inGameAction.Right],
                                 Ressource.KeyJ2[Ressource.inGameAction.Jump], Ressource.KeyJ2[Ressource.inGameAction.Shoot], 2));
 
-                        Console.WriteLine("count" + Heroes.Count);
+                        //Console.WriteLine("count" + Heroes.Count);
                         break;
                     }
                 case 2:
@@ -238,7 +238,7 @@ namespace GravityTutorial
         {
             string s = "";
             #region character
-            foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/rectangle_width/rectangle_height/nbBonus/bonusvo/bonusvf+
+            foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/rectangle_width/rectangle_height/nbBonus/bonusvo/bonusvf/stop/attack/spawn/jump+
             {
                 
                 s += "H/";
@@ -295,7 +295,7 @@ namespace GravityTutorial
                 s += h.frameCollumn + "/" + h.frameRow + "/" + h.player_Height + "/" + h.player_Width + "/" + h.rectangle.Width + "/" + h.rectangle.Height + "/";
 
 
-                int nbBonus = 0;
+                int nbBonus = -1;
                 Tuple<string, string> tuple = new Tuple<string, string>("", "");
                 switch (h.CurrentItem)
                 {
@@ -328,10 +328,11 @@ namespace GravityTutorial
                         tuple = Ressource.MenuString["Direction inversee"];
                         break;
                     default:
+                        nbBonus = -1;
                         break;
                 }
 
-                s += nbBonus + "/" + tuple.Item1 + "/" + tuple.Item2 + "+";
+                s += nbBonus + "/" + tuple.Item1 + "/" + tuple.Item2 + "/" + h.stop + "/" + h.attack + "/" + h.spawn + "/" + h.jump + "+";
               
 
                 #region bullet
@@ -476,6 +477,7 @@ namespace GravityTutorial
             //TODO plateforme mouvante/destructible
             return s;
         }
+
         #region StrToLvl Helper
         public List<string> Split(string s)
         {
@@ -955,7 +957,7 @@ namespace GravityTutorial
             foreach (string a in splitted)
             {
                 #region Character
-                if (a[0] == 'H') //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/rectangle_width/rectangle_height/nbBonus/bonusvo/bonusvf+
+                if (a[0] == 'H') //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/rectangle_width/rectangle_height/nbBonus/bonusvo/bonusvf/stop/attack/spawn/jump+
                 {
                     int i = 2;
                     string b = ToNextSlash(a, ref i);
@@ -996,6 +998,10 @@ namespace GravityTutorial
                     }
 
                     int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
+
+                    
+                    //Console.WriteLine(frameCollumn);
+
                     int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
                     int player_Height = Convert.ToInt32(ToNextSlash(a, ref i));
                     int player_Width = Convert.ToInt32(ToNextSlash(a, ref i));
@@ -1010,14 +1016,70 @@ namespace GravityTutorial
                     string BonusNameEn = ToNextSlash(a, ref i);
                     string BonusNameFr = ToNextSlash(a, ref i);
 
-                    spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), 
-                        new Rectangle((frameCollumn - 1) * player_Width, frameRow, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                    bool stop = Convert.ToBoolean(ToNextSlash(a, ref i));
+                    bool attack = Convert.ToBoolean(ToNextSlash(a, ref i));
+                    bool spawn = Convert.ToBoolean(ToNextSlash(a, ref i));
+                    bool jump = Convert.ToBoolean(ToNextSlash(a, ref i));
 
+                    #region draw_multi
+                    /*if (spawn)
+                    {
+                        frameRow = 0;
+                        spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), new Rectangle((frameCollumn - 1) * player_Width, 0, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                    }
+                    else if (stop)
+                    {
+                        if (attack)
+                        {
+                            player_Height = 43;
+                            player_Width = 51;
+                            frameRow = 64 + 41 + 43;
+                            spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), new Rectangle(player_Width, 64 + 41 + 43, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                        }
+                        else
+                        {
+                            player_Height = 41;
+                            player_Width = 32;
+                            frameRow = 64;
+                            spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), new Rectangle((frameCollumn - 1) * player_Width, 64, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                        }
+                    }
+                    else if (jump)
+                    {
+
+                        if (attack)
+                        {
+                            frameRow = 64 + 41 + 43 + 43 + 55;
+                            spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), new Rectangle((frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 55, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                        }
+                        else
+                        {
+                            frameRow = 64 + 41 + 43 + 43 + 1;
+                            spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), new Rectangle((frameCollumn - 1) * player_Width, 64 + 41 + 43 + 43 + 1, player_Width, player_Height - 1), color, 0f, new Vector2(0, 0), effect, 0f);
+                        }
+                    }
+                    else
+                    {
+                        if (attack)
+                        {
+                            frameRow = 64 + 41 + 43;
+                            spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), new Rectangle((frameCollumn - 1) * player_Width, 64 + 41 + 43, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                        }
+                        else
+                        {
+                            frameRow = 64 + 41;
+                            spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height), new Rectangle((frameCollumn - 1) * player_Width, 64 + 41, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                        }
+                    }*/
+                    #endregion
+
+                    spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height),
+                        new Rectangle((frameCollumn - 1) * player_Width, frameRow, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
                     particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
 
                     if (nbPlayer == 1)
                     {
-                        if (nbBonus != 0)
+                        if (nbBonus != -1)
                         {
                             string nomBonus = "";
                             if (Ressource.parameter[2])
@@ -1035,7 +1097,7 @@ namespace GravityTutorial
                     }
                     else
                     {
-                        if (nbBonus != 0)
+                        if (nbBonus != -1)
                         {
                             string nomBonus = "";
                             if (Ressource.parameter[2])

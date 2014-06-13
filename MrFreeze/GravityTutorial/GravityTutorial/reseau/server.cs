@@ -101,7 +101,7 @@ namespace GravityTutorial
                                     sclient.Send(Ressource.messageJ1);
                                     if (Ressource.messageJ1 != "")
                                     {
-                                        Console.WriteLine(Ressource.messageJ1);
+                                        //Console.WriteLine(Ressource.messageJ1);
                                         
                                     }
                                 }

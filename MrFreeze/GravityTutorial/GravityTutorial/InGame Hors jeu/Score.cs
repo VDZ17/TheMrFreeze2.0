@@ -127,9 +127,8 @@ namespace GravityTutorial
                         nbBonus2 = 6;
                         tuple2 = Ressource.MenuString["Direction inversee"];
                         break;
-                    case Item.Type.None:
-                        break;
                     default:
+                        nbBonus2 = -1;
                         break;
 
 
@@ -221,9 +220,8 @@ namespace GravityTutorial
                         nbBonus = 6;
                         tuple = Ressource.MenuString["Direction inversee"];
                         break;
-                    case Item.Type.None:
-                        break;
                     default:
+                        nbBonus = -1;
                         break;
                 }
                 if (!Ressource.parameter[2])
@@ -247,11 +245,15 @@ namespace GravityTutorial
                 {
                     if (c.player == 1)
                     {
+                        if (typeBonus == Item.Type.None)
+                        {
+                            nbBonus = -1;
+                        }
                         spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + this.score, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Score : " + this.score).Length() / 2, 40), Color.White);
                         spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + this.timer, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Timer : " + this.timer).Length() / 2, 5), Color.White);
                         spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
                         spriteBatch.Draw(Ressource.FondBonus, new Rectangle(10, 10, 400, 50), Color.White);
-                        if (typeBonus != Item.Type.None)
+                        if (nbBonus != -1)
                         {
                             Item i = new Item(new Vector2(10, 10), Ressource.Items, typeBonus, nbBonus);
                             i.Draw(spriteBatch);
@@ -263,10 +265,15 @@ namespace GravityTutorial
                     }
                     else
                     {
+                        if (typeBonus2 == Item.Type.None)
+                        {
+                            nbBonus2 = -1;
+                        }
                         spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(Ressource.screenWidth - 150 - 10 - 2, 70 - 2), Color.White);
                         spriteBatch.Draw(Ressource.FondBonus, new Rectangle(Ressource.screenWidth - 400 - 10, 10, 400, 50), Color.White);
-                        if (typeBonus2 != Item.Type.None)
+                        if (nbBonus2 != -1)
                         {
+
                             Item i = new Item(new Vector2(Ressource.screenWidth - 410, 10), Ressource.Items, typeBonus2, nbBonus2);
                             i.Draw(spriteBatch);
                             spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus2, new Vector2(Ressource.screenWidth - 400 - 10 + 65, 15), Color.White);

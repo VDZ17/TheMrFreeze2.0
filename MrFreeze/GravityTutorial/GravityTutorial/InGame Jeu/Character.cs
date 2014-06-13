@@ -23,10 +23,12 @@ namespace GravityTutorial
         int nbr_sprite;
         public int player_Height;
         public int player_Width;
-        bool spawn;
-        bool jump;
-        bool stop;
-        bool attack;
+
+        public bool spawn;
+        public bool jump;
+        public bool stop;
+        public bool attack;
+
         public int life;
 
         //BULLETS
@@ -258,8 +260,15 @@ namespace GravityTutorial
                 #endregion
                 else if (jump)
                 {
-                    if (frameCollumn < 10)
-                        frameCollumn++;
+                    if (stop)
+                    {
+
+                    }
+                    else
+                    {
+                        if (frameCollumn < 10)
+                            frameCollumn++;
+                    }
                 }
                 else
                 {
@@ -344,6 +353,10 @@ namespace GravityTutorial
 
         public void Update(GameTime gameTime, SoundEffectInstance effect, string s = "")
         {
+            if (player == 2)
+            {
+                Console.WriteLine(frameCollumn);
+            }
             #region bool keyboard
             Kjump = false;
             Kright = false;
@@ -384,7 +397,7 @@ namespace GravityTutorial
             }
             if ((Keyboard.GetState().IsKeyUp(Right) || (!Kright && Ressource.parameter[4])) && (Keyboard.GetState().IsKeyUp(Left) || (!Kleft && Ressource.parameter[4])))
             {
-                if (!spawn)
+                if (!spawn && (!Ressource.parameter[4] && !Ressource.parameter[5]))
                     frameCollumn = 1;
                 stop = true;
                 Animate();
@@ -575,7 +588,7 @@ namespace GravityTutorial
             if ((Keyboard.GetState().IsKeyDown(jumpKey) || Kjump) && !hasJumped && !spawn)
             {
                 //va sauter
-                if (!jump)
+                if (!jump && (!Ressource.parameter[4] && !Ressource.parameter[5]))
                     frameCollumn = 1;
 
                 jump = true;
