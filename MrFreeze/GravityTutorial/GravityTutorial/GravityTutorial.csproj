@@ -134,11 +134,12 @@
     <Compile Include="LevelGeneration\moving_platform.cs" />
     <Compile Include="Menu\Button.cs" />
     <Compile Include="Menu\ControleButton.cs" />
+    <Compile Include="Menu\SetPseudo.cs" />
     <Compile Include="Menu\LevelButton.cs" />
     <Compile Include="Menu\Menu.cs" />
     <Compile Include="Menu\MenuButton.cs" />
     <Compile Include="Menu\MenuTitle.cs" />
-    <Compile Include="Menu\Pseudo.cs" />
+    <Compile Include="Menu\SetIp.cs" />
     <Compile Include="Menu\SwitchButton.cs" />
     <Compile Include="Bonus_fin\gold.cs" />
     <Compile Include="particules\particule.cs" />

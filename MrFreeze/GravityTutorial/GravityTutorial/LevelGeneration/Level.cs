@@ -230,6 +230,10 @@ namespace GravityTutorial
                     break;
             }
             #endregion
+            if (Ressource.parameter[5])
+            {
+                Heroes = new List<Character>();
+            }
             //TODO
         }
 

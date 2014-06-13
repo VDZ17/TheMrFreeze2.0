@@ -47,8 +47,24 @@ namespace GravityTutorial
                 myClient.Send("Welcome");
 
                 clients.AddLast(myClient);
+                Ressource.serverCount += 1;
                 Console.WriteLine("Connexion from " + myClient.name);
             //}
+        }
+
+        public static void getIp()
+        {
+            IPHostEntry host;
+            string localIP = "?";
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily.ToString() == "InterNetwork")
+                {
+                    localIP = ip.ToString();
+                }
+            }
+            Ressource.ipJ1 = localIP;
         }
 
         public void Chat()
@@ -75,7 +91,19 @@ namespace GravityTutorial
                             //Console.WriteLine(client.name + " : " + message);
 
                             foreach (Client_server sclient in clients)
-                                sclient.Send(Game1.Level.LvlToStr(Hud.youlose, Hud.youwin));
+                            {
+                                if (Game1.inGame)
+                                {
+                                    sclient.Send(Game1.Level.LvlToStr(Hud.youlose, Hud.youwin));
+                                }
+                                else
+                                {
+                                    sclient.Send(Ressource.messageJ1toJ2);
+                                    if(Ressource.messageJ1toJ2 != "")
+                                        Console.WriteLine(Ressource.messageJ1toJ2);
+                                }
+                            }
+                                
                         }
                    // }
               }

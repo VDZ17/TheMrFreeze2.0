@@ -33,6 +33,8 @@ namespace GravityTutorial
         int nbPseudo;
         public Pseudo[] Pseudo;
 
+        public SetIp setIp;
+
         public bool cooldown;
 
         public enum MenuType
@@ -58,14 +60,14 @@ namespace GravityTutorial
             sendhighscore,
             multi,
             host,
+            ipjoin,
             join,
-            multiplay1,
-            multiplay2,
+            coop,
             multipause,
         }
 
         //CONSTRUCTOR
-        public Menu(MenuType type, int nbButton, Texture2D background, int nbSwitchButton = 0, int nbControleButton = 0, int nbLevelButton = 0, int nbPseudo = 0)
+        public Menu(MenuType type, int nbButton, Texture2D background, int nbSwitchButton = 0, int nbControleButton = 0, int nbLevelButton = 0, int nbPseudo = 0, int XposSetIp = 0, int YposSetIP = 0)
         {
             this.nbButton = nbButton;
             Buttons = new MenuButton[nbButton];
@@ -87,6 +89,12 @@ namespace GravityTutorial
 
             this.nbPseudo = nbPseudo;
             Pseudo = new Pseudo[nbPseudo];
+
+            if (actualType == MenuType.ipjoin)
+	        {
+                 this.setIp = new SetIp(new Vector2(XposSetIp, YposSetIP));
+	        }
+            
         }
         //METHODS
         public Menu ChangeMenu(MenuType type)
@@ -122,6 +130,7 @@ namespace GravityTutorial
                 nbPlay = 6;
             }
 
+            #region Switch Menu
             switch (type)
             {
                 case MenuType.none:
@@ -135,6 +144,9 @@ namespace GravityTutorial
                 case MenuType.welcome:
                     {
                         Game1.reload = true;
+                        Ressource.parameter[3] = false;
+                        Ressource.parameter[4] = false;
+                        Ressource.parameter[5] = false;
                         actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 0);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Jouer"], MenuType.freeplay);
@@ -154,16 +166,16 @@ namespace GravityTutorial
                     }
                 case MenuType.option:
                     {
-                        actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain, 4);
+                        actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain, 3);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
                         actualMenu.SButtons[0] = new SwitchButton(new Vector2(Xbutton0, Ybutton0), Ressource.MenuString["Musique"], 0);
                         actualMenu.SButtons[1] = new SwitchButton(new Vector2(Xbutton0, Ybutton1), Ressource.MenuString["Bruitages"], 1);
-                        actualMenu.SButtons[2] = new SwitchButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Anglais"], 2);
+                        actualMenu.SButtons[2] = new SwitchButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Anglais"], 2);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton1, Ybutton1), Ressource.MenuString["Touches J1"], MenuType.setcontroleJ1);
-                        actualMenu.SButtons[3] = new SwitchButton(new Vector2(Xbutton0, Ybutton2), Ressource.MenuString["Coop"], 3);
+                        
                         actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Touches J2"], MenuType.setcontroleJ2);
-                        actualMenu.Buttons[3] = new MenuButton(new Vector2(Xbutton0, Ybutton3), Ressource.MenuString["Pseudo"], MenuType.setpseudo);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton1, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
+                        actualMenu.Buttons[3] = new MenuButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Pseudo"], MenuType.setpseudo);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         break;
                     }
                 case MenuType.setcontroleJ1:
@@ -357,23 +369,54 @@ namespace GravityTutorial
                     }
                 case MenuType.multi:
                     {
-                        actualMenu = new Menu(type, 3, Ressource.BackgroundMenuMain);
+                        actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Heberger"], MenuType.host);
-                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Rejoindre"], MenuType.join);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Retour"], MenuType.welcome);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Rejoindre"], MenuType.ipjoin);
+                        actualMenu.Buttons[3] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Coop"], MenuType.coop);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         break;
                     }
                 case MenuType.host:
                     {
+                        actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Jouer"], MenuType.freeplay);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
+                        Ressource.parameter[3] = true;
                         Ressource.parameter[4] = true;
                         Ressource.parameter[5] = false;
                         break;
                     }
+                case MenuType.ipjoin:
+                    {
+                        actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain,0,0,0,0,Xbutton, Ybutton1);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Rejoindre"], MenuType.join);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
+                        break; 
+                    }
                 case MenuType.join:
                     {
+                        actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 3);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Reessayer"], MenuType.ipjoin);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Retour"], MenuType.welcome);
+                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Jouer"], MenuType.freeplay); //A enlever
+                        Ressource.parameter[3] = true;
                         Ressource.parameter[4] = false;
                         Ressource.parameter[5] = true;
+                        break;
+                    }
+                case MenuType.coop:
+                    {
+                        Ressource.parameter[3] = true;
+                        Ressource.parameter[4] = false;
+                        Ressource.parameter[5] = false;
+                        actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Jouer"], MenuType.freeplay);
+                        actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         break;
                     }
                 default:
@@ -381,12 +424,14 @@ namespace GravityTutorial
                         break;
                     }
             }
+            #endregion
             return actualMenu;
         }
 
         //UPDATE & DRAW
         public void Draw(SpriteBatch spriteBatch, MouseState mouse)
         {
+            #region Base
             spriteBatch.Draw(this.background,new Rectangle(0,0,Ressource.screenWidth, Ressource.screenHeight), Color.White);
 
             Color color;
@@ -406,6 +451,22 @@ namespace GravityTutorial
                     color = Color.White;
                 }
                 b.Draw(spriteBatch, color);
+            }
+
+            if (setIp != null)
+            {
+                if (mouse.X >= setIp.pos.X
+                    & mouse.X <= setIp.pos.X + setIp.SpriteWidth
+                    & mouse.Y >= setIp.pos.Y
+                    & mouse.Y <= setIp.pos.Y + setIp.SpriteHeight)
+                {
+                    color = Color.LightGray;
+                }
+                else
+                {
+                    color = Color.White;
+                }
+                setIp.Draw(spriteBatch, color);
             }
 
             foreach (SwitchButton b in SButtons)
@@ -483,7 +544,8 @@ namespace GravityTutorial
             }
 
             title.Draw(spriteBatch);
-
+            #endregion
+            #region win
             if (actualType == MenuType.win)
             {
                 //LEFT
@@ -524,9 +586,10 @@ namespace GravityTutorial
                     pos.Y += 40;
                     c++;
                     spriteBatch.DrawString(Ressource.SmallMenuPolice, " " + c.ToString() + " - " + s, pos, Color.White);
-                }            
+                }
             }
-
+            #endregion
+            #region loose
             if (actualType == MenuType.loose)
             {
                 string str;
@@ -559,6 +622,91 @@ namespace GravityTutorial
 
                 spriteBatch.DrawString(Ressource.MenuPolice, str, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(str).Length() / 2, 250), Color.White);
             }
+            #endregion
+            #region host
+            if (actualType == MenuType.host)
+            {
+                string str = "";
+                
+                if (Ressource.serverCount == 0)
+                {
+                    if (!Ressource.parameter[2])
+                    {
+                        str = Ressource.MenuString["Wait"].Item1;
+
+                    }
+                    else
+                    {
+                        str = Ressource.MenuString["Wait"].Item2;
+                    }
+                }
+                else
+                {
+                    if (!Ressource.parameter[2])
+                    {
+                        str = Ressource.MenuString["J2 Found"].Item1;
+
+                    }
+                    else
+                    {
+                        str = Ressource.MenuString["J2 Found"].Item2;
+                    }
+                }
+                Server.getIp();
+                spriteBatch.DrawString(Ressource.MenuPolice, str, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(str).Length() / 2, 250), Color.White);
+                spriteBatch.DrawString(Ressource.MenuPolice, Ressource.ipJ1, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(Ressource.ipJ1).Length() / 2, 350), Color.White);
+            }
+            #endregion 
+            #region join
+            if (actualType == MenuType.join)
+            {
+                string str = "";
+                if (Ressource.connected)
+                {
+                    if (!Ressource.parameter[2])
+                    {
+                        str = Ressource.MenuString["J1 Found"].Item1;
+                        Buttons[0].Text = Ressource.MenuString["Attente J1"].Item1;
+
+                    }
+                    else
+                    {
+                        str = Ressource.MenuString["J1 Found"].Item2;
+                        Buttons[0].Text = Ressource.MenuString["Attente J1"].Item2;
+                    }
+                    Buttons[0].nextMenu = MenuType.none;
+                }
+                else
+                {
+                    if (!Ressource.parameter[2])
+                    {
+                        str = Ressource.MenuString["Aucun server"].Item1;
+
+                    }
+                    else
+                    {
+                        str = Ressource.MenuString["Aucun server"].Item2;
+                    }
+                }
+                spriteBatch.DrawString(Ressource.MenuPolice, str, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(str).Length() / 2, 250), Color.White);
+            }
+            #endregion 
+            #region coop
+            if (actualType == MenuType.coop)
+            {
+                string str = "";
+               if (!Ressource.parameter[2])
+                    {
+                        str = Ressource.MenuString["Coop expl"].Item1;
+
+                    }
+                    else
+                    {
+                        str = Ressource.MenuString["Coop expl"].Item2;
+                    }
+               spriteBatch.DrawString(Ressource.MenuPolice, str, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(str).Length() / 2, 250), Color.White);
+            }
+            #endregion
         }
 
         public void Update(MouseState mouse, KeyboardState keyboard, ref Menu menu, bool sizeChanged)
@@ -661,6 +809,11 @@ namespace GravityTutorial
             foreach (Pseudo p in Pseudo)
             {
                 p.Update(mouse, ref menu);
+            }
+
+            if (setIp != null)
+            {
+                setIp.Update(mouse, ref menu);
             }
 
         }

@@ -133,18 +133,26 @@ namespace GravityTutorial
 
         protected override void Update(GameTime gameTime)
         {
-            if (Ressource.parameter[5] && !reseau)
+            if (Ressource.parameter[5] && !reseau) // Client
             {
                 reseau = true;
                 client = new Client();
-                client.Connect("localhost", 4242, Ressource.pseudo);
+                client.Connect(Ressource.ipJ2, 4242, Ressource.pseudo);
             }
-            if (Ressource.parameter[4] && !reseau)
+            if (Ressource.parameter[4] && !reseau) //Host
             {
+                reseau = true;
                 server = new Server(4242);
                 reseau = true;
                 server.Run();
+                
             }
+
+            if (Ressource.parameter[4])
+            {
+                Ressource.messageJ1toJ2 = "";
+            }
+
             bool sizeChanged = false;
             if (Ressource.screenWidth != GraphicsDevice.Viewport.Width || Ressource.screenHeight != GraphicsDevice.Viewport.Height)
             {
@@ -168,16 +176,17 @@ namespace GravityTutorial
                 if (Level != null)
                 {
                     Level = new Level(Level.lvl);
+                    Ressource.messageJ1toJ2 = "Z/newlevel/" + Level.lvl + "+";
                 }
                 Hud.youlose = false;
                 Hud.youwin = false;
                 score = new Hud(new TimeSpan(0, 0, 80), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
                 score.rectangle_life.Width = 150;
+                
             }
 
             if (inGame)
             {
-                
                 if (Ressource.parameter[5])
                 {
                         compteur = 0;
@@ -216,6 +225,14 @@ namespace GravityTutorial
             else
             {
                 menu.Update(Mouse.GetState(), Keyboard.GetState(), ref menu, sizeChanged);
+                if (Ressource.messageJ1toJ2 != "" && Ressource.parameter[4] && reseau)
+                {
+                    server.Chat();
+                }
+                if (Ressource.parameter[5] && reseau)
+                {
+                    client.Read();
+                }
             }
 
             if (VidPlayer.State == MediaState.Stopped)

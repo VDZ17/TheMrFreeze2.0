@@ -25,6 +25,7 @@ namespace GravityTutorial
         public void Update()
         {
             Game1.Level = new Level(lvl);
+            Ressource.messageJ1toJ2 = "Z/newlvl/" + lvl + "+";
         }
 
         public void Draw(SpriteBatch spriteBatch, Color color)

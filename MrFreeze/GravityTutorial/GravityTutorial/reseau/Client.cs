@@ -28,6 +28,7 @@ namespace GravityTutorial
             try
             {
                 server_socket.Connect(host, port);
+                Ressource.connected = true;
             }
             catch (SocketException)
             {

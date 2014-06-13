@@ -19,6 +19,7 @@ namespace GravityTutorial
 {
     public static class Ressource
     {
+        #region FIELDS
         public static Texture2D Player_animation,
             background,
             Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox, Chrono, FondBonus,
@@ -41,6 +42,8 @@ namespace GravityTutorial
 
         public static string keybord_multi_j2;
         public static string level_multi_j1;
+        public static string ipJ1;
+        public static string ipJ2;
 
         public static bool[] parameter = new bool[6];
 
@@ -64,13 +67,15 @@ namespace GravityTutorial
 
         public static string pseudo;
         public static Vector2 position_j2_multi;
+        public static int serverCount;
+        public static bool connected;
+        public static string messageJ1toJ2;
+        #endregion 
 
         public static void LoadContent(ContentManager Content)
         {
-            keybord_multi_j2 = "";
-            level_multi_j1 = "";
-            position_j2_multi = Vector2.Zero;
             //FILES
+            #region File
             string MenuFile = "MenuRessources\\";
             //string TileFile = "TileRessources\\";
             string CharacterFile = "CharacterRessources\\";
@@ -81,7 +86,9 @@ namespace GravityTutorial
             //string particules
             string particules = "particules\\";
             string EnnemiesFile = "EnnemiesResources\\";
+            #endregion
 
+            #region Textures
             //PLAYER
             Player_animation = Content.Load<Texture2D>(CharacterFile + "FIXMegaman");
             healthbar = Content.Load<Texture2D>(CharacterFile + "healthbar");
@@ -109,8 +116,10 @@ namespace GravityTutorial
             Loser = Content.Load<Texture2D>(InGameFile + "bleucrash");
             igloo = Content.Load<Texture2D>(InGameFile + "Tile10");
             moving_plateform = Content.Load<Texture2D>("Tile5");
+            #endregion
 
             //TOUCHES
+            #region Touche
             KeyJ1.Add(inGameAction.Left, Keys.Left);
             KeyJ1.Add(inGameAction.Right, Keys.Right);
             KeyJ1.Add(inGameAction.Jump, Keys.Up);
@@ -123,8 +132,10 @@ namespace GravityTutorial
             KeyJ2.Add(inGameAction.Jump, Keys.Space);
             KeyJ2.Add(inGameAction.Pause, Keys.Escape);
             KeyJ2.Add(inGameAction.Shoot, Keys.Z);
+            #endregion
 
             //MENU
+            #region Menu
             Button = Content.Load<Texture2D>(MenuFile + "boutton");
             BackgroundMenuMain = Content.Load<Texture2D>(MenuFile + "backgroundmenu");
             BackgroundMenuPause = Content.Load<Texture2D>(MenuFile + "backgroundmenugris");
@@ -136,8 +147,10 @@ namespace GravityTutorial
             pseudo = "USER";
             Chrono = Content.Load<Texture2D>(MenuFile + "sablier");
             FondBonus = Content.Load<Texture2D>(MenuFile + "fondbonus");
+            #endregion
 
             //MENUSTRING
+            #region MenuString
             MenuString.Add("Retour", new Tuple<string, string>("Retour", "Back"));
             MenuString.Add("Jouer", new Tuple<string, string>("Jouer", "Play"));
             MenuString.Add("Options", new Tuple<string, string>("Options", "Options"));
@@ -160,7 +173,7 @@ namespace GravityTutorial
             MenuString.Add("Bruitages", new Tuple<string, string>("Bruitage", "Sounds"));
             MenuString.Add("Musique", new Tuple<string, string>("Musique", "Music"));
             MenuString.Add("Par defaut", new Tuple<string, string>("Par defaut", "Default"));
-            MenuString.Add("Coop", new Tuple<string, string>("Coop", "Coop"));
+            MenuString.Add("Coop", new Tuple<string, string>("Cooperation", "Cooperation"));
             MenuString.Add("Changer niv.", new Tuple<string, string>("Changer niv.", "Lvl select"));
 
             MenuString.Add("Envoiscore", new Tuple<string, string>("Envoi score", "Send score"));
@@ -187,15 +200,26 @@ namespace GravityTutorial
             MenuString.Add("Multijoueur", new Tuple<string, string>("Multijoueur", "Multiplayer"));
             MenuString.Add("Heberger", new Tuple<string, string>("Heberger", "Host"));
             MenuString.Add("Rejoindre", new Tuple<string, string>("Rejoindre", "Join"));
+            MenuString.Add("Wait", new Tuple<string, string>("Recherche de Joueur 2 ...", "Looking for Player 2"));
+            MenuString.Add("J2 Found", new Tuple<string, string>("Joueur 2 trouve !", "Player 2 found !"));
+            MenuString.Add("Aucun server", new Tuple<string, string>("Aucun serveur ...", "Aucun serveur ..."));
+            MenuString.Add("J1 Found", new Tuple<string, string>("Joueur 1 trouve !", "Player 1 found !"));
+            MenuString.Add("Reessayer", new Tuple<string, string>("Reessayer", "Try again"));
+            MenuString.Add("Attente J1", new Tuple<string, string>("Attente J1", "Waiting P1"));
+            MenuString.Add("Changer", new Tuple<string, string>("Changer", "Changer"));
 
+            MenuString.Add("Coop expl", new Tuple<string, string>("Jouer avec un ami\nsur le meme clavier ?", "Play with a friend\non the same keyboard ?"));
+            #endregion
 
             //PARAMETERS
+            #region Parameter
             parameter[0] = false; //Musique
             parameter[1] = false; //Bruitages
             parameter[2] = false; //English version
             parameter[3] = true; //Coop
             parameter[4] = false; //Serveur
             parameter[5] = false; //Client
+            #endregion
 
             //FONT
             Font = Content.Load<SpriteFont>(InGameFile + "Arial");
@@ -205,22 +229,22 @@ namespace GravityTutorial
             Items = Content.Load<Texture2D>(BonusFile + "items");
 
             //SOUND 
+            #region Sound 
             effect = Content.Load<SoundEffect>(MusicFile + "SF-course_sable1");
             effect2 = effect.CreateInstance();
             shot = Content.Load<SoundEffect>(MusicFile + "shot");
             shot2 = shot.CreateInstance();
             song = Content.Load<Song>(MusicFile + "Endlessly");
             song2 = Content.Load<Song>(MusicFile + "Unsainstable29");
-
             shot2.Volume = 0.4f;
-            
-
+            #endregion
 
             //INTRO
             vid = Content.Load<Video>("vid");
 
             //PARTICULES
-            BasicExplosion= Content.Load<ParticleEffect>((particules + "BasicExplosion"));
+            #region Particules
+            BasicExplosion = Content.Load<ParticleEffect>((particules + "BasicExplosion"));
             Basicfireball = Content.Load<ParticleEffect>(particules + "BasicFireball");
             BasicSmokePlume = Content.Load<ParticleEffect>(particules + "BasicSmokePlume");
             BeamMeUp = Content.Load<ParticleEffect>(particules + "BeamMeUp");
@@ -246,6 +270,19 @@ namespace GravityTutorial
             particule.particleEffects.Add("Paparazzi", Paparazzi);
             particule.particleEffects.Add("StarTrail", StarTrail);
             particule.particleEffects.Add("Rain", SimpleRain);
+            #endregion
+
+            //MULTI
+            #region Multi
+            keybord_multi_j2 = "";
+            level_multi_j1 = "";
+            position_j2_multi = Vector2.Zero;
+            messageJ1toJ2 = "";
+            serverCount = 0;
+            connected = false;
+            ipJ1 = "";
+            ipJ2 = "0.0.0.0";
+            #endregion
         }
 
     }
