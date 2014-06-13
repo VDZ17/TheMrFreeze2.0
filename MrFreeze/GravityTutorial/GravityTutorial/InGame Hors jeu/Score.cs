@@ -32,14 +32,14 @@ namespace GravityTutorial
 
         //Bonus
         Item.Type typeBonus;
-        int nbBonus;
+        public int nbBonus;
         Tuple<string, string> tuple;
-        string nomBonus;
+        public string nomBonus;
 
         Item.Type typeBonus2;
-        int nbBonus2;
+        public int nbBonus2;
         Tuple<string, string> tuple2;
-        string nomBonus2;
+        public string nomBonus2;
 
         public Hud(TimeSpan timespan, Vector2 position_data)
         {

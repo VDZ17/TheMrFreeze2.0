@@ -54,6 +54,7 @@ namespace GravityTutorial
         public static bool reseau;
         public bool cooldown_reseau;
         int compteur;
+        public static bool willBeInGame;
 
         //CONSTRUCTOR
         public Game1()
@@ -77,6 +78,7 @@ namespace GravityTutorial
             menu = new Menu(Menu.MenuType.none, 0, Ressource.BackgroundMenuMain);
             inGame = false;
             reload = false;
+            willBeInGame = false;
 
             cooldown_reseau = false;
             compteur = 0;
@@ -133,6 +135,12 @@ namespace GravityTutorial
 
         protected override void Update(GameTime gameTime)
         {
+            if (!inGame && willBeInGame)
+            {
+                inGame = true;
+                willBeInGame = false;
+            }
+
             if (Ressource.parameter[5] && !reseau) // Client
             {
                 reseau = true;
@@ -144,13 +152,12 @@ namespace GravityTutorial
                 reseau = true;
                 server = new Server(4242);
                 reseau = true;
-                server.Run();
-                
+                server.Run();  
             }
 
             if (Ressource.parameter[4])
             {
-                Ressource.messageJ1toJ2 = "";
+                //Ressource.messageJ1toJ2 = "";
             }
 
             bool sizeChanged = false;
@@ -176,7 +183,7 @@ namespace GravityTutorial
                 if (Level != null)
                 {
                     Level = new Level(Level.lvl);
-                    Ressource.messageJ1toJ2 = "Z/newlevel/" + Level.lvl + "+";
+                    Ressource.messageJ1toJ2 = "Z/newlvl/" + Level.lvl + "+";
                 }
                 Hud.youlose = false;
                 Hud.youwin = false;
@@ -205,7 +212,11 @@ namespace GravityTutorial
 
                 if (Ressource.parameter[3])
                 {
-                    score.Update(Level.Heroes[0], Level.Heroes[1]);
+                    if (!Ressource.parameter[5])
+                    {
+                         score.Update(Level.Heroes[0], Level.Heroes[1]);
+                    }
+
                 }
                 else
                 {
@@ -232,6 +243,38 @@ namespace GravityTutorial
                 if (Ressource.parameter[5] && reseau)
                 {
                     client.Read();
+                    if (Ressource.level_multi_j1 != "" && Ressource.level_multi_j1 != null && Ressource.level_multi_j1[0] == 'Z')
+                    {
+                        int i = 2;
+                        string b = Level.ToNextSlash(Ressource.level_multi_j1, ref i);
+                        if (b == "newlvl")
+                        {
+                            int lvl = Convert.ToInt32(Level.ToNextSlash(Ressource.messageJ1, ref i));
+                            Level = new Level(lvl);
+                            score = new Hud(new TimeSpan(0, 0, 80), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
+                            score.rectangle_life.Width = 150;
+                            inGame = true;
+                        }
+                        if (b == "pause")
+                        {
+                            menu.ChangeMenu(Menu.MenuType.multipause);
+                            inGame = false;
+                        }
+                        if (b == "unpause")
+                        {
+                            inGame = true;
+                        }
+                        if (b== "win")
+                        {
+                            menu.ChangeMenu(Menu.MenuType.multiwin);
+                            inGame = false;
+                        }
+                        if (b == "loose")
+                        {
+                            menu.ChangeMenu(Menu.MenuType.multiloose);
+                            inGame = false;
+                        }
+                    }
                 }
             }
 
@@ -279,10 +322,7 @@ namespace GravityTutorial
 
                     // HUD
                     spriteBatch.Begin();
-                    if (!Ressource.parameter[5])
-                    {
                         score.Draw(spriteBatch);
-                    }
                     spriteBatch.End();
 
                 }

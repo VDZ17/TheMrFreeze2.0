@@ -98,9 +98,12 @@ namespace GravityTutorial
                                 }
                                 else
                                 {
-                                    sclient.Send(Ressource.messageJ1toJ2);
-                                    if(Ressource.messageJ1toJ2 != "")
-                                        Console.WriteLine(Ressource.messageJ1toJ2);
+                                    sclient.Send(Ressource.messageJ1);
+                                    if (Ressource.messageJ1 != "")
+                                    {
+                                        Console.WriteLine(Ressource.messageJ1);
+                                        
+                                    }
                                 }
                             }
                                 

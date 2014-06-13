@@ -71,8 +71,18 @@ namespace GravityTutorial
         {
             //while (true)
             //{
-                if (server_socket.Poll(1, SelectMode.SelectRead))
+            if (server_socket.Poll(1, SelectMode.SelectRead))
+            {
+                if (Game1.inGame)
+                {
                     Ressource.level_multi_j1 = (servReader.ReadLine());
+                }
+                else
+                {
+                    Ressource.messageJ1 = (servReader.ReadLine());
+                }
+                
+            }
             //}
         }
 

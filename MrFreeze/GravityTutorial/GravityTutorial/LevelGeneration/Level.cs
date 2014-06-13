@@ -230,10 +230,6 @@ namespace GravityTutorial
                     break;
             }
             #endregion
-            if (Ressource.parameter[5])
-            {
-                Heroes = new List<Character>();
-            }
             //TODO
         }
 
@@ -431,19 +427,18 @@ namespace GravityTutorial
             }
             #endregion
             #region coins
-            j = 0;
-            foreach (Bonus b in Bonuses) //C/i/hasbeentaken+
+            foreach (Bonus b in Bonuses) //C/hasbeentaken/x/y+
             {
-                s += "C/" + j + "/";
-               j++;
+                s += "C/";
                 if (b.hasBeenTaken)
                 {
-                    s += "0+";
+                    s += "0/";
                 }
                 else
                 {
-                    s += "1+";
+                    s += "1/";
                 }
+                s += (int)b.position.X + "/" + (int)b.position.Y + "+";
             }
             #endregion
 
@@ -940,6 +935,19 @@ namespace GravityTutorial
             {
                 item.Draw(spriteBatch);
             }
+
+            List<Bonus> ToDel = new List<Bonus>();
+            foreach (Bonus c in Bonuses)
+            {
+                if (c.type == Bonus.Type.Gold)
+                {
+                    ToDel.Add(c);
+                }
+            }
+            foreach (Bonus c in ToDel)
+            {
+                Bonuses.Remove(c);
+            }
             #endregion
 
             List<string> splitted = Split(s);
@@ -1009,11 +1017,8 @@ namespace GravityTutorial
 
                     if (nbPlayer == 1)
                     {
-                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(10, 10, 400, 50), Color.White);
                         if (nbBonus != 0)
                         {
-                            Item item = new Item(new Vector2(10, 10), Ressource.Items, Item.Type.None, nbBonus);
-                            item.Draw(spriteBatch);
                             string nomBonus = "";
                             if (Ressource.parameter[2])
                             {
@@ -1023,16 +1028,15 @@ namespace GravityTutorial
                             {
                                 nomBonus = BonusNameFr;
                             }
-                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2(70, 15), Color.White);
+                        
+                        Game1.score.nbBonus = nbBonus;
+                        Game1.score.nomBonus = nomBonus;
                         }
                     }
                     else
                     {
-                        spriteBatch.Draw(Ressource.FondBonus, new Rectangle(Ressource.screenWidth - 400 - 10, 10, 400, 50), Color.White);
                         if (nbBonus != 0)
                         {
-                            Item item = new Item(new Vector2(Ressource.screenWidth - 410, 10), Ressource.Items, Item.Type.None, nbBonus);
-                            item.Draw(spriteBatch);
                             string nomBonus = "";
                             if (Ressource.parameter[2])
                             {
@@ -1042,7 +1046,8 @@ namespace GravityTutorial
                             {
                                 nomBonus = BonusNameFr;
                             }
-                            spriteBatch.DrawString(Ressource.SmallMenuPolice, nomBonus, new Vector2(Ressource.screenWidth - 400 - 10 + 65, 15), Color.White);
+                            Game1.score.nbBonus2 = nbBonus;
+                            Game1.score.nomBonus2 = nomBonus;
                         }
                     }
 
@@ -1148,9 +1153,12 @@ namespace GravityTutorial
                 if (a[0] == 'C')
                 {
                     int i = 2;
+                    int hbt = Convert.ToInt32(ToNextSlash(a, ref i));
                     int x = Convert.ToInt32(ToNextSlash(a, ref i));
                     int y = Convert.ToInt32(ToNextSlash(a, ref i));
-                    Bonuses[x].hasBeenTaken = (y != 1);
+                    
+                    Bonuses.Add(new Bonus(new Vector2(x,y), Ressource.Gold, Bonus.Type.Gold));
+                    Bonuses[Bonuses.Count - 1].hasBeenTaken = (hbt != 1);
                 }
 
                 #endregion
@@ -1189,13 +1197,13 @@ namespace GravityTutorial
                     Rectangle rectangle_life2 = new Rectangle(0, 0, vieJ2, Ressource.healthbar.Height);
 
 
-                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Score : " + score, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Score : " + score).Length() / 2, 40), Color.White);
-                    spriteBatch.DrawString(Ressource.SmallMenuPolice, "Timer : " + timer, new Vector2(Ressource.screenWidth / 2 - Ressource.SmallMenuPolice.MeasureString("Timer : " + timer).Length() / 2, 5), Color.White);
+                    Game1.score.score = score;
+                    Game1.score.timer = timer;
+                    Game1.score.rectangle_life = rectangle_life;
+                    Game1.score.rectangle_life2 = rectangle_life2;
                     
-                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(position_life.X - 2, position_life.Y - 2), Color.White);
-                    spriteBatch.Draw(Ressource.healthbar, position_life, rectangle_life, Color.White);
-                    spriteBatch.Draw(Ressource.fondHealthbar, new Vector2(Ressource.screenWidth - 150 - 10 - 2, 70 - 2), Color.White);
-                    spriteBatch.Draw(Ressource.healthbar, new Vector2(Ressource.screenWidth - 150 - 10, 70), rectangle_life2, Color.White);
+
+
                 }
                 #endregion
             }

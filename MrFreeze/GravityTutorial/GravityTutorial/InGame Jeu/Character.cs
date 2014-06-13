@@ -538,6 +538,7 @@ namespace GravityTutorial
             if (Keyboard.GetState().IsKeyDown(Ressource.KeyJ1[Ressource.inGameAction.Pause]))
             {
                 stop = true;
+                Ressource.messageJ1toJ2 = "Z/pause+";
                 Game1.inGame = false;
             }
             #endregion

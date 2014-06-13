@@ -42,6 +42,7 @@ namespace GravityTutorial
 
         public static string keybord_multi_j2;
         public static string level_multi_j1;
+        public static string messageJ1;
         public static string ipJ1;
         public static string ipJ2;
 
