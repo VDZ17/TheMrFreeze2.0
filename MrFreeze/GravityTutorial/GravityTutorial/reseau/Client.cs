@@ -85,7 +85,16 @@ namespace GravityTutorial
         public void Write()
         {
                 servWriter.WriteLine(Level.KeyboardToStr());
-                servWriter.Flush();
+                try
+                {
+                    servWriter.Flush();
+                }
+                catch (System.IO.IOException)
+                {
+                    Game1.reseauLost = true;
+                    
+                }
+                
         }
 
         private void Close()

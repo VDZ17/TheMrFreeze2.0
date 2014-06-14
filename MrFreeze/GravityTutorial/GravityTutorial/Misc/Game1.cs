@@ -52,6 +52,7 @@ namespace GravityTutorial
         public static bool inGame;
         public static bool reload;
         public static bool reseau;
+        public static bool reseauLost;
         public bool cooldown_reseau;
 
         //CONSTRUCTOR
@@ -76,6 +77,7 @@ namespace GravityTutorial
             menu = new Menu(Menu.MenuType.none, 0, Ressource.BackgroundMenuMain);
             inGame = false;
             reload = false;
+            reseauLost = false;
 
             cooldown_reseau = false;
             reseau = false;
@@ -132,6 +134,18 @@ namespace GravityTutorial
         protected override void Update(GameTime gameTime)
         {
             #region init reseau
+            if (reseauLost)
+            {
+                reseauLost = false;
+                reseau = false;
+                inGame = false;
+                client = null;
+                server = null;
+                Ressource.parameter[3] = false;
+                Ressource.parameter[4] = false;
+                Ressource.parameter[5] = false;
+                menu = menu.ChangeMenu(Menu.MenuType.reseaulost);
+            }
 
             if (Ressource.parameter[5] && !reseau) // Client
             {

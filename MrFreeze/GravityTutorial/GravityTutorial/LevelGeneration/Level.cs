@@ -45,7 +45,7 @@ namespace GravityTutorial
         public Level(int lvl)
         {
             Web = new web();
-            string dir = (Directory.GetCurrentDirectory() +"\\Content\\Levels\\");
+            string dir = (Directory.GetCurrentDirectory() + "\\Content\\Levels\\");
             this.lvl = lvl;
             map = new Map();
 
@@ -240,7 +240,7 @@ namespace GravityTutorial
             #region character
             foreach (Character h in Heroes) //H/nbjoueur/x/y/couleur/sens/colonne/ligne/hauteur/largeur/rectangle_width/rectangle_height/nbBonus/bonusvo/bonusvf/stop/attack/spawn/jump+
             {
-                
+
                 s += "H/";
                 s += h.player + "/";
                 s += (int)h.position.X + "/";
@@ -333,7 +333,7 @@ namespace GravityTutorial
                 }
 
                 s += nbBonus + "/" + tuple.Item1 + "/" + tuple.Item2 + "/" + h.stop + "/" + h.attack + "/" + h.spawn + "/" + h.jump + "+";
-              
+
 
                 #region bullet
                 foreach (Bullet b in h.Bullets) //B/x/y/couleur/sens/colonne+
@@ -366,7 +366,7 @@ namespace GravityTutorial
                 }
                 #endregion
             }
-  #endregion
+            #endregion
 
             #region ennemi1
             foreach (Ennemy1 e in Ennemies1) //E1/x/y/height/width/colonne/ligne/sens
@@ -443,9 +443,9 @@ namespace GravityTutorial
             }
             #endregion
 
-            #region hud 
+            #region hud
             //S/score/timer/vieJ1/vieJ2/youloose/youwin/ingame+
-            s += "S/" + Game1.score.score + "/" + Game1.score.timer+ "/" + Game1.score.rectangle_life.Width + "/" + Game1.score.rectangle_life2.Width + "/";
+            s += "S/" + Game1.score.score + "/" + Game1.score.timer + "/" + Game1.score.rectangle_life.Width + "/" + Game1.score.rectangle_life2.Width + "/";
             if (youlose)
             {
                 s += "1/";
@@ -474,7 +474,6 @@ namespace GravityTutorial
             }
             #endregion
 
-            //TODO plateforme mouvante/destructible
             #region plateforme
             foreach (moving_platform m_p in moving_platform) //x/y+
             {
@@ -535,7 +534,7 @@ namespace GravityTutorial
                 }
                 else
                 {
-                    i = j+1;
+                    i = j + 1;
                     return s2;
                 }
             }
@@ -590,26 +589,38 @@ namespace GravityTutorial
         public static bool[] StrToKeyboard(string s)
         {
             bool[] k = new bool[5];
+            k[0] = false;
+            k[1] = false;
+            k[2] = false;
+            k[3] = false;
+            k[4] = false;
 
-            if (s[0] == 'K')
+            if (s == null)
             {
-                int i = 2;
-                int x = Convert.ToInt32(ToNextSlash(s, ref i));
-                int y = Convert.ToInt32(ToNextSlash(s, ref i));
-                int z = Convert.ToInt32(ToNextSlash(s, ref i));
-                int a = Convert.ToInt32(ToNextSlash(s, ref i));
-                k[0] = true;
-                k[1] = x == 1;
-                k[2] = y == 1;
-                k[3] = z == 1;
-                k[4] = a == 1;
+                Game1.reseauLost = true;
             }
             else
             {
-                k[0] = false;
+                if (s[0] == 'K')
+                {
+                    int i = 2;
+                    int x = Convert.ToInt32(ToNextSlash(s, ref i));
+                    int y = Convert.ToInt32(ToNextSlash(s, ref i));
+                    int z = Convert.ToInt32(ToNextSlash(s, ref i));
+                    int a = Convert.ToInt32(ToNextSlash(s, ref i));
+                    k[0] = true;
+                    k[1] = x == 1;
+                    k[2] = y == 1;
+                    k[3] = z == 1;
+                    k[4] = a == 1;
+                }
+                else
+                {
+                    k[0] = false;
+                }
             }
             return k;
-        
+
         }
 
         //UPDATE & DRAW
@@ -1025,7 +1036,7 @@ namespace GravityTutorial
 
                     int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
 
-                    
+
                     //Console.WriteLine(frameCollumn);
 
                     int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
@@ -1035,7 +1046,7 @@ namespace GravityTutorial
                     int rectangle_width = Convert.ToInt32(ToNextSlash(a, ref i));
                     int rectangle_height = Convert.ToInt32(ToNextSlash(a, ref i));
 
-                    Vector2 position = new Vector2(x,y);
+                    Vector2 position = new Vector2(x, y);
                     Ressource.positionFromJ2 = position;
 
                     int nbBonus = Convert.ToInt32(ToNextSlash(a, ref i));
@@ -1123,9 +1134,9 @@ namespace GravityTutorial
                             {
                                 nomBonus = BonusNameFr;
                             }
-                        
-                        Game1.score.nbBonus = nbBonus;
-                        Game1.score.nomBonus = nomBonus;
+
+                            Game1.score.nbBonus = nbBonus;
+                            Game1.score.nomBonus = nomBonus;
                         }
                     }
                     else
@@ -1173,7 +1184,7 @@ namespace GravityTutorial
                     spriteBatch.Draw(t, new Rectangle((int)position.X, (int)position.Y, 55, 62), new Rectangle((collumn - 1) * 55, 0, 55, 62), color, 0f, new Vector2(0, 0), effect, 0f);
                 }
                 #endregion
-                #region Ennemis 
+                #region Ennemis
                 if (a[0] == 'E')
                 {
                     if (a[1] == '1') //E1/x/y/height/width/colonne/ligne/sens
@@ -1185,14 +1196,14 @@ namespace GravityTutorial
                         int width = Convert.ToInt32(ToNextSlash(a, ref i));
                         int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
                         int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
-                        string b  = ToNextSlash(a, ref i);
+                        string b = ToNextSlash(a, ref i);
                         SpriteEffects effect = SpriteEffects.None;
                         if (b[0] == 'l')
                         {
                             effect = SpriteEffects.FlipHorizontally;
                         }
-                        spriteBatch.Draw(Ressource.Ennemy1, new Rectangle(x,y,width,height), new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
-                        
+                        spriteBatch.Draw(Ressource.Ennemy1, new Rectangle(x, y, width, height), new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
+
                     }
                     if (a[1] == '2') //E2/x/y/height/width/colonne/ligne/fixwidth/sens
                     {
@@ -1202,7 +1213,7 @@ namespace GravityTutorial
                         int height = Convert.ToInt32(ToNextSlash(a, ref i));
                         int width = Convert.ToInt32(ToNextSlash(a, ref i));
 
-              
+
 
                         int frameCollumn = Convert.ToInt32(ToNextSlash(a, ref i));
                         int frameRow = Convert.ToInt32(ToNextSlash(a, ref i));
@@ -1213,8 +1224,8 @@ namespace GravityTutorial
                         {
                             effect = SpriteEffects.FlipHorizontally;
                         }
-                        Rectangle r = new Rectangle(x,y+fixwidth,width,height);
-                        spriteBatch.Draw(Ressource.Ennemy2, r, new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0),effect, 0f);
+                        Rectangle r = new Rectangle(x, y + fixwidth, width, height);
+                        spriteBatch.Draw(Ressource.Ennemy2, r, new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
 
                     }
                     if (a[1] == '3') //E3/x/y/height/width/colonne/ligne/sens
@@ -1232,7 +1243,7 @@ namespace GravityTutorial
                         {
                             effect = SpriteEffects.FlipHorizontally;
                         }
-                        spriteBatch.Draw(Ressource.Ennemy3, new Rectangle(x, y+5, width, height), new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
+                        spriteBatch.Draw(Ressource.Ennemy3, new Rectangle(x, y + 5, width, height), new Rectangle((frameCollumn - 1) * width, frameRow, width, height), Color.White, 0f, new Vector2(0, 0), effect, 0f);
 
                     }
                 }
@@ -1251,9 +1262,11 @@ namespace GravityTutorial
                     int hbt = Convert.ToInt32(ToNextSlash(a, ref i));
                     int x = Convert.ToInt32(ToNextSlash(a, ref i));
                     int y = Convert.ToInt32(ToNextSlash(a, ref i));
-                    
-                    Bonuses.Add(new Bonus(new Vector2(x,y), Ressource.Gold, Bonus.Type.Gold));
-                    Bonuses[Bonuses.Count - 1].hasBeenTaken = (hbt != 1);
+
+                    Bonus Gold = new Bonus(new Vector2(x, y), Ressource.Gold, Bonus.Type.Gold);
+                    Gold.hasBeenTaken = (hbt != 1);
+                    Bonuses.Add(Gold);
+
                 }
 
                 #endregion
@@ -1296,7 +1309,7 @@ namespace GravityTutorial
                     Game1.score.timer = timer;
                     Game1.score.rectangle_life = rectangle_life;
                     Game1.score.rectangle_life2 = rectangle_life2;
-                    
+
 
 
                 }

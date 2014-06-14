@@ -66,6 +66,8 @@ namespace GravityTutorial
             multipause,
             multiwin,
             multiloose,
+            reseaulost,
+            uninstall,
         }
 
         //CONSTRUCTOR
@@ -168,7 +170,7 @@ namespace GravityTutorial
                     }
                 case MenuType.option:
                     {
-                        actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain, 3);
+                        actualMenu = new Menu(type, 5, Ressource.BackgroundMenuMain, 3);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 2);
                         actualMenu.SButtons[0] = new SwitchButton(new Vector2(Xbutton0, Ybutton0), Ressource.MenuString["Musique"], 0);
                         actualMenu.SButtons[1] = new SwitchButton(new Vector2(Xbutton0, Ybutton1), Ressource.MenuString["Bruitages"], 1);
@@ -177,7 +179,8 @@ namespace GravityTutorial
                         
                         actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton1, Ybutton2), Ressource.MenuString["Touches J2"], MenuType.setcontroleJ2);
                         actualMenu.Buttons[3] = new MenuButton(new Vector2(Xbutton1, Ybutton0), Ressource.MenuString["Pseudo"], MenuType.setpseudo);
-                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
+                        actualMenu.Buttons[4] = new MenuButton(new Vector2(Xbutton0, Ybutton3), Ressource.MenuString["Desinstaller"], MenuType.uninstall);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton1, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         break;
                     }
                 case MenuType.setcontroleJ1:
@@ -403,11 +406,10 @@ namespace GravityTutorial
                     }
                 case MenuType.join:
                     {
-                        actualMenu = new Menu(type, 3, Ressource.BackgroundMenuMain);
+                        actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 3);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Reessayer"], MenuType.ipjoin);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Retour"], MenuType.welcome);
-                        actualMenu.Buttons[2] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Jouer"], MenuType.freeplay); //A enlever
                         Ressource.parameter[3] = true;
                         Ressource.parameter[4] = false;
                         Ressource.parameter[5] = true;
@@ -442,7 +444,21 @@ namespace GravityTutorial
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 5);
                         break;
                     }
+                case MenuType.reseaulost:
+                    {
+                        actualMenu = new Menu(MenuType.reseaulost, 1, Ressource.BackgroundMenuMain);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 0);
+                        actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Retour"], MenuType.welcome);
+                        break;
+                    }
+                case MenuType.uninstall:
+                    {
+                        //Met le code ici Baptiste pour uninstall
+                        Game1.exitgame = true;
+                        break;
+                    }
                 default:
+
                     {
                         break;
                     }
@@ -728,6 +744,22 @@ namespace GravityTutorial
                         str = Ressource.MenuString["Coop expl"].Item2;
                     }
                spriteBatch.DrawString(Ressource.MenuPolice, str, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(str).Length() / 2, 250), Color.White);
+            }
+            #endregion
+            #region reseaulost
+            if (actualType == MenuType.reseaulost)
+            {
+                string str = "";
+                if (!Ressource.parameter[2])
+                {
+                    str = Ressource.MenuString["Connection perdue"].Item1;
+
+                }
+                else
+                {
+                    str = Ressource.MenuString["Connection perdue"].Item2;
+                }
+                spriteBatch.DrawString(Ressource.MenuPolice, str, new Vector2(Ressource.screenWidth / 2 - Ressource.MenuPolice.MeasureString(str).Length() / 2, 250), Color.White);
             }
             #endregion
         }

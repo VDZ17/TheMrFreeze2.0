@@ -31,8 +31,17 @@ namespace GravityTutorial
 
         public void Send(string message)
         {
-            clientWriter.WriteLine(message);
-            clientWriter.Flush();
+            try
+            {
+                clientWriter.WriteLine(message);
+                clientWriter.Flush();
+            }
+            catch (System.IO.IOException)
+            {
+                Game1.reseauLost = false;
+                
+            }
+
         }
 
         public string Receive()

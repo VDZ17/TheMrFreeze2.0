@@ -176,6 +176,7 @@ namespace GravityTutorial
             MenuString.Add("Par defaut", new Tuple<string, string>("Par defaut", "Default"));
             MenuString.Add("Coop", new Tuple<string, string>("Cooperation", "Cooperation"));
             MenuString.Add("Changer niv.", new Tuple<string, string>("Changer niv.", "Lvl select"));
+            MenuString.Add("Desinstaller", new Tuple<string, string>("Desinstaller", "Uninstall"));
 
             MenuString.Add("Envoiscore", new Tuple<string, string>("Envoi score", "Send score"));
             MenuString.Add("Envoye", new Tuple<string, string>("Envoye !", "Sent !"));
@@ -207,7 +208,8 @@ namespace GravityTutorial
             MenuString.Add("J1 Found", new Tuple<string, string>("Joueur 1 trouve !", "Player 1 found !"));
             MenuString.Add("Reessayer", new Tuple<string, string>("Reessayer", "Try again"));
             MenuString.Add("Attente J1", new Tuple<string, string>("Attente J1", "Waiting P1"));
-            MenuString.Add("Changer", new Tuple<string, string>("Changer", "Changer"));
+            MenuString.Add("Changer", new Tuple<string, string>("Changer", "Change"));
+            MenuString.Add("Connection perdue", new Tuple<string, string>("Connection perdue ...", "Connection lost ..."));
 
             MenuString.Add("Coop expl", new Tuple<string, string>("Jouer avec un ami\nsur le meme clavier ?", "Play with a friend\non the same keyboard ?"));
             #endregion
