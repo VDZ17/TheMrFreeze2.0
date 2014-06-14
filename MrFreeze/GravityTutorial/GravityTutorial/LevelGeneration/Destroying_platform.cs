@@ -10,13 +10,13 @@ namespace GravityTutorial
     public class Destroying_platform
     {
         Texture2D texture;
-        Vector2 position;
+        public Vector2 position;
         int right;
         int left;
         bool going_right;
         public Rectangle hitbox;
-        bool complet;
-        bool fissure;
+        public bool complet;
+        public bool fissure;
         public bool detruit;
 
         public Destroying_platform(Vector2 position, Texture2D texture)
@@ -39,7 +39,7 @@ namespace GravityTutorial
             {
                 if (bullet.hitbox_bullet.Collide_object(hitbox))
                 {
-                    texture = Ressource.fissure;
+                    texture = Ressource.detruit_f;
                     fissure = true;
                     complet = false;
                     return;

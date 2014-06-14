@@ -10,7 +10,7 @@ namespace GravityTutorial
     public class moving_platform
     {
         Texture2D texture;
-        Vector2 position;
+        public Vector2 position;
         int right;
         int left;
         bool going_right;

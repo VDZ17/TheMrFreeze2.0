@@ -65,7 +65,7 @@ namespace GravityTutorial
                     }
                     if (number == 6)
                     {
-                        Level.destroy_platform.Add(new Destroying_platform(new Vector2(x * size, y * size), Ressource.complet));
+                        Level.destroy_platform.Add(new Destroying_platform(new Vector2(x * size, y * size), Ressource.detruit_c));
                     }
                     if (number == 4) //Gold
                     {

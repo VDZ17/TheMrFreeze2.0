@@ -23,7 +23,7 @@ namespace GravityTutorial
         public static Texture2D Player_animation,
             background,
             Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox, Chrono, FondBonus,
-            Gold, Items, Loser, igloo, healthbar, fondHealthbar, Bullet, moving_plateform, fissure, complet;
+            Gold, Items, Loser, igloo, healthbar, fondHealthbar, Bullet, moving_plateform, detruit_f, detruit_c;
 
         public static Texture2D Ennemy3, Ennemy2, Ennemy1;
         public static Texture2D Cursor1, Cursor2;
@@ -96,8 +96,8 @@ namespace GravityTutorial
             fondHealthbar = Content.Load<Texture2D>(CharacterFile + "fondhealthbar");
 
             //BLOCK
-            fissure = Content.Load<Texture2D>(InGameFile + "fissure");
-            complet = Content.Load<Texture2D>(InGameFile + "complet");
+            detruit_f = Content.Load<Texture2D>(InGameFile + "fissure");
+            detruit_c = Content.Load<Texture2D>(InGameFile + "complet");
             
             //BULLET
             Bullet = Content.Load<Texture2D>("shoot");

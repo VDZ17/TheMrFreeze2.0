@@ -475,6 +475,32 @@ namespace GravityTutorial
             #endregion
 
             //TODO plateforme mouvante/destructible
+            #region plateforme
+            foreach (moving_platform m_p in moving_platform) //x/y+
+            {
+                s += "M/";
+                s += m_p.position.X + "/";
+                s += m_p.position.Y + "+";
+            }
+            foreach (Destroying_platform d_p in destroy_platform) //x/y/detruit+
+            {
+                s += "D/";
+                s += d_p.position.X + "/";
+                s += d_p.position.Y + "/";
+                if (d_p.detruit)
+                {
+                    s += "1/";
+                }
+                else
+                    s += "0/";
+                if (d_p.fissure)
+                {
+                    s += "1+";
+                }
+                else
+                    s += "0+";
+            }
+            #endregion
             return s;
         }
 
@@ -928,7 +954,7 @@ namespace GravityTutorial
             #region base
             map.Draw(spriteBatch);
 
-            foreach (Destroying_platform item in destroy_platform)
+            /*foreach (Destroying_platform item in destroy_platform)
             {
                 item.Draw(spriteBatch);
             }
@@ -936,7 +962,7 @@ namespace GravityTutorial
             foreach (moving_platform item in moving_platform)
             {
                 item.Draw(spriteBatch);
-            }
+            }*/
 
             List<Bonus> ToDel = new List<Bonus>();
             foreach (Bonus c in Bonuses)
@@ -1075,6 +1101,13 @@ namespace GravityTutorial
 
                     spriteBatch.Draw(Ressource.Player_animation, new Rectangle(x, y, rectangle_width, rectangle_height),
                         new Rectangle((frameCollumn - 1) * player_Width, frameRow, player_Width, player_Height), color, 0f, new Vector2(0, 0), effect, 0f);
+                    if (nbPlayer == 1)
+                        spriteBatch.Draw(Ressource.Cursor1, new Rectangle((int)position.X + player_Width / 4,
+                            (int)position.Y - 43 - 15, 25, 43), Color.White);
+                    else if (nbPlayer == 2)
+                        spriteBatch.Draw(Ressource.Cursor2, new Rectangle((int)position.X + player_Width / 4,
+                            (int)position.Y - 43 - 15, 25, 43), Color.White);
+
                     particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
 
                     if (nbPlayer == 1)
@@ -1266,6 +1299,36 @@ namespace GravityTutorial
                     
 
 
+                }
+                #endregion
+                #region plateforme
+                if (a[0] == 'M')
+                {
+                    int i = 2;
+                    int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                    //moving_platform.Add(new moving_platform(new Vector2(x, y), Ressource.moving_plateform));
+                    spriteBatch.Draw(Ressource.moving_plateform, new Rectangle(x, y, 50, 50), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                }
+                if (a[0] == 'D')
+                {
+                    Texture2D texture;
+                    int i = 2;
+                    int x = Convert.ToInt32(ToNextSlash(a, ref i));
+                    int y = Convert.ToInt32(ToNextSlash(a, ref i));
+                    string detruit_s = ToNextSlash(a, ref i);
+                    string ressource = ToNextSlash(a, ref i);
+                    if (ressource == "1")
+                    {
+                        texture = Ressource.detruit_f;
+                    }
+                    else
+                        texture = Ressource.detruit_c;
+                    if (detruit_s == "0")
+                    {
+                        spriteBatch.Draw(texture, new Rectangle(x, y, 50, 50), null, Color.White, 0f, Vector2.Zero, SpriteEffects.None, 0);
+                    }
+                    //destroy_platform.Add(new Destroying_platform(new Vector2(x, y), Ressource.fissure));
                 }
                 #endregion
             }
