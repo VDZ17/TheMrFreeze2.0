@@ -42,7 +42,7 @@ namespace GravityTutorial
             string ligne;
             dicotop5.Add(pseudo, score);
             StreamReader fluxInfos2;
-            using (fluxInfos2 = new StreamReader(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore" + Game1.Level.lvl + ".txt"))
+            using (fluxInfos2 = new StreamReader(Directory.GetCurrentDirectory() + "\\Content\\Score\\hightscore" + Game1.Level.lvl + ".txt"))
             {
                 ligne = fluxInfos2.ReadLine();
                 while (ligne != null)
@@ -69,13 +69,13 @@ namespace GravityTutorial
 
             var DicoTrie = (from entry in dicotop5 orderby entry.Value descending select entry);
             StreamWriter fluxInfos3;
-            using (fluxInfos3 = new StreamWriter(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore" + Game1.Level.lvl + ".txt"))
+            using (fluxInfos3 = new StreamWriter(Directory.GetCurrentDirectory() + "\\Content\\Score\\hightscore" + Game1.Level.lvl + ".txt"))
             {
 
             }
             int i = 0;
             StreamWriter fluxInfos4;
-            using (fluxInfos4 = new StreamWriter(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore" + Game1.Level.lvl + ".txt"))
+            using (fluxInfos4 = new StreamWriter(Directory.GetCurrentDirectory() + "\\Content\\Score\\hightscore" + Game1.Level.lvl + ".txt"))
             {
 
                 foreach (KeyValuePair<string, double> pair in DicoTrie)

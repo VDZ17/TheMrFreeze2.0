@@ -252,7 +252,7 @@ namespace GravityTutorial.InGame_Jeu
         {
             Rectangle hitboxHit = new Rectangle((int)this.position.X, (int)this.position.Y, 77, 85);
 
-            if (player.rectangle.Intersects(hitboxHit))
+            if (player.rectangle.Intersects(hitboxHit) && !(this.position.Y+this.height < player.position.Y))
             {
                 this.state = State1.Hitting;
                 updateHitbox();
@@ -273,6 +273,7 @@ namespace GravityTutorial.InGame_Jeu
                     player.life_changment += -10;
                 }
             }
+            Console.WriteLine(this.state);
         }
 
         public void Collision(Rectangle newRectangle, string name)

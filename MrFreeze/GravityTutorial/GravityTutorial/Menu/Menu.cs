@@ -588,7 +588,7 @@ namespace GravityTutorial
                 spriteBatch.DrawString(Ressource.SmallMenuPolice, "TOTAL : " + score, new Vector2(xpos, 280), Color.White);
 
                 //RIGHT
-                List<string> hightscore = loadfile.read_score((Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetParent(Directory.GetCurrentDirectory()).FullName).FullName).FullName) + "\\GravityTutorialContent\\hightscore\\hightscore"+ Game1.Level.lvl + ".txt"));
+                List<string> hightscore = loadfile.read_score((Directory.GetCurrentDirectory() + "\\Content\\Score\\hightscore" + Game1.Level.lvl + ".txt"));
 
                 int maxpos = (int)(2*Ressource.screenWidth / 3 - Ressource.SmallMenuPolice.MeasureString("Hightscore").Length()/2);
 
