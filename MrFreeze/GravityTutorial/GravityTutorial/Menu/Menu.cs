@@ -7,6 +7,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
 using System.IO;
+using System.Diagnostics;
 
 namespace GravityTutorial
 {
@@ -454,6 +455,15 @@ namespace GravityTutorial
                 case MenuType.uninstall:
                     {
                         //Met le code ici Baptiste pour uninstall
+                        try
+                        {
+                            Process P = Process.Start(Directory.GetCurrentDirectory() + "\\unins000.exe");
+                        }
+                        catch
+                        {
+                            Console.WriteLine("marche pas");
+                        }
+
                         Game1.exitgame = true;
                         break;
                     }
