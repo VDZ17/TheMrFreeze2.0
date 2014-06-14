@@ -210,13 +210,13 @@ namespace GravityTutorial
 
         void pull_position_X(Rectangle obstacle)
         {
-            if (player == 2 && !Ressource.parameter[4])
+            if (player == 2 && !Ressource.parameter[4] && !Ressource.parameter[5])
             {
                 //Left + telep
                 if (position.X <= Camera.center.X - Camera.viewport.Width / 2 && rectangle.isOnLeftOf(obstacle))
                 {
-                    position.X = Level.Heroes[0].position.X;
-                    position.Y = Level.Heroes[0].position.Y;
+                    position.X = Game1.level.Heroes[0].position.X;
+                    position.Y = Game1.level.Heroes[0].position.Y;
                     rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
                     spawn = true;
                 }
@@ -227,8 +227,8 @@ namespace GravityTutorial
                 //Right+ telep
                 if (position.X + player_Width >= Camera.center.X + Camera.viewport.Width / 2 && rectangle.isOnRightOf(obstacle))
                 {
-                    position.X = Level.Heroes[0].position.X;
-                    position.Y = Level.Heroes[0].position.Y;
+                    position.X = Game1.level.Heroes[0].position.X;
+                    position.Y = Game1.level.Heroes[0].position.Y;
                     rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
                     spawn = true;
                 }
@@ -353,10 +353,6 @@ namespace GravityTutorial
 
         public void Update(GameTime gameTime, SoundEffectInstance effect, string s = "")
         {
-            if (player == 2)
-            {
-                Console.WriteLine(frameCollumn);
-            }
             #region bool keyboard
             Kjump = false;
             Kright = false;
@@ -366,7 +362,7 @@ namespace GravityTutorial
             if (Ressource.parameter[4] && s != "")
             {
                 
-                bool[] k = Game1.Level.StrToKeyboard(s);
+                bool[] k = Level.StrToKeyboard(s);
                 //K/left/right/jump/shoot
                 if (k[0])
                 {

@@ -80,7 +80,7 @@ namespace GravityTutorial
                         if (client.sock.Poll(1000, SelectMode.SelectRead))
                         {
                             message = client.Receive();
-                            Ressource.keybord_multi_j2 = message;
+                            Ressource.keybordFromJ2ToJ1 = message;
                             if (message == null)
                             {
                                 Console.WriteLine("Client " + client.name + " disconnected");
@@ -92,19 +92,15 @@ namespace GravityTutorial
 
                             foreach (Client_server sclient in clients)
                             {
-                                if (Game1.inGame)
+                                if (Game1.level == null)
                                 {
-                                    sclient.Send(Game1.Level.LvlToStr(Hud.youlose, Hud.youwin));
+                                    sclient.Send(Ressource.messageJ1toJ2);
                                 }
                                 else
                                 {
-                                    sclient.Send(Ressource.messageJ1);
-                                    if (Ressource.messageJ1 != "")
-                                    {
-                                        //Console.WriteLine(Ressource.messageJ1);
-                                        
-                                    }
+                                    sclient.Send(Ressource.messageJ1toJ2 + Game1.level.LvlToStr(Hud.youlose, Hud.youwin));
                                 }
+                                
                             }
                                 
                         }

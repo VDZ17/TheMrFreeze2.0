@@ -24,7 +24,7 @@ namespace GravityTutorial
         //UPDATE & DRAW
         public void Update()
         {
-            Game1.Level = new Level(lvl);
+            Game1.level = new Level(lvl);
             Ressource.messageJ1toJ2 = "Z/newlvl/" + lvl + "+";
         }
 

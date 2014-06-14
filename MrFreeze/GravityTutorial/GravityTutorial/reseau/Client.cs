@@ -69,31 +69,23 @@ namespace GravityTutorial
 
         public void Read()
         {
-            //while (true)
-            //{
             if (server_socket.Poll(1, SelectMode.SelectRead))
             {
-                if (Game1.inGame)
+                string s = (servReader.ReadLine());
+                if (s == null || s == "")
                 {
-                    Ressource.level_multi_j1 = (servReader.ReadLine());
+                    return;
                 }
-                else
-                {
-                    Ressource.messageJ1 = (servReader.ReadLine());
-                }
+                Ressource.messageFromJ1 = s;
+
                 
             }
-            //}
         }
 
         public void Write()
         {
-            //while (true)
-            //{
-                //Console.WriteLine(Game1.Level.KeyboardToStr());
-                servWriter.WriteLine(Game1.Level.KeyboardToStr());
+                servWriter.WriteLine(Level.KeyboardToStr());
                 servWriter.Flush();
-            //}
         }
 
         private void Close()

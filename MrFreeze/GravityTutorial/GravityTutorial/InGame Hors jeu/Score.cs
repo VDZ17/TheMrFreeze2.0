@@ -241,7 +241,7 @@ namespace GravityTutorial
             if (Ressource.parameter[3])
             {
 
-                foreach (Character c in Level.Heroes)
+                foreach (Character c in Game1.level.Heroes)
                 {
                     if (c.player == 1)
                     {

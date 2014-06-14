@@ -40,9 +40,9 @@ namespace GravityTutorial
 
         public static Video vid;
 
-        public static string keybord_multi_j2;
-        public static string level_multi_j1;
-        public static string messageJ1;
+        public static string keybordFromJ2ToJ1;
+        public static string levelFromJ1, levelFromJ1Previous;
+        public static string messageFromJ1;
         public static string ipJ1;
         public static string ipJ2;
 
@@ -67,7 +67,7 @@ namespace GravityTutorial
         public static int screenHeight, screenWidth;
 
         public static string pseudo;
-        public static Vector2 position_j2_multi;
+        public static Vector2 positionFromJ2;
         public static int serverCount;
         public static bool connected;
         public static string messageJ1toJ2;
@@ -217,7 +217,7 @@ namespace GravityTutorial
             parameter[0] = false; //Musique
             parameter[1] = false; //Bruitages
             parameter[2] = false; //English version
-            parameter[3] = true; //Coop
+            parameter[3] = false; //Coop
             parameter[4] = false; //Serveur
             parameter[5] = false; //Client
             #endregion
@@ -275,14 +275,15 @@ namespace GravityTutorial
 
             //MULTI
             #region Multi
-            keybord_multi_j2 = "";
-            level_multi_j1 = "";
-            position_j2_multi = Vector2.Zero;
+            keybordFromJ2ToJ1 = "";
+            levelFromJ1 = "";
+            levelFromJ1Previous = "";
+            positionFromJ2 = Vector2.Zero;
             messageJ1toJ2 = "";
             serverCount = 0;
             connected = false;
             ipJ1 = "";
-            ipJ2 = "0.0.0.0";
+            ipJ2 = "Localhost";
             #endregion
         }
 

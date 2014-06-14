@@ -208,7 +208,7 @@ namespace GravityTutorial
                     }
                 case MenuType.pause:
                     {
-                        Game1.willBeInGame = true;
+                        Game1.inGame = true;
                         actualMenu = new Menu(type, 3, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Reprendre"], MenuType.unpause);
@@ -244,8 +244,8 @@ namespace GravityTutorial
                     }
                 case MenuType.adventure: //useless
                     {
-                        Game1.willBeInGame = true;
-                        Game1.Level = new Level(1);
+                        Game1.inGame = true;
+                        Game1.level = new Level(1);
                         //Précharge la pause
                         actualMenu = new Menu(MenuType.pause, 3, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
@@ -256,7 +256,7 @@ namespace GravityTutorial
                     }
                 case MenuType.unpause:
                     {
-                        Game1.willBeInGame = true;
+                        Game1.inGame = true;
                         Ressource.messageJ1toJ2 = "Z/unpause+";
                         break;
                     }
@@ -264,7 +264,7 @@ namespace GravityTutorial
                     {
 
                         Game1.reload = true;
-                        Game1.willBeInGame = true;
+                        Game1.inGame = true;
 
                         actualMenu = new Menu(MenuType.pause, 3, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
@@ -346,7 +346,7 @@ namespace GravityTutorial
                         loadfile.Save((Game1.score.score) + Game1.score.timer * 10, Ressource.pseudo);
                         try
                         {
-                            Game1.Level.Web.send_request(Ressource.pseudo, Game1.score.score + (int)Game1.score.timer * 10, Game1.Level.lvl);
+                            Game1.level.Web.send_request(Ressource.pseudo, Game1.score.score + (int)Game1.score.timer * 10, Game1.level.lvl);
                         }
                         catch (Exception)
                         {
@@ -426,7 +426,7 @@ namespace GravityTutorial
                     }
                 case MenuType.multipause:
                     {
-                        actualMenu = new Menu(type, 0, Ressource.BackgroundMenuPause);
+                        actualMenu = new Menu(MenuType.pause, 0, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 3);
                         break;
                     }
@@ -438,7 +438,7 @@ namespace GravityTutorial
                     }
                 case MenuType.multiloose:
                     {
-                        actualMenu = new Menu(MenuType.loose, 2, Ressource.BackgroundMenuPause);
+                        actualMenu = new Menu(MenuType.loose, 0, Ressource.BackgroundMenuPause);
                         actualMenu.title = new MenuTitle(new Vector2(Xtitle, Ytitle), 5);
                         break;
                     }
@@ -588,7 +588,7 @@ namespace GravityTutorial
                 spriteBatch.DrawString(Ressource.SmallMenuPolice, "TOTAL : " + score, new Vector2(xpos, 280), Color.White);
 
                 //RIGHT
-                List<string> hightscore = loadfile.read_score((Directory.GetCurrentDirectory() + "\\Content\\Score\\hightscore" + Game1.Level.lvl + ".txt"));
+                List<string> hightscore = loadfile.read_score((Directory.GetCurrentDirectory() + "\\Content\\Score\\hightscore" + Game1.level.lvl + ".txt"));
 
                 int maxpos = (int)(2*Ressource.screenWidth / 3 - Ressource.SmallMenuPolice.MeasureString("Hightscore").Length()/2);
 

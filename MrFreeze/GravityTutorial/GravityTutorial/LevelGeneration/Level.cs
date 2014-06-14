@@ -17,7 +17,7 @@ namespace GravityTutorial
     public class Level
     {
         //FIELDS
-        public static List<Character> Heroes;
+        public List<Character> Heroes;
 
         public List<moving_platform> moving_platform;
         public List<Destroying_platform> destroy_platform;
@@ -479,7 +479,7 @@ namespace GravityTutorial
         }
 
         #region StrToLvl Helper
-        public List<string> Split(string s)
+        public static List<string> Split(string s)
         {
             List<string> splitted = new List<string>();
             string s2 = "";
@@ -498,7 +498,7 @@ namespace GravityTutorial
             return splitted;
         }
 
-        public string ToNextSlash(string s, ref int i)
+        public static string ToNextSlash(string s, ref int i)
         {
             string s2 = "";
             for (int j = i; j < s.Length; j++)
@@ -517,7 +517,7 @@ namespace GravityTutorial
         }
         #endregion
 
-        public string KeyboardToStr()
+        public static string KeyboardToStr()
         {
             KeyboardState k = Keyboard.GetState();
             string s = "";
@@ -561,7 +561,7 @@ namespace GravityTutorial
             }
             return s;
         }
-        public bool[] StrToKeyboard(string s)
+        public static bool[] StrToKeyboard(string s)
         {
             bool[] k = new bool[5];
 
@@ -603,7 +603,7 @@ namespace GravityTutorial
                 if (c.player == 1 && updateHero)
                     c.Update(gameTime, effect);
                 else if (c.player == 2 && updateHero2)
-                    c.Update(gameTime, effect, Ressource.keybord_multi_j2);
+                    c.Update(gameTime, effect, Ressource.keybordFromJ2ToJ1);
 
 
             }
@@ -1010,7 +1010,7 @@ namespace GravityTutorial
                     int rectangle_height = Convert.ToInt32(ToNextSlash(a, ref i));
 
                     Vector2 position = new Vector2(x,y);
-                    Ressource.position_j2_multi = position;
+                    Ressource.positionFromJ2 = position;
 
                     int nbBonus = Convert.ToInt32(ToNextSlash(a, ref i));
                     string BonusNameEn = ToNextSlash(a, ref i);
@@ -1237,15 +1237,15 @@ namespace GravityTutorial
                     string b = ToNextSlash(a, ref i);
                     if (b[0] == '1')
                     {
-                        Game1.inGame = false;
-                        Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
+                        //Game1.inGame = false;
+                        //Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.loose);
                     }
 
                     b = ToNextSlash(a, ref i);
                     if (b[0] == '1')
                     {
-                        Game1.inGame = false;
-                        Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.win);
+                        //Game1.inGame = false;
+                        //Game1.menu = Game1.menu.ChangeMenu(Menu.MenuType.win);
                     }
 
                     b = ToNextSlash(a, ref i);
