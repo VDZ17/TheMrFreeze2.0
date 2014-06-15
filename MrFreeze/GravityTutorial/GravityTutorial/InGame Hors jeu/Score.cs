@@ -45,6 +45,7 @@ namespace GravityTutorial
         {
             //health
             youwin = false;
+            youlose = false;
             damage = 0;
             damage2 = 0;
             texture_life = Ressource.healthbar;

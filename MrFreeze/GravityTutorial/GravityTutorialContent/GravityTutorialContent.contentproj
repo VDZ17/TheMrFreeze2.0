@@ -111,20 +111,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ecranbleu.jpg">
-      <Name>ecranbleu</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="InGameRessources\bleucrash.jpg">
-      <Name>bleucrash</Name>
-      <Importer>TextureImporter</Importer>
-      <Processor>TextureProcessor</Processor>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="MenuRessources\ArialDefaultMenu.spritefont">
       <Name>ArialDefaultMenu</Name>
       <Importer>FontDescriptionImporter</Importer>

@@ -25,6 +25,7 @@ namespace GravityTutorial
         public void Update()
         {
             Game1.level = new Level(lvl);
+            Game1.score = new Hud(new TimeSpan(0, 0, 80), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
             Ressource.messageJ1toJ2 = "Z/newlvl/" + lvl + "+";
         }
 

@@ -379,7 +379,7 @@ namespace GravityTutorial
                 case MenuType.multi:
                     {
                         actualMenu = new Menu(type, 4, Ressource.BackgroundMenuMain);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), nbPlay);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton0), Ressource.MenuString["Heberger"], MenuType.host);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Rejoindre"], MenuType.ipjoin);
                         actualMenu.Buttons[3] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Coop"], MenuType.coop);
@@ -389,7 +389,7 @@ namespace GravityTutorial
                 case MenuType.host:
                     {
                         actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), nbPlay);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Jouer"], MenuType.freeplay);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         Ressource.parameter[3] = true;
@@ -400,7 +400,7 @@ namespace GravityTutorial
                 case MenuType.ipjoin:
                     {
                         actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain,0,0,0,0,Xbutton, Ybutton1);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), nbPlay);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Rejoindre"], MenuType.join);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         break; 
@@ -408,7 +408,7 @@ namespace GravityTutorial
                 case MenuType.join:
                     {
                         actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 3);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), nbPlay);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton1), Ressource.MenuString["Reessayer"], MenuType.ipjoin);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Retour"], MenuType.welcome);
                         Ressource.parameter[3] = true;
@@ -422,7 +422,7 @@ namespace GravityTutorial
                         Ressource.parameter[4] = false;
                         Ressource.parameter[5] = false;
                         actualMenu = new Menu(type, 2, Ressource.BackgroundMenuMain);
-                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), 2);
+                        actualMenu.title = new MenuTitle(new Vector2(Xtitle, YtitleOptions), nbPlay);
                         actualMenu.Buttons[0] = new MenuButton(new Vector2(Xbutton, Ybutton2), Ressource.MenuString["Jouer"], MenuType.freeplay);
                         actualMenu.Buttons[1] = new MenuButton(new Vector2(Xbutton, Ybutton3), Ressource.MenuString["Retour"], MenuType.welcome);
                         break;

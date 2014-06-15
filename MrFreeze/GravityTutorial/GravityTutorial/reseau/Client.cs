@@ -71,7 +71,16 @@ namespace GravityTutorial
         {
             if (server_socket.Poll(1, SelectMode.SelectRead))
             {
-                string s = (servReader.ReadLine());
+                string s = "";
+                try
+                {
+                    s = (servReader.ReadLine());
+                }
+                catch (System.IO.IOException)
+                {
+                    Game1.reseauLost = true;
+                }
+                
                 if (s == null || s == "")
                 {
                     return;

@@ -23,7 +23,7 @@ namespace GravityTutorial
         public static Texture2D Player_animation,
             background,
             Button, BackgroundMenuMain, BackgroundMenuPause, Title, TextBox, Chrono, FondBonus,
-            Gold, Items, Loser, igloo, healthbar, fondHealthbar, Bullet, moving_plateform, detruit_f, detruit_c;
+            Gold, Items, igloo, healthbar, fondHealthbar, Bullet, moving_plateform, detruit_f, detruit_c;
 
         public static Texture2D Ennemy3, Ennemy2, Ennemy1;
         public static Texture2D Cursor1, Cursor2;
@@ -114,7 +114,6 @@ namespace GravityTutorial
 
             //GAME
             background = Content.Load<Texture2D>(InGameFile + "back");
-            Loser = Content.Load<Texture2D>(InGameFile + "bleucrash");
             igloo = Content.Load<Texture2D>(InGameFile + "Tile10");
             moving_plateform = Content.Load<Texture2D>("Tile5");
             #endregion
@@ -209,7 +208,7 @@ namespace GravityTutorial
             MenuString.Add("Reessayer", new Tuple<string, string>("Reessayer", "Try again"));
             MenuString.Add("Attente J1", new Tuple<string, string>("Attente J1", "Waiting P1"));
             MenuString.Add("Changer", new Tuple<string, string>("Changer", "Change"));
-            MenuString.Add("Connection perdue", new Tuple<string, string>("Connection perdue ...", "Connection lost ..."));
+            MenuString.Add("Connection perdue", new Tuple<string, string>("Connexion perdue ...", "Connection lost ..."));
 
             MenuString.Add("Coop expl", new Tuple<string, string>("Jouer avec un ami\nsur le meme clavier ?", "Play with a friend\non the same keyboard ?"));
             #endregion
