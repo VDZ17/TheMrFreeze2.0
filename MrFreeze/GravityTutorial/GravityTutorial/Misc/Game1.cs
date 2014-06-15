@@ -270,9 +270,9 @@ namespace GravityTutorial
                     level = new Level(level.lvl);
                     Ressource.messageJ1toJ2 = "Z/newlvl/" + level.lvl + "+";
                 }
+                score = new Hud(new TimeSpan(0, 0, 80), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
                 Hud.youlose = false;
                 Hud.youwin = false;
-                score = new Hud(new TimeSpan(0, 0, 80), new Vector2(GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Width, GraphicsAdapter.DefaultAdapter.CurrentDisplayMode.Height));
                 score.rectangle_life.Width = 150;
 
             }

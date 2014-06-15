@@ -97,7 +97,7 @@ namespace GravityTutorial
 
         public Character(Texture2D newTexture, Vector2 newPosition, Keys left, Keys right, Keys jump, Keys shoot, int player)
         {
-            
+
             texture = newTexture;
 
             life_changment = 0;
@@ -146,7 +146,7 @@ namespace GravityTutorial
             Kright = false;
             Kleft = false;
             Kshoot = false;
-            
+
         }
 
         public void UpdateBullet()
@@ -242,51 +242,51 @@ namespace GravityTutorial
         public void Animate()
         {
 
-                #region normal
-                
-                this.Timer++;
-                if (this.Timer >= this.AnimationSpeed)
-                {
-                    this.Timer = 0;
-                    #region spawning
-                    if (spawn)
-                    {
-                        this.frameCollumn++;
-                        if (this.frameCollumn >= this.nbr_sprite)
-                        {
-                            spawn = false;
-                            this.position.Y += 23;
-                            this.position.X += 20;
-                            frameCollumn = 1;
-                        }
-                    }
-                    #endregion
-                    else if (jump)
-                    {
-                        if (stop)
-                        {
+            #region normal
 
-                        }
-                        else
-                        {
-                            if (frameCollumn < 10)
-                                frameCollumn++;
-                        }
-                    }
-                    else
+            this.Timer++;
+            if (this.Timer >= this.AnimationSpeed)
+            {
+                this.Timer = 0;
+                #region spawning
+                if (spawn)
+                {
+                    this.frameCollumn++;
+                    if (this.frameCollumn >= this.nbr_sprite)
                     {
-                        this.frameCollumn++;
-                        if (this.frameCollumn >= this.nbr_sprite)
-                        {
-                            if (stop == false && attack == false)
-                                this.frameCollumn = 2;
-                            else
-                                this.frameCollumn = 1;
-                        }
+                        spawn = false;
+                        this.position.Y += 23;
+                        this.position.X += 20;
+                        frameCollumn = 1;
                     }
                 }
                 #endregion
-            
+                else if (jump)
+                {
+                    if (stop)
+                    {
+                        frameCollumn = 1;
+                    }
+                    else
+                    {
+                        if (frameCollumn < 10)
+                            frameCollumn++;
+                    }
+                }
+                else
+                {
+                    this.frameCollumn++;
+                    if (this.frameCollumn >= this.nbr_sprite)
+                    {
+                        if (stop == false && attack == false)
+                            this.frameCollumn = 2;
+                        else
+                            this.frameCollumn = 1;
+                    }
+                }
+            }
+            #endregion
+
         }
 
         void sprite_update(bool spawn, bool attack, bool stop, bool jump)
@@ -358,6 +358,10 @@ namespace GravityTutorial
 
         public void Update(GameTime gameTime, SoundEffectInstance effect, string s = "")
         {
+
+            if (player == 1)
+                Console.WriteLine(frameCollumn);
+
             #region bool keyboard
             Kjump = false;
             Kright = false;
@@ -366,7 +370,6 @@ namespace GravityTutorial
 
             if (Ressource.parameter[4] && s != "")
             {
-                
                 bool[] k = Level.StrToKeyboard(s);
                 //K/left/right/jump/shoot
                 if (k[0])
@@ -376,14 +379,13 @@ namespace GravityTutorial
                     Kjump = k[3];
                     Kshoot = k[4];
                 }
-
             }
             #endregion
             #region definition
             particule.particleEffects["Snow"].Trigger(new Vector2(position.X + Camera.Transform.Translation.X, 0));
             life_changment = 0;
 
-            
+
             rectangle = new Rectangle((int)position.X, (int)position.Y, player_Width, player_Height);
 
             position += velocity;
@@ -523,7 +525,7 @@ namespace GravityTutorial
             {
                 stop = false;
 
-                if (player == 1 || (player == 2 && this.position.X + this.player_Width < (Camera.center.X - Camera.viewport.Width / 2) + Camera.viewport.Width))
+                if (player == 1 || (player == 2 && this.position.X + this.player_Width < (Camera.center.X - Camera.viewport.Width / 2) + Camera.viewport.Width) && !Ressource.parameter[4] || !Ressource.parameter[5])
                     velocity.X = speed;
                 else
                     velocity.X = 0;
@@ -611,7 +613,7 @@ namespace GravityTutorial
             float i = 1;
 
             velocity.Y += 0.15f * i;
-#endregion
+            #endregion
             #region effet sprite
             switch (this.Direction)
             {
@@ -629,7 +631,7 @@ namespace GravityTutorial
                 MediaPlayer.Play(Ressource.song);
                 MediaPlayer.Volume = 1;
             }
-            
+
 
             else if (Ressource.parameter[0] == false)
             {

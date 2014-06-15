@@ -14,7 +14,7 @@ namespace GravityTutorial
         public Socket socket;
 
         public string message;
-        
+
         public Server(int port)
         {
             socket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -40,15 +40,15 @@ namespace GravityTutorial
         {
             //while (true)
             //{
-                Socket client = socket.Accept();
-                // Use the socket client to do whatever you want to do
-                IPEndPoint remote = (IPEndPoint)client.RemoteEndPoint;
-                Client_server myClient = new Client_server("player2", remote.Address.ToString(), remote.Port, client);
-                myClient.Send("Welcome");
+            Socket client = socket.Accept();
+            // Use the socket client to do whatever you want to do
+            IPEndPoint remote = (IPEndPoint)client.RemoteEndPoint;
+            Client_server myClient = new Client_server("player2", remote.Address.ToString(), remote.Port, client);
+            myClient.Send("Welcome");
 
-                clients.AddLast(myClient);
-                Ressource.serverCount += 1;
-                Console.WriteLine("Connexion from " + myClient.name);
+            clients.AddLast(myClient);
+            Ressource.serverCount += 1;
+            Console.WriteLine("Connexion from " + myClient.name);
             //}
         }
 
@@ -70,42 +70,42 @@ namespace GravityTutorial
         public void Chat()
         {
             //while (true)
-           // {
-                if ((clients.Count > 0))
+            // {
+            if ((clients.Count > 0))
+            {
+                for (int i = 0; i < clients.Count; i++)
                 {
-                    for (int i = 0; i < clients.Count; i++)
+                    Client_server client = clients.ElementAt(i);
+
+                    if (client.sock.Poll(1000, SelectMode.SelectRead))
                     {
-                        Client_server client = clients.ElementAt(i);
-
-                        if (client.sock.Poll(1000, SelectMode.SelectRead))
+                        message = client.Receive();
+                        Ressource.keybordFromJ2ToJ1 = message;
+                        if (message == null)
                         {
-                            message = client.Receive();
-                            Ressource.keybordFromJ2ToJ1 = message;
-                            if (message == null)
-                            {
-                                Console.WriteLine("Client " + client.name + " disconnected");
-                                clients.Remove(client);
-                                //continue;
-                            }
-
-                            //Console.WriteLine(client.name + " : " + message);
-
-                            foreach (Client_server sclient in clients)
-                            {
-                                if (Game1.level == null)
-                                {
-                                    sclient.Send(Ressource.messageJ1toJ2);
-                                }
-                                else
-                                {
-                                    sclient.Send(Ressource.messageJ1toJ2 + Game1.level.LvlToStr(Hud.youlose, Hud.youwin));
-                                }
-                                
-                            }
-                                
+                            Console.WriteLine("Client " + client.name + " disconnected");
+                            clients.Remove(client);
+                            //continue;
                         }
-                   // }
-              }
+
+                        //Console.WriteLine(client.name + " : " + message);
+
+                        foreach (Client_server sclient in clients)
+                        {
+                            if (Game1.level == null)
+                            {
+                                sclient.Send(Ressource.messageJ1toJ2);
+                            }
+                            else
+                            {
+                                sclient.Send(Ressource.messageJ1toJ2 + Game1.level.LvlToStr(Hud.youlose, Hud.youwin));
+                            }
+
+                        }
+
+                    }
+                    // }
+                }
             }
         }
         public string connected()
