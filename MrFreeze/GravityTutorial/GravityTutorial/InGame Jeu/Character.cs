@@ -241,47 +241,52 @@ namespace GravityTutorial
 
         public void Animate()
         {
-            this.Timer++;
-            if (this.Timer >= this.AnimationSpeed)
-            {
-                this.Timer = 0;
-                #region spawning
-                if (spawn)
-                {
-                    this.frameCollumn++;
-                    if (this.frameCollumn >= this.nbr_sprite)
-                    {
-                        spawn = false;
-                        this.position.Y += 23;
-                        this.position.X += 20;
-                        frameCollumn = 1;
-                    }
-                }
-                #endregion
-                else if (jump)
-                {
-                    if (stop)
-                    {
 
+                #region normal
+                
+                this.Timer++;
+                if (this.Timer >= this.AnimationSpeed)
+                {
+                    this.Timer = 0;
+                    #region spawning
+                    if (spawn)
+                    {
+                        this.frameCollumn++;
+                        if (this.frameCollumn >= this.nbr_sprite)
+                        {
+                            spawn = false;
+                            this.position.Y += 23;
+                            this.position.X += 20;
+                            frameCollumn = 1;
+                        }
+                    }
+                    #endregion
+                    else if (jump)
+                    {
+                        if (stop)
+                        {
+
+                        }
+                        else
+                        {
+                            if (frameCollumn < 10)
+                                frameCollumn++;
+                        }
                     }
                     else
                     {
-                        if (frameCollumn < 10)
-                            frameCollumn++;
+                        this.frameCollumn++;
+                        if (this.frameCollumn >= this.nbr_sprite)
+                        {
+                            if (stop == false && attack == false)
+                                this.frameCollumn = 2;
+                            else
+                                this.frameCollumn = 1;
+                        }
                     }
                 }
-                else
-                {
-                    this.frameCollumn++;
-                    if (this.frameCollumn >= this.nbr_sprite)
-                    {
-                        if (stop == false && attack == false)
-                            this.frameCollumn = 2;
-                        else
-                            this.frameCollumn = 1;
-                    }
-                }
-            }
+                #endregion
+            
         }
 
         void sprite_update(bool spawn, bool attack, bool stop, bool jump)

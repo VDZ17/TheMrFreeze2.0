@@ -975,7 +975,7 @@ namespace GravityTutorial
                 item.Draw(spriteBatch);
             }*/
 
-            List<Bonus> ToDel = new List<Bonus>();
+            /*List<Bonus> ToDel = new List<Bonus>();
             foreach (Bonus c in Bonuses)
             {
                 if (c.type == Bonus.Type.Gold)
@@ -986,7 +986,7 @@ namespace GravityTutorial
             foreach (Bonus c in ToDel)
             {
                 Bonuses.Remove(c);
-            }
+            }*/
             #endregion
 
             List<string> splitted = Split(s);
@@ -1262,10 +1262,11 @@ namespace GravityTutorial
                     int hbt = Convert.ToInt32(ToNextSlash(a, ref i));
                     int x = Convert.ToInt32(ToNextSlash(a, ref i));
                     int y = Convert.ToInt32(ToNextSlash(a, ref i));
-
-                    Bonus Gold = new Bonus(new Vector2(x, y), Ressource.Gold, Bonus.Type.Gold);
-                    Gold.hasBeenTaken = (hbt != 1);
-                    Bonuses.Add(Gold);
+                    
+                    if (hbt == 1)
+                    {
+                        spriteBatch.Draw(Ressource.Gold, new Vector2(x,y), Color.White);
+                    }
 
                 }
 
@@ -1347,10 +1348,10 @@ namespace GravityTutorial
             }
 
             #region base2
-            foreach (Bonus gold in Bonuses)
+            /*foreach (Bonus gold in Bonuses)
             {
                 gold.Draw(spriteBatch);
-            }
+            }*/
 
             foreach (Item i in Items)
             {
